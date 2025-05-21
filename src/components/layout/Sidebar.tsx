@@ -173,8 +173,7 @@ export default function Sidebar() {
                                 <DisclosurePanel as="ul" className="mt-1 px-2">
                                   {item.children.map((subItem) => (
                                     <li key={subItem.name}>
-                                      <DisclosureButton
-                                        as="a"
+                                      <a
                                         href={subItem.href}
                                         className={classNames(
                                           subItem.current ? 'bg-gray-50 text-main-600' : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
@@ -182,7 +181,7 @@ export default function Sidebar() {
                                         )}
                                       >
                                         {subItem.name}
-                                      </DisclosureButton>
+                                      </a>
                                     </li>
                                   ))}
                                 </DisclosurePanel>
@@ -291,8 +290,7 @@ export default function Sidebar() {
                             <DisclosurePanel as="ul" className="mt-1 px-2">
                               {item.children.map((subItem) => (
                                 <li key={subItem.name}>
-                                  <DisclosureButton
-                                    as="a"
+                                  <a
                                     href={subItem.href}
                                     className={classNames(
                                       subItem.current ? 'bg-gray-50 text-main-600' : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
@@ -300,7 +298,7 @@ export default function Sidebar() {
                                     )}
                                   >
                                     {subItem.name}
-                                  </DisclosureButton>
+                                  </a>
                                 </li>
                               ))}
                             </DisclosurePanel>
