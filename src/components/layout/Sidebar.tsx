@@ -136,15 +136,15 @@ export default function Sidebar() {
                                 href={item.href}
                                 className={classNames(
                                   item.current
-                                    ? 'bg-gray-50 text-main-600'
-                                    : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                                    ? 'bg-gray-50 text-main-900'
+                                    : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                   'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                                 )}
                               >
                                 <item.icon
                                   aria-hidden={true}
                                   className={classNames(
-                                    item.current ? 'text-main-600' : 'text-gray-400 group-hover:text-main-600',
+                                    item.current ? 'text-main-900' : 'text-gray-400 group-hover:text-main-900',
                                     'size-6 shrink-0',
                                   )}
                                 />
@@ -154,14 +154,14 @@ export default function Sidebar() {
                               <Disclosure as="div" defaultOpen={item.current}>
                                 <DisclosureButton
                                   className={classNames(
-                                    item.current ? 'bg-gray-50 text-main-600' : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                                    item.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                     'group flex w-full items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                                   )}
                                 >
                                   <item.icon
                                     aria-hidden={true}
                                     className={classNames(
-                                      item.current ? 'text-main-600' : 'text-gray-400 group-hover:text-main-600',
+                                      item.current ? 'text-main-900' : 'text-gray-400 group-hover:text-main-900',
                                       'size-6 shrink-0',
                                     )}
                                   />
@@ -177,7 +177,7 @@ export default function Sidebar() {
                                       <a
                                         href={subItem.href}
                                         className={classNames(
-                                          subItem.current ? 'bg-gray-50 text-main-600' : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                                          subItem.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                           'block rounded-md py-2 pr-2 pl-9 text-sm/6',
                                         )}
                                       >
@@ -201,16 +201,16 @@ export default function Sidebar() {
                               href={shortcut.href}
                               className={classNames(
                                 shortcut.current
-                                  ? 'bg-gray-50 text-main-600'
-                                  : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                                  ? 'bg-gray-50 text-main-900'
+                                  : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                 'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                               )}
                             >
                               <span
                                 className={classNames(
                                   shortcut.current
-                                    ? 'border-main-600 text-main-600'
-                                    : 'border-gray-200 text-gray-400 group-hover:border-main-600 group-hover:text-main-600',
+                                    ? 'border-main-900 text-main-900'
+                                    : 'border-gray-200 text-gray-400 group-hover:border-main-900 group-hover:text-main-900',
                                   'flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium',
                                 )}
                               >
@@ -253,15 +253,15 @@ export default function Sidebar() {
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? 'bg-gray-50 text-main-600'
-                                : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                                ? 'bg-gray-50 text-main-900'
+                                : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                               'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                             )}
                           >
                             <item.icon
                               aria-hidden={true}
                               className={classNames(
-                                item.current ? 'text-main-600' : 'text-gray-400 group-hover:text-main-600',
+                                item.current ? 'text-main-900' : 'text-gray-400 group-hover:text-main-900',
                                 'size-6 shrink-0',
                               )}
                             />
@@ -271,14 +271,14 @@ export default function Sidebar() {
                           <Disclosure as="div" defaultOpen={item.current}>
                             <DisclosureButton
                               className={classNames(
-                                item.current ? 'bg-gray-50 text-main-600' : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                                item.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                 'group flex w-full items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                               )}
                             >
                               <item.icon
                                 aria-hidden={true}
                                 className={classNames(
-                                  item.current ? 'text-main-600' : 'text-gray-400 group-hover:text-main-600',
+                                  item.current ? 'text-main-900' : 'text-gray-400 group-hover:text-main-900',
                                   'size-6 shrink-0',
                                 )}
                               />
@@ -294,7 +294,7 @@ export default function Sidebar() {
                                   <a
                                     href={subItem.href}
                                     className={classNames(
-                                      subItem.current ? 'bg-gray-50 text-main-600' : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                                      subItem.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                       'block rounded-md py-2 pr-2 pl-9 text-sm/6',
                                     )}
                                   >
@@ -318,16 +318,16 @@ export default function Sidebar() {
                           href={shortcut.href}
                           className={classNames(
                             shortcut.current
-                              ? 'bg-gray-50 text-main-600'
-                              : 'text-gray-700 hover:bg-gray-50 hover:text-main-600',
+                              ? 'bg-gray-50 text-main-900'
+                              : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                             'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                           )}
                         >
                           <span
                             className={classNames(
                               shortcut.current
-                                ? 'border-main-600 text-main-600'
-                                : 'border-gray-200 text-gray-400 group-hover:border-main-600 group-hover:text-main-600',
+                                ? 'border-main-900 text-main-900'
+                                : 'border-gray-200 text-gray-400 group-hover:border-main-900 group-hover:text-main-900',
                               'flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium',
                             )}
                           >

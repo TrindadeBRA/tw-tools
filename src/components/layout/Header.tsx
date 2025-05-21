@@ -9,7 +9,7 @@ export default function Header({ miniTitle, title, description }: HeaderProps) {
       <div className="mb-8">
         <div className="mx-auto">
           <div className="mx-auto lg:mx-0">
-            <p className="text-base font-semibold text-main-600">{miniTitle}</p>
+            <p className="text-base font-semibold text-main-900">{miniTitle}</p>
             <h2 className="mt-2 text-5xl font-semibold tracking-tight text-gray-900">{title}</h2>
             <p className="mt-8 text-base font-medium text-pretty text-gray-600">
               {description}
