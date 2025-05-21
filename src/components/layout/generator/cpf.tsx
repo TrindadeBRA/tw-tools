@@ -4,6 +4,8 @@ import { useState } from 'react'
 import InputRadio from '@/components/ui/InputRadio'
 import InputSelect, { Option } from '@/components/ui/InputSelect'
 import Button from '@/components/ui/Button'
+import FormPage from '../template/FormPage'
+import CopyResult from '@/components/ui/CopyResult'
 
 const stateOptions: Option[] = [
   { id: 'SP', title: 'São Paulo' },
@@ -88,58 +90,51 @@ export default function CPFGeneratorClient() {
   }
 
   return (
-    <div className="divide-y divide-gray-900/10">
-      <div className="grid grid-cols-1 gap-x-8 gap-y-8 py-10 md:grid-cols-3">
-        <div className="px-4 sm:px-0">
-          <h2 className="text-base/7 font-semibold text-gray-900">Gerador de CPF</h2>
-          <p className="mt-1 text-sm/6 text-gray-600">
-            O CPF (Cadastro de Pessoas Físicas) é um documento único emitido pela Receita Federal do Brasil.
-            Cada número gerado segue um algoritmo específico e pode ser validado.
-          </p>
-        </div>
-
-        <form onSubmit={(e) => { e.preventDefault(); handleGenerateCPF() }} className="bg-white shadow-xs ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
-          <div className="px-4 py-6 sm:p-8">
-            <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8">
-              <div className="col-span-full">
-                <InputSelect
-                  label="Estado de Origem"
-                  description="Selecione o estado para o qual o CPF será gerado"
-                  options={stateOptions}
-                  defaultValue={selectedState}
-                  onChange={handleStateChange}
-                />
-              </div>
-
-              <div className="col-span-full">
-                <InputRadio
-                  name="punctuation"
-                  label="Gerar com pontuação?"
-                  options={punctuationOptions}
-                  defaultOption={withPunctuation ? 'true' : 'false'}
-                  onChange={handlePunctuationChange}
-                />
-              </div>
-
-              {generatedCPF && (
-                <div className="col-span-full rounded-md bg-gray-50 p-4">
-                  <p className="text-sm font-medium text-gray-900">CPF Gerado:</p>
-                  <p className="mt-1 font-mono text-lg">{generatedCPF}</p>
-                </div>
-              )}
+    <FormPage
+      title="Gerador de CPF"
+      description="O CPF (Cadastro de Pessoas Físicas) é um documento único emitido pela Receita Federal do Brasil. Cada número gerado segue um algoritmo específico e pode ser validado."
+    >
+      <form onSubmit={(e) => { e.preventDefault(); handleGenerateCPF() }}>
+        <div className="px-4 py-6 sm:p-8">
+          <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8">
+            <div className="col-span-full">
+              <InputSelect
+                label="Estado de Origem"
+                description="Selecione o estado para o qual o CPF será gerado"
+                options={stateOptions}
+                defaultValue={selectedState}
+                onChange={handleStateChange}
+              />
             </div>
+
+            <div className="col-span-full">
+              <InputRadio
+                name="punctuation"
+                label="Gerar com pontuação?"
+                options={punctuationOptions}
+                defaultOption={withPunctuation ? 'true' : 'false'}
+                onChange={handlePunctuationChange}
+              />
+            </div>
+
+            {generatedCPF && (
+              <CopyResult
+                label="CPF Gerado:"
+                value={generatedCPF}
+              />
+            )}
           </div>
-          
-          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-            <Button type="button" variant="secondary" onClick={() => setGeneratedCPF('')}>
-              Limpar
-            </Button>
-            <Button type="submit">
-              Gerar CPF
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+        </div>
+        
+        <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+          <Button type="button" variant="secondary" onClick={() => setGeneratedCPF('')}>
+            Limpar
+          </Button>
+          <Button type="submit">
+            Gerar CPF
+          </Button>
+        </div>
+      </form>
+    </FormPage>
   )
 } 
