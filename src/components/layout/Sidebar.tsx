@@ -6,7 +6,6 @@ import { Dialog, DialogBackdrop, DialogPanel, TransitionChild, Disclosure, Discl
 import { CalculatorIcon, ChevronRightIcon, CurrencyDollarIcon } from '@heroicons/react/20/solid'
 import {
   Bars3Icon,
-  ChartPieIcon,
   CheckCircleIcon,
   LightBulbIcon,
   UsersIcon,
@@ -28,7 +27,7 @@ type NavItem = {
   children?: SubNavItem[]
 }
 
-const navigation: NavItem[] = [
+export const navigation: NavItem[] = [
   { name: 'Descubra', href: '/', icon: LightBulbIcon, current: false },
   {
     name: 'Geradores',
@@ -37,31 +36,29 @@ const navigation: NavItem[] = [
     children: [
       { name: 'Gerador de CPF', href: '/geradores/cpf' },
       { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
-      { name: 'Gerador de CEP', href: '/geradores/cep' },
     ],
   },
-  {
-    name: 'Validadores',
-    icon: CheckCircleIcon,
-    current: false,
-    children: [
-      { name: 'Validador de CPF', href: '#' },
-      { name: 'Validador de CNPJ', href: '#' },
-      { name: 'Validador de CEP', href: '#' },
-    ],
-  },
-  { name: 'Calculadoras', href: '#', icon: CalculatorIcon, current: false },
-  // conversores
-  { name: 'Conversores', icon: CurrencyDollarIcon, current: false, children: [
-    { name: 'Conversor de Moedas', href: '#' },
-    { name: 'Conversor de Temperatura', href: '#' },
-    { name: 'Conversor de Unidades', href: '#' },
-  ]},
+  // {
+  //   name: 'Validadores',
+  //   icon: CheckCircleIcon,
+  //   current: false,
+  //   children: [
+  //     { name: 'Validador de CPF', href: '#' },
+  //     { name: 'Validador de CNPJ', href: '#' },
+  //     { name: 'Validador de CEP', href: '#' },
+  //   ],
+  // },
+  // { name: 'Calculadoras', href: '#', icon: CalculatorIcon, current: false },
+  // { name: 'Conversores', icon: CurrencyDollarIcon, current: false, children: [
+  //   { name: 'Conversor de Moedas', href: '#' },
+  //   { name: 'Conversor de Temperatura', href: '#' },
+  //   { name: 'Conversor de Unidades', href: '#' },
+  // ]},
 ]
 const shortcuts = [
-  { id: 1, name: 'Gerador de CPF', href: '/geradores/cpf', initial: 'H', current: false },
-  { id: 2, name: 'Validador de CNPJ', href: '/validadores/cnpj', initial: 'T', current: false },
-  { id: 3, name: 'Conversor de Moedas', href: '/conversor/moedas', initial: 'W', current: false },
+  { id: 1, name: 'Gerador de CPF', href: '/geradores/cpf', initial: 'G', current: false },
+  { id: 2, name: 'Gerador de CNPJ', href: '/geradores/cnpj', initial: 'G', current: false },
+  // { id: 3, name: 'Conversor de Moedas', href: '/conversor/moedas', initial: 'W', current: false },
 ]
 
 function classNames(...classes: string[]) {

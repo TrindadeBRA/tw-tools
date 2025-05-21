@@ -17,7 +17,7 @@ export default function FormPage({ title, description, children }: FormPageProps
           </p>
         </div>
 
-        <div className="bg-white shadow-xs ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+        <div className="bg-white shadow-xs ring-2 ring-main-600 sm:rounded-xl md:col-span-2">
           {children}
         </div>
       </div>

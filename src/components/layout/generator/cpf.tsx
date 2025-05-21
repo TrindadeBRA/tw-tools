@@ -87,16 +87,16 @@ export default function CPFGeneratorClient() {
 
   return (
     <FormPage
-      title="Gerador de CPF"
-      description="O CPF (Cadastro de Pessoas Físicas) é um documento único emitido pela Receita Federal do Brasil. Cada número gerado segue um algoritmo específico e pode ser validado."
+      title="Como Gerar CPF Válido Online"
+      description="O CPF (Cadastro de Pessoas Físicas) é o documento oficial de identificação fiscal no Brasil. Nossa ferramenta gera números válidos de CPF por estado, seguindo todos os algoritmos e regras oficiais da Receita Federal, perfeito para testes e desenvolvimento de software."
     >
       <form onSubmit={handleSubmit(generateCPF)}>
         <div className="px-4 py-6 sm:p-8">
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8">
             <div className="col-span-full">
               <InputSelect
-                label="Estado de Origem"
-                description="Selecione o estado para o qual o CPF será gerado"
+                label="Estado de Origem do CPF"
+                description="Selecione o estado para gerar um CPF válido com o dígito verificador específico da região"
                 options={stateOptions}
                 defaultValue={stateOptions[0]}
                 onChange={handleStateChange}
@@ -107,7 +107,8 @@ export default function CPFGeneratorClient() {
             <div className="col-span-full">
               <InputRadio
                 name="punctuation"
-                label="Gerar com pontuação?"
+                label="Formato do CPF"
+                description="Escolha se deseja gerar o CPF com ou sem pontuação (pontos e hífen)"
                 options={booleanOptions}
                 defaultOption="true"
                 onChange={handlePunctuationChange}
@@ -117,7 +118,7 @@ export default function CPFGeneratorClient() {
 
             {generatedCPF && (
               <CopyResult
-                label="CPF Gerado:"
+                label="CPF Válido Gerado"
                 value={generatedCPF}
               />
             )}
@@ -126,10 +127,10 @@ export default function CPFGeneratorClient() {
         
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
           <Button type="button" variant="secondary" onClick={clearForm}>
-            Limpar
+            Limpar CPF
           </Button>
           <Button type="submit">
-            Gerar CPF
+            Gerar Novo CPF
           </Button>
         </div>
       </form>
