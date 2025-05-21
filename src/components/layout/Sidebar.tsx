@@ -37,6 +37,7 @@ export const navigation: NavItem[] = [
       { name: 'Gerador de CPF', href: '/geradores/cpf' },
       { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
       { name: 'Gerador de RG', href: '/geradores/rg' },
+      { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
     ],
   },
   // {
@@ -60,6 +61,7 @@ const shortcuts = [
   { id: 1, name: 'Gerador de CPF', href: '/geradores/cpf', initial: 'G', current: false },
   { id: 2, name: 'Gerador de CNPJ', href: '/geradores/cnpj', initial: 'G', current: false },
   { id: 3, name: 'Gerador de RG', href: '/geradores/rg', initial: 'G', current: false },
+  { id: 4, name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito', initial: 'G', current: false },
   // { id: 3, name: 'Conversor de Moedas', href: '/conversor/moedas', initial: 'W', current: false },
 ]
 

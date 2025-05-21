@@ -34,3 +34,14 @@ export const booleanOptions = [
     { id: 'true', title: 'Sim' },
     { id: 'false', title: 'Não' }
 ]
+
+export const creditCardBrandOptions: Option[] = [
+    { id: 'visa', title: 'Visa', description: 'Números começam com 4' },
+    { id: 'mastercard', title: 'Mastercard', description: 'Números começam com 51-55' },
+    { id: 'amex', title: 'American Express', description: 'Números começam com 34 ou 37' },
+    { id: 'discover', title: 'Discover', description: 'Números começam com 6011' },
+    { id: 'diners', title: 'Diners Club', description: 'Números começam com 300-305, 36 ou 38' },
+    { id: 'jcb', title: 'JCB', description: 'Números começam com 35' },
+    { id: 'hipercard', title: 'Hipercard', description: 'Números começam com 606282' },
+    { id: 'elo', title: 'Elo', description: 'Números começam com 636368, 438935, 504175' }
+]

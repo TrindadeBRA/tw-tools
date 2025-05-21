@@ -25,7 +25,7 @@ export default function CopyResult({ label, value }: CopyResultProps) {
   return (
     <div className="col-span-full rounded-md bg-gray-50 p-4">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-medium text-gray-900">{label}</p>
+        <p className="text-sm font-bold text-gray-900">{label}</p>
         <Button
           type="button"
           variant="copy"
