@@ -1,66 +1,58 @@
 'use client'
 
-import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import InputRadio from '@/components/ui/InputRadio'
 import InputSelect, { Option } from '@/components/ui/InputSelect'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
 import CopyResult from '@/components/ui/CopyResult'
+import { booleanOptions, stateOptions } from '@/data/consts'
 
-const stateOptions: Option[] = [
-  { id: 'SP', title: 'São Paulo' },
-  { id: 'RJ', title: 'Rio de Janeiro' },
-  { id: 'MG', title: 'Minas Gerais' },
-  { id: 'RS', title: 'Rio Grande do Sul' },
-  { id: 'BA', title: 'Bahia' },
-  { id: 'PR', title: 'Paraná' },
-  { id: 'PE', title: 'Pernambuco' },
-  { id: 'CE', title: 'Ceará' },
-  { id: 'PA', title: 'Pará' },
-  { id: 'MA', title: 'Maranhão' },
-  { id: 'SC', title: 'Santa Catarina' },
-  { id: 'GO', title: 'Goiás' },
-  { id: 'PB', title: 'Paraíba' },
-  { id: 'ES', title: 'Espírito Santo' },
-  { id: 'AM', title: 'Amazonas' },
-  { id: 'RN', title: 'Rio Grande do Norte' },
-  { id: 'AL', title: 'Alagoas' },
-  { id: 'PI', title: 'Piauí' },
-  { id: 'MT', title: 'Mato Grosso' },
-  { id: 'DF', title: 'Distrito Federal' },
-  { id: 'MS', title: 'Mato Grosso do Sul' },
-  { id: 'SE', title: 'Sergipe' },
-  { id: 'RO', title: 'Rondônia' },
-  { id: 'TO', title: 'Tocantins' },
-  { id: 'AC', title: 'Acre' },
-  { id: 'AP', title: 'Amapá' },
-  { id: 'RR', title: 'Roraima' }
-]
+const cpfFormSchema = z.object({
+  state: z.object({
+    id: z.union([z.string(), z.number()]),
+    title: z.string(),
+    description: z.string().optional(),
+  }),
+  withPunctuation: z.boolean(),
+  generatedCPF: z.string().optional(),
+})
 
-const punctuationOptions = [
-  { id: 'true', title: 'Sim' },
-  { id: 'false', title: 'Não' }
-]
+type CPFFormData = z.infer<typeof cpfFormSchema>
 
 export default function CPFGeneratorClient() {
-  const [selectedState, setSelectedState] = useState<Option>(stateOptions[0])
-  const [withPunctuation, setWithPunctuation] = useState<boolean>(true)
-  const [generatedCPF, setGeneratedCPF] = useState<string>('')
+  const {
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<CPFFormData>({
+    resolver: zodResolver(cpfFormSchema),
+    defaultValues: {
+      state: stateOptions[0],
+      withPunctuation: booleanOptions[0].id === 'true',
+      generatedCPF: '',
+    },
+  })
+
+  const generatedCPF = watch('generatedCPF')
 
   const handleStateChange = (value: Option) => {
-    setSelectedState(value)
+    setValue('state', value)
   }
 
   const handlePunctuationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWithPunctuation(e.target.value === 'true')
+    setValue('withPunctuation', e.target.value === 'true')
   }
 
-  const handleGenerateCPF = () => {
+  const generateCPF = (data: CPFFormData) => {
     // Generate 9 random digits
     const digits = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10))
     
     // Add state-specific first digit based on selected state
-    const stateCode = stateOptions.findIndex(state => state.id === selectedState.id)
+    const stateCode = stateOptions.findIndex(state => state.id === data.state.id)
     digits[0] = stateCode
 
     // Calculate first check digit
@@ -82,11 +74,15 @@ export default function CPFGeneratorClient() {
     digits.push(secondCheckDigit)
 
     // Format CPF based on punctuation option
-    const cpf = withPunctuation
+    const cpf = data.withPunctuation
       ? `${digits.slice(0, 3).join('')}.${digits.slice(3, 6).join('')}.${digits.slice(6, 9).join('')}-${digits.slice(9).join('')}`
       : digits.join('')
 
-    setGeneratedCPF(cpf)
+    setValue('generatedCPF', cpf)
+  }
+
+  const clearForm = () => {
+    setValue('generatedCPF', '')
   }
 
   return (
@@ -94,7 +90,7 @@ export default function CPFGeneratorClient() {
       title="Gerador de CPF"
       description="O CPF (Cadastro de Pessoas Físicas) é um documento único emitido pela Receita Federal do Brasil. Cada número gerado segue um algoritmo específico e pode ser validado."
     >
-      <form onSubmit={(e) => { e.preventDefault(); handleGenerateCPF() }}>
+      <form onSubmit={handleSubmit(generateCPF)}>
         <div className="px-4 py-6 sm:p-8">
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8">
             <div className="col-span-full">
@@ -102,8 +98,9 @@ export default function CPFGeneratorClient() {
                 label="Estado de Origem"
                 description="Selecione o estado para o qual o CPF será gerado"
                 options={stateOptions}
-                defaultValue={selectedState}
+                defaultValue={stateOptions[0]}
                 onChange={handleStateChange}
+                error={errors.state?.message}
               />
             </div>
 
@@ -111,9 +108,10 @@ export default function CPFGeneratorClient() {
               <InputRadio
                 name="punctuation"
                 label="Gerar com pontuação?"
-                options={punctuationOptions}
-                defaultOption={withPunctuation ? 'true' : 'false'}
+                options={booleanOptions}
+                defaultOption="true"
                 onChange={handlePunctuationChange}
+                error={errors.withPunctuation?.message}
               />
             </div>
 
@@ -127,7 +125,7 @@ export default function CPFGeneratorClient() {
         </div>
         
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <Button type="button" variant="secondary" onClick={() => setGeneratedCPF('')}>
+          <Button type="button" variant="secondary" onClick={clearForm}>
             Limpar
           </Button>
           <Button type="submit">

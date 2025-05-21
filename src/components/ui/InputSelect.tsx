@@ -41,7 +41,7 @@ export default function InputSelect({
     return (
         <div className={className}>
             <Listbox value={selected} onChange={handleChange}>
-                <Listbox.Label className="block text-sm/6 font-medium text-gray-900">{label}</Listbox.Label>
+                <Listbox.Label className="block text-sm/6 font-semibold text-gray-900">{label}</Listbox.Label>
                 {description && <p className="mt-1 text-sm/6 text-gray-600">{description}</p>}
                 
                 <div className="relative mt-2">
