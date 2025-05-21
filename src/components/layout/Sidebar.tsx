@@ -37,6 +37,7 @@ export const navigation: NavItem[] = [
       { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
       { name: 'Gerador de RG', href: '/geradores/rg' },
       { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
+      { name: 'Gerador de CEP', href: '/geradores/cep' },
     ],
   },
   // {
@@ -61,7 +62,7 @@ const shortcuts = [
   { id: 2, name: 'Gerador de CNPJ', href: '/geradores/cnpj', initial: 'G', current: false },
   { id: 3, name: 'Gerador de RG', href: '/geradores/rg', initial: 'G', current: false },
   { id: 4, name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito', initial: 'G', current: false },
-  // { id: 3, name: 'Conversor de Moedas', href: '/conversor/moedas', initial: 'W', current: false },
+  { id: 5, name: 'Gerador de CEP', href: '/geradores/cep', initial: 'G', current: false },
 ]
 
 function classNames(...classes: string[]) {
