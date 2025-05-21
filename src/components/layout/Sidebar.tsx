@@ -58,11 +58,11 @@ export const navigation: NavItem[] = [
   // ]},
 ]
 const shortcuts = [
-  { id: 1, name: 'Gerador de CPF', href: '/geradores/cpf', initial: 'G', current: false },
-  { id: 2, name: 'Gerador de CNPJ', href: '/geradores/cnpj', initial: 'G', current: false },
-  { id: 3, name: 'Gerador de RG', href: '/geradores/rg', initial: 'G', current: false },
-  { id: 4, name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito', initial: 'G', current: false },
-  { id: 5, name: 'Gerador de CEP', href: '/geradores/cep', initial: 'G', current: false },
+  { id: 1, name: 'Gerador de CPF', href: '/geradores/cpf', initial: 'C', current: false },
+  { id: 2, name: 'Gerador de CNPJ', href: '/geradores/cnpj', initial: 'C', current: false },
+  { id: 3, name: 'Gerador de RG', href: '/geradores/rg', initial: 'R', current: false },
+  { id: 4, name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito', initial: 'C', current: false },
+  { id: 5, name: 'Gerador de CEP', href: '/geradores/cep', initial: 'C', current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -108,7 +108,7 @@ export default function Sidebar() {
             >
               <TransitionChild>
                 <div className="absolute top-0 left-full flex w-16 justify-center pt-5 duration-300 ease-in-out data-closed:opacity-0">
-                  <button type="button" onClick={() => setSidebarOpen(false)} className="-m-2.5 p-2.5">
+                  <button type="button" onClick={() => setSidebarOpen(false)} className="-m-2.5 p-2.5 cursor-pointer">
                     <span className="sr-only">Close sidebar</span>
                     <XMarkIcon aria-hidden="true" className="size-6 text-white" />
                   </button>
@@ -138,7 +138,7 @@ export default function Sidebar() {
                                   item.current
                                     ? 'bg-gray-50 text-main-900'
                                     : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                                  'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                                  'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
                                 )}
                               >
                                 <item.icon
@@ -155,7 +155,7 @@ export default function Sidebar() {
                                 <DisclosureButton
                                   className={classNames(
                                     item.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                                    'group flex w-full items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                                    'group flex w-full items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
                                   )}
                                 >
                                   <item.icon
@@ -178,7 +178,7 @@ export default function Sidebar() {
                                         href={subItem.href}
                                         className={classNames(
                                           subItem.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                                          'block rounded-md py-2 pr-2 pl-9 text-sm/6',
+                                          'block rounded-md py-2 pr-2 pl-9 text-sm/6 cursor-pointer',
                                         )}
                                       >
                                         {subItem.name}
@@ -203,7 +203,7 @@ export default function Sidebar() {
                                 shortcut.current
                                   ? 'bg-gray-50 text-main-900'
                                   : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
                               )}
                             >
                               <span
@@ -255,7 +255,7 @@ export default function Sidebar() {
                               item.current
                                 ? 'bg-gray-50 text-main-900'
                                 : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                              'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                              'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
                             )}
                           >
                             <item.icon
@@ -272,7 +272,7 @@ export default function Sidebar() {
                             <DisclosureButton
                               className={classNames(
                                 item.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                                'group flex w-full items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                                'group flex w-full items-center gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
                               )}
                             >
                               <item.icon
@@ -295,7 +295,7 @@ export default function Sidebar() {
                                     href={subItem.href}
                                     className={classNames(
                                       subItem.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                                      'block rounded-md py-2 pr-2 pl-9 text-sm/6',
+                                      'block rounded-md py-2 pr-2 pl-9 text-sm/6 cursor-pointer',
                                     )}
                                   >
                                     {subItem.name}
@@ -320,7 +320,7 @@ export default function Sidebar() {
                             shortcut.current
                               ? 'bg-gray-50 text-main-900'
                               : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
                           )}
                         >
                           <span
@@ -345,7 +345,7 @@ export default function Sidebar() {
         </div>
 
         <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-white px-4 py-4 shadow-xs sm:px-6 lg:hidden">
-          <button type="button" onClick={() => setSidebarOpen(true)} className="-m-2.5 p-2.5 text-gray-700 lg:hidden">
+          <button type="button" onClick={() => setSidebarOpen(true)} className="-m-2.5 p-2.5 text-gray-700 lg:hidden cursor-pointer">
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
