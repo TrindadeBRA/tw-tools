@@ -51,14 +51,16 @@ export default function RGGeneratorClient() {
     // Gera os 8 primeiros dígitos aleatoriamente
     const digits = Array.from({ length: 8 }, () => Math.floor(Math.random() * 10))
 
-    // Calcula o dígito verificador
+    // Calcula o dígito verificador usando peso crescente (2 a 9)
     let sum = 0
     for (let i = 0; i < 8; i++) {
-      sum += digits[i] * (9 - i)
+      sum += digits[i] * (2 + i)
     }
+
+    // Calcula o dígito verificador
     let checkDigit: string | number = 11 - (sum % 11)
     if (checkDigit === 10) checkDigit = 'X'
-    else if (checkDigit === 11) checkDigit = 0
+    else if (checkDigit === 11) checkDigit = '0'
 
     // Formata o RG baseado na opção de pontuação
     const rgString = [...digits, checkDigit].join('')
