@@ -3,10 +3,9 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Dialog, DialogBackdrop, DialogPanel, TransitionChild, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { CalculatorIcon, ChevronRightIcon, CurrencyDollarIcon } from '@heroicons/react/20/solid'
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import {
   Bars3Icon,
-  CheckCircleIcon,
   LightBulbIcon,
   UsersIcon,
   XMarkIcon,
@@ -116,12 +115,12 @@ export default function Sidebar() {
               </TransitionChild>
               {/* Sidebar component, swap this element with another sidebar if you like */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
-                <div className="flex h-16 shrink-0 items-center">
+                <div className="flex h-16 shrink-0 items-center mt-6">
                   <Link href="/">
                     <img
-                      alt="Your Company"
-                      src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=main&shade=600"
-                      className="h-8 w-auto"
+                      alt="Trinity Web Tools"
+                      src="/assets/tw-tools-logo.webp"
+                      className="h-12 w-auto"
                     />
                   </Link>
                 </div>
@@ -234,12 +233,12 @@ export default function Sidebar() {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
-            <div className="flex h-16 shrink-0 items-center">
+            <div className="flex h-16 shrink-0 items-center mt-6">
               <Link href="/">
                 <img
-                  alt="Your Company"
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=main&shade=600"
-                  className="h-8 w-auto"
+                  alt="Trinity Web Tools"
+                  src="/assets/tw-tools-logo.webp"
+                  className="h-14 w-auto"
                 />
               </Link>
             </div>
@@ -351,7 +350,13 @@ export default function Sidebar() {
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
-          <div className="flex-1 text-sm/6 font-semibold text-gray-900">Dashboard</div>
+          <div className="flex-1 text-sm/6 font-semibold text-gray-900">
+            <img
+              alt="Trinity Web Tools"
+              src="/assets/tw-tools-logo.webp"
+              className="h-8 w-auto ml-auto"
+            />
+          </div>
         </div>
 
         {/* Your content */}

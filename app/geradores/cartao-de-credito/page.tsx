@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Header from "@/components/layout/template/Header";
+import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 import CreditCardGeneratorClient from "@/components/layout/generator/creditcard";
 
