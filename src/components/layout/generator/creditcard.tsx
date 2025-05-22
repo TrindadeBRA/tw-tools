@@ -140,7 +140,7 @@ export default function CreditCardGeneratorClient() {
     >
       <form onSubmit={handleSubmit(generateCard)}>
         <div className="px-4 py-6 sm:p-8">
-          <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-8">
             <div className="col-span-full">
               <InputSelect
                 label="Bandeira do Cartão"
