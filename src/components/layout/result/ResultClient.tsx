@@ -143,8 +143,8 @@ export default function ResultClient({
 
           <div className="col-span-full">
             <div className="bg-[var(--color-main-50)] p-4 rounded-md border border-[var(--color-main-100)]">
-              <h3 className="text-sm font-medium text-[var(--color-main-800)]">{infoTitle}</h3>
-              <div className="mt-2 text-sm text-[var(--color-main-700)]">
+              <h3 className="text-sm text-[var(--color-main-800)] font-bold">{infoTitle}</h3>
+              <div className="mt-2 text-sm text-[var(--color-main-800)]">
                 <p>{infoMessage}</p>
               </div>
             </div>

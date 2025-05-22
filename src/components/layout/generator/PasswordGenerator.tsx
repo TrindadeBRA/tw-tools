@@ -68,7 +68,7 @@ export default function PasswordGenerator() {
       incluirMaiusculas: true,
       incluirMinusculas: true,
       incluirNumeros: true,
-      incluirEspeciais: false,
+      incluirEspeciais: true,
       quantidade: quantityOptions[0]
     },
   })
@@ -103,17 +103,9 @@ export default function PasswordGenerator() {
     const tamanho = parseInt(tamanhoSenha);
     const tamanhoFinal = isNaN(tamanho) || tamanho <= 0 || tamanho > 32 ? 12 : tamanho;
     
-    console.log("Tamanho da senha do estado:", tamanhoSenha);
-    
     // Garantir que a quantidade seja um número válido
     const quantidade = parseInt(data.quantidade.id);
     const quantidadeSenhas = isNaN(quantidade) ? 1 : quantidade;
-    
-    // Verificar seleções de tipos de caracteres
-    console.log("Maiúsculas:", data.incluirMaiusculas);
-    console.log("Minúsculas:", data.incluirMinusculas);
-    console.log("Números:", data.incluirNumeros);
-    console.log("Especiais:", data.incluirEspeciais);
     
     // Gerar senhas aleatórias
     const senhas = gerarSenhas(
@@ -125,9 +117,6 @@ export default function PasswordGenerator() {
       quantidadeSenhas
     );
     
-    // Validar senhas geradas
-    console.log("Senhas geradas:", senhas.map(s => s.length));
-    
     // Construir a URL com cada senha como um parâmetro separado
     let url = '/geradores/senha/resultado?';
     url += `quantidade=${encodeURIComponent(quantidadeSenhas)}&`;
@@ -137,8 +126,6 @@ export default function PasswordGenerator() {
       if (index > 0) url += '&';
       url += `senha${index}=${encodeURIComponent(senha)}`;
     });
-    
-    console.log("URL gerada:", url.substring(0, 100) + "...");
     
     router.push(url);
   }
@@ -152,8 +139,6 @@ export default function PasswordGenerator() {
     usarEspeciais: boolean, 
     quantidade: number
   ): string[] => {
-    console.log("Gerando senhas com tamanho:", tamanho);
-    
     const maiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const minusculas = 'abcdefghijklmnopqrstuvwxyz';
     const numeros = '0123456789';
@@ -170,8 +155,6 @@ export default function PasswordGenerator() {
       caracteresDisponiveis = minusculas;
     }
     
-    console.log("Caracteres disponíveis:", caracteresDisponiveis.length);
-    
     const senhas: string[] = [];
     
     for (let i = 0; i < quantidade; i++) {
@@ -180,7 +163,6 @@ export default function PasswordGenerator() {
         const indiceAleatorio = Math.floor(Math.random() * caracteresDisponiveis.length);
         senha += caracteresDisponiveis[indiceAleatorio];
       }
-      console.log(`Senha ${i+1} gerada com ${senha.length} caracteres`);
       senhas.push(senha);
     }
     
