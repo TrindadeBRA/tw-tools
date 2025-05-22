@@ -6,6 +6,7 @@ import { z } from 'zod'
 import InputText from '@/components/ui/InputText'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
+import { cpfMask } from '@/data/masks'
 
 const cpfValidatorSchema = z.object({
   cpf: z.string().min(11, 'CPF deve ter 11 dígitos').max(14, 'CPF inválido'),
@@ -32,7 +33,6 @@ export default function CPFValidatorClient() {
   const isValid = watch('isValid')
 
   const validateCPF = (data: CPFValidatorData) => {
-    // Remove non-numeric characters
     const cpf = data.cpf.replace(/\D/g, '')
 
     // Basic validations
@@ -75,6 +75,12 @@ export default function CPFValidatorClient() {
     setValue('isValid', undefined)
   }
 
+  const handleCPFChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target
+    const maskedValue = cpfMask(value)
+    setValue('cpf', maskedValue)
+  }
+
   return (
     <FormPage
       title="Como Validar CPF Online"
@@ -88,6 +94,7 @@ export default function CPFValidatorClient() {
                 label="Digite o CPF"
                 placeholder="000.000.000-00"
                 {...register('cpf')}
+                onChange={handleCPFChange}
                 error={errors.cpf?.message}
               />
             </div>
