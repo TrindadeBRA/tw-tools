@@ -14,8 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://tools.thetrinityweb.com.br'), // TODO: Change to production URL
   title: "TW Tools",
-  description: "TW Tools",
+  description: 'Somos uma plataforma de ferramentas online para você criar, validar e gerar dados de forma rápida e fácil.',
+  openGraph: {
+    images: [
+      {
+        url: "/assets/ogimage.webp",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
