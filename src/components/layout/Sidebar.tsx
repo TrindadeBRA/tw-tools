@@ -9,6 +9,7 @@ import {
   LightBulbIcon,
   UsersIcon,
   XMarkIcon,
+  CheckBadgeIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
@@ -40,16 +41,16 @@ export const navigation: NavItem[] = [
       { name: 'Gerador de CEP', href: '/geradores/cep' },
     ],
   },
-  // {
-  //   name: 'Validadores',
-  //   icon: CheckCircleIcon,
-  //   current: false,
-  //   children: [
-  //     { name: 'Validador de CPF', href: '#' },
-  //     { name: 'Validador de CNPJ', href: '#' },
-  //     { name: 'Validador de CEP', href: '#' },
-  //   ],
-  // },
+  {
+    name: 'Validadores',
+    icon: CheckBadgeIcon,
+    current: false,
+    children: [
+      { name: 'Validador de CPF', href: '/validadores/cpf' },
+      // { name: 'Validador de CNPJ', href: '#' },
+      // { name: 'Validador de CEP', href: '#' },
+    ],
+  },
   // { name: 'Calculadoras', href: '#', icon: CalculatorIcon, current: false },
   // { name: 'Conversores', icon: CurrencyDollarIcon, current: false, children: [
   //   { name: 'Conversor de Moedas', href: '#' },
