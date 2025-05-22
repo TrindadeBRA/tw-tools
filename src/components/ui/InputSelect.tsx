@@ -41,10 +41,12 @@ export default function InputSelect({
     return (
         <div className={className}>
             <Listbox value={selected} onChange={handleChange}>
-                <Listbox.Label className="block text-sm/6 font-semibold text-gray-900">{label}</Listbox.Label>
-                {description && <p className="mt-1 text-sm/6 text-gray-600">{description}</p>}
-                
-                <div className="relative mt-2">
+                <div className="relative">
+                    <Listbox.Label className="absolute -top-2 left-2 inline-block rounded-lg bg-white px-1 text-xs font-medium text-gray-900">
+                        {label}
+                    </Listbox.Label>
+                    {description && <p className="mt-1 text-sm/6 text-gray-600">{description}</p>}
+                    
                     <Listbox.Button className="grid w-full cursor-default grid-cols-1 rounded-md bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[var(--color-main-600)] sm:text-sm/6">
                         <span className="col-start-1 row-start-1 truncate pr-6">{selected.title}</span>
                         <ChevronUpDownIcon
