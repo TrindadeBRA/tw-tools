@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
-import CEPGeneratorClient from "@/components/layout/generator/cep";
+import CEPGeneratorClient from "@/components/layout/generator/CepGenerator";
 
 export const metadata: Metadata = {
     title: "Gerador de CEP Online Grátis | Gere CEPs Válidos - TW Tools",

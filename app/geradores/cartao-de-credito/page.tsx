@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
-import CreditCardGeneratorClient from "@/components/layout/generator/creditcard";
+import CreditCardGeneratorClient from "@/components/layout/generator/CreditCardGenerator";
 
 export const metadata: Metadata = {
     title: "Gerador de Cartão de Crédito Online Grátis | Gere Cartões Válidos - TW Tools",

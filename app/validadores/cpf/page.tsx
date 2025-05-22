@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CPFValidatorClient from "../../../src/components/layout/validator/cpf";
+import CPFValidatorClient from "../../../src/components/layout/validator/CpfValidator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 

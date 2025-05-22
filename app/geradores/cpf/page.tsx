@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CPFGeneratorClient from "../../../src/components/layout/generator/cpf";
+import CPFGeneratorClient from "../../../src/components/layout/generator/CpfGenerator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 

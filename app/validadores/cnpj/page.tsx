@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CNPJValidatorClient from "../../../src/components/layout/validator/cnpj";
+import CNPJValidatorClient from "../../../src/components/layout/validator/CnpjValidator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 

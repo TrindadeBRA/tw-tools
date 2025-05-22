@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import RGValidatorClient from "../../../src/components/layout/validator/rg";
+import RGValidatorClient from "../../../src/components/layout/validator/RgValidator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 

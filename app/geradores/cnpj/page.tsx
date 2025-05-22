@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CNPJGeneratorClient from "../../../src/components/layout/generator/cnpj";
+import CNPJGeneratorClient from "../../../src/components/layout/generator/CnpjGenerator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 
