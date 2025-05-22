@@ -221,12 +221,13 @@ export default function Sidebar() {
                       </ul>
                     </li>
                     <li className='mt-8'>
-                      XXXXXXXXXX
-                      <AdBanner
-                        data-ad-slot="1248114394"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"
-                      />
+                      <div className='h-[600px]'>
+                        <AdBanner
+                          data-ad-slot="1248114394"
+                          data-ad-format="auto"
+                          data-full-width-responsive="true"
+                        />
+                      </div>
                     </li>
                   </ul>
                 </nav>
@@ -346,12 +347,13 @@ export default function Sidebar() {
                   </ul>
                 </li>
                 <li className='mt-8'>
-                  YYYYYYYY
+                  <div className='h-[600px]'>
                   <AdBanner
                     data-ad-slot="1248114394"
                     data-ad-format="auto"
-                    data-full-width-responsive="true"
-                  />
+                      data-full-width-responsive="true"
+                    />
+                  </div>
                 </li>
               </ul>
             </nav>
