@@ -1,3 +1,5 @@
+'use client'
+
 import AdBanner from "../integration/AdBanner"
 
 type HeaderProps = {
