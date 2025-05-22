@@ -39,8 +39,8 @@ export default function InfoSection({ items }: InfoSectionProps) {
     <section className="mx-auto py-8">
       <div className='w-full mx-auto'>
         <AdBanner
-          data-ad-slot="8794839021"
-          data-ad-format="8607120857"
+          data-ad-slot="8607120857"
+          data-ad-format="auto"
           data-full-width-responsive="true"
         />
       </div>
