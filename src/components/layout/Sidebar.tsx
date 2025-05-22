@@ -47,8 +47,8 @@ export const navigation: NavItem[] = [
     current: false,
     children: [
       { name: 'Validador de CPF', href: '/validadores/cpf' },
-      // { name: 'Validador de CNPJ', href: '#' },
-      // { name: 'Validador de CEP', href: '#' },
+      { name: 'Validador de CNPJ', href: '/validadores/cnpj' },
+      { name: 'Validador de RG', href: '/validadores/rg' },
     ],
   },
   // { name: 'Calculadoras', href: '#', icon: CalculatorIcon, current: false },
