@@ -221,7 +221,7 @@ export default function Sidebar() {
                       </ul>
                     </li>
                     <li className='mt-8'>
-                      <div className='size-[235px] mx-auto'>
+                      <div className='!size-[235px] mx-auto'>
                         <AdBanner
                           data-ad-slot="1248114394"
                           data-ad-format="auto"
@@ -347,7 +347,7 @@ export default function Sidebar() {
                   </ul>
                 </li>
                 <li className='mt-8'>
-                  <div className='size-[235px] mx-auto'>
+                  <div className='!size-[235px] mx-auto'>
                     <AdBanner
                       data-ad-slot="1248114394"
                       data-ad-format="auto"
