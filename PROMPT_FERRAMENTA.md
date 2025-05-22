@@ -18,7 +18,7 @@ Para cada nova ferramenta, você precisa criar:
    - `app/[tipo-de-ferramenta]/[nome-da-ferramenta]/resultado/layout.tsx`
    
 3. **Componente da ferramenta**:
-   - `src/components/layout/[tipo]/[nome-componente].tsx`
+   - `src/components/layout/[type]/[ComponentName].tsx` (IMPORTANTE: Use nomes em inglês para componentes)
 
 ## Detalhamento dos Componentes
 
@@ -78,7 +78,9 @@ export default function NomeDaPagina() {
 }
 ```
 
-### 2. Componente da Ferramenta (`[nome-componente].tsx`)
+### 2. Componente da Ferramenta (`[ComponentName].tsx`)
+
+IMPORTANTE: Os nomes de componentes e pastas em src/components devem SEMPRE estar em inglês para manter o padrão do projeto. Por exemplo, use "generator" em vez de "geradores", "validator" em vez de "validadores", etc.
 
 O componente deve:
 - Usar React Hook Form com Zod para validação
@@ -371,3 +373,25 @@ Você pode ver um exemplo completo de implementação na pasta:
 Certifique-se de que TODOS os parâmetros enviados no formulário estejam configurados para serem exibidos na página de resultado. 
 
 Por exemplo, se o seu formulário envia os parâmetros `valor`, `tipo`, `quantidade` e `formato` na URL, você DEVE incluir todos eles no array de `params` do componente ResultClient: 
+
+## IMPORTANTE: Adição ao Menu de Navegação
+
+Após criar todos os arquivos necessários, você DEVE adicionar a nova ferramenta ao menu de navegação no arquivo `src/components/layout/Sidebar.tsx`. 
+
+1. Localize o array `navigation` que contém os itens do menu
+2. Adicione a nova ferramenta na seção apropriada (Geradores ou Validadores)
+3. Siga o padrão existente para adicionar a nova rota
+
+Exemplo de como adicionar uma nova ferramenta (NÃO INCLUIR ESTE EXEMPLO NO CÓDIGO):
+```tsx
+{
+  name: 'Geradores',
+  icon: UsersIcon,
+  current: false,
+  children: [
+    { name: 'Gerador de CPF', href: '/geradores/cpf' },
+    // ... other generators
+    { name: 'Nome da Nova Ferramenta', href: '/geradores/nome-da-ferramenta' }, // Nova entrada
+  ],
+},
+```

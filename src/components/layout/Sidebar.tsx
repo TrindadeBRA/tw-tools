@@ -39,6 +39,7 @@ export const navigation: NavItem[] = [
       { name: 'Gerador de RG', href: '/geradores/rg' },
       { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
       { name: 'Gerador de CEP', href: '/geradores/cep' },
+      { name: 'Gerador de Senha', href: '/geradores/senha' },
     ],
   },
   {
