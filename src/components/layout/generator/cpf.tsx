@@ -7,8 +7,8 @@ import InputRadio from '@/components/ui/InputRadio'
 import InputSelect, { Option } from '@/components/ui/InputSelect'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
-import CopyResult from '@/components/ui/CopyResult'
 import { booleanOptions, stateOptions } from '@/data/consts'
+import { useRouter } from 'next/navigation'
 
 const cpfFormSchema = z.object({
   state: z.object({
@@ -17,27 +17,23 @@ const cpfFormSchema = z.object({
     description: z.string().optional(),
   }),
   withPunctuation: z.boolean(),
-  generatedCPF: z.string().optional(),
 })
 
 type CPFFormData = z.infer<typeof cpfFormSchema>
 
 export default function CPFGeneratorClient() {
+  const router = useRouter()
   const {
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<CPFFormData>({
     resolver: zodResolver(cpfFormSchema),
     defaultValues: {
       state: stateOptions[0],
       withPunctuation: booleanOptions[0].id === 'true',
-      generatedCPF: '',
     },
   })
-
-  const generatedCPF = watch('generatedCPF')
 
   const handleStateChange = (value: Option) => {
     setValue('state', value)
@@ -78,11 +74,8 @@ export default function CPFGeneratorClient() {
       ? `${digits.slice(0, 3).join('')}.${digits.slice(3, 6).join('')}.${digits.slice(6, 9).join('')}-${digits.slice(9).join('')}`
       : digits.join('')
 
-    setValue('generatedCPF', cpf)
-  }
-
-  const clearForm = () => {
-    setValue('generatedCPF', '')
+    // Redirect to resultado page with CPF as parameter
+    router.push(`/geradores/cpf/resultado?cpf=${encodeURIComponent(cpf)}`)
   }
 
   return (
@@ -115,22 +108,12 @@ export default function CPFGeneratorClient() {
                 error={errors.withPunctuation?.message}
               />
             </div>
-
-            {generatedCPF && (
-              <CopyResult
-                label="CPF Válido Gerado"
-                value={generatedCPF}
-              />
-            )}
           </div>
         </div>
         
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <Button type="button" variant="secondary" onClick={clearForm}>
-            Limpar CPF
-          </Button>
           <Button type="submit">
-            Gerar Novo CPF
+            Gerar CPF
           </Button>
         </div>
       </form>
