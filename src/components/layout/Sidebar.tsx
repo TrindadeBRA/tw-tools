@@ -12,6 +12,7 @@ import {
   CheckBadgeIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import AdBanner from '../integration/AdBanner'
 
 type SubNavItem = {
   name: string
@@ -218,6 +219,13 @@ export default function Sidebar() {
                           </li>
                         ))}
                       </ul>
+                    </li>
+                    <li className='mt-auto'>
+                      <AdBanner
+                        data-ad-slot="1248114394"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"
+                      />
                     </li>
                   </ul>
                 </nav>
