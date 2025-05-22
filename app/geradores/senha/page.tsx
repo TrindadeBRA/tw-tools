@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import PasswordGenerator from "@/components/layout/generator/PasswordGenerator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
+import LoadingResult from "@/components/layout/LoadingResult";
 
 export const metadata: Metadata = {
     title: "Gerador de Senhas Seguras | TW Tools",
@@ -39,7 +41,9 @@ export default function GeradorSenhaPage() {
                 title="Gerador de Senhas Seguras"
                 description="Crie senhas fortes e personalizadas definindo o tamanho, tipos de caracteres e quantidade. Gere rapidamente senhas seguras para proteger suas contas online."
             />
-            <PasswordGenerator />
+            <Suspense fallback={<LoadingResult />}>
+                <PasswordGenerator />
+            </Suspense>
             <InfoSection items={infoItems} />
         </>
     )
