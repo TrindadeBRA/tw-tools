@@ -15,6 +15,26 @@ export default function Home() {
         title="Ferramentas Online Gratuitas"
         description="Coleção de ferramentas online gratuitas para desenvolvedores e testadores. Geradores de dados, validadores, formatadores e muito mais."
       />
+      <Header
+        miniTitle="TW Tools"
+        title="Ferramentas Online Gratuitas"
+        description="Coleção de ferramentas online gratuitas para desenvolvedores e testadores. Geradores de dados, validadores, formatadores e muito mais."
+      />
+      <Header
+        miniTitle="TW Tools"
+        title="Ferramentas Online Gratuitas"
+        description="Coleção de ferramentas online gratuitas para desenvolvedores e testadores. Geradores de dados, validadores, formatadores e muito mais."
+      />
+      <Header
+        miniTitle="TW Tools"
+        title="Ferramentas Online Gratuitas"
+        description="Coleção de ferramentas online gratuitas para desenvolvedores e testadores. Geradores de dados, validadores, formatadores e muito mais."
+      />
+      <Header
+        miniTitle="TW Tools"
+        title="Ferramentas Online Gratuitas"
+        description="Coleção de ferramentas online gratuitas para desenvolvedores e testadores. Geradores de dados, validadores, formatadores e muito mais."
+      />
     </>
   );
 }

@@ -1,3 +1,5 @@
+import AdBanner from "../integration/AdBanner"
+
 type HeaderProps = {
     miniTitle: string
     title: string
@@ -15,6 +17,14 @@ export default function Header({ miniTitle, title, description }: HeaderProps) {
               {description}
             </p>
           </div>
+        </div>
+
+        <div className='mt-8 w-full mx-auto'>
+          <AdBanner
+            data-ad-slot="8794839021"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
         </div>
       </div>
     )
