@@ -5,6 +5,7 @@ import {
   SparklesIcon, 
   ShieldExclamationIcon 
 } from '@heroicons/react/24/outline'
+import AdBanner from '@/components/integration/AdBanner'
 
 interface InfoItem {
   title: string
@@ -34,6 +35,13 @@ const getIcon = (type?: string) => {
 export default function InfoSection({ items }: InfoSectionProps) {
   return (
     <section className="mx-auto py-8">
+      <div className='w-full mx-auto'>
+        <AdBanner
+          data-ad-slot="8794839021"
+          data-ad-format="8607120857"
+          data-full-width-responsive="true"
+        />
+      </div>
       <div className="mx-auto">
         <div className="grid gap-6 sm:grid-cols-2">
           {items.map((item, index) => (
