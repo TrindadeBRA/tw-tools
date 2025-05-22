@@ -7,7 +7,7 @@ import FormPage from '../template/FormPage'
 import Button from '@/components/ui/Button'
 import { useRouter } from 'next/navigation'
 
-interface ResultadoClientProps {
+interface ResultClientProps {
   title: string
   description: string
   notFoundTitle: string
@@ -21,7 +21,7 @@ interface ResultadoClientProps {
   paramName?: string
 }
 
-export default function ResultadoClient({
+export default function ResultClient({
   title = "Resultado Gerado",
   description = "O resultado foi gerado com sucesso e está pronto para uso.",
   notFoundTitle = "Resultado Não Encontrado",
@@ -33,7 +33,7 @@ export default function ResultadoClient({
   backPath = "/",
   buttonText = "Gerar Novo",
   paramName = "cpf"
-}: Partial<ResultadoClientProps>) {
+}: Partial<ResultClientProps>) {
   const searchParams = useSearchParams()
   const [result, setResult] = useState<string>('')
   const router = useRouter()

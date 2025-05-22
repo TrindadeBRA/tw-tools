@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
-import ResultadoClient from '@/components/layout/resultado/ResultadoClient'
+import ResultClient from '@/components/layout/result/ResultClient'
 import Header from '@/components/layout/Header'
 import InfoSection from '@/components/layout/template/InfoSection'
 import { Suspense } from 'react'
+import LoadingResult from '@/components/layout/LoadingResult'
 
 export const metadata: Metadata = {
   title: 'Resultado da Geração | CPF Válido Gerado - TW Tools',
@@ -52,8 +53,8 @@ export default function ResultadoPage() {
         title="CPF Válido Gerado"
         description="Resultado da geração de CPF válido. Utilize este CPF para testes e desenvolvimento de software, seguindo todas as regras da Receita Federal."
       />
-      <Suspense fallback={<div className="p-8 text-center">Carregando resultado...</div>}>
-        <ResultadoClient 
+      <Suspense fallback={<LoadingResult />}>
+        <ResultClient 
           title="CPF Válido Gerado"
           description="O CPF gerado segue todas as regras estabelecidas pela Receita Federal e está pronto para uso em testes e desenvolvimento."
           notFoundTitle="CPF Não Encontrado"
