@@ -7,43 +7,41 @@ import InputText from '@/components/ui/InputText'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
 import { cpfMask } from '@/data/masks'
+import { useRouter } from 'next/navigation'
 
 const cpfValidatorSchema = z.object({
   cpf: z.string().min(11, 'CPF deve ter 11 dígitos').max(14, 'CPF inválido'),
-  isValid: z.boolean().optional(),
 })
 
 type CPFValidatorData = z.infer<typeof cpfValidatorSchema>
 
 export default function CPFValidatorClient() {
+  const router = useRouter()
+  
   const {
     register,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<CPFValidatorData>({
     resolver: zodResolver(cpfValidatorSchema),
     defaultValues: {
       cpf: '',
-      isValid: undefined,
     },
   })
-
-  const isValid = watch('isValid')
 
   const validateCPF = (data: CPFValidatorData) => {
     const cpf = data.cpf.replace(/\D/g, '')
 
     // Basic validations
     if (cpf.length !== 11) {
-      setValue('isValid', false)
+      redirectToResult(cpf, 'Inválido')
       return
     }
 
     // Check if all digits are the same
     if (/^(\d)\1{10}$/.test(cpf)) {
-      setValue('isValid', false)
+      redirectToResult(cpf, 'Inválido')
       return
     }
 
@@ -67,12 +65,19 @@ export default function CPFValidatorClient() {
       firstCheck === parseInt(cpf.charAt(9)) && 
       secondCheck === parseInt(cpf.charAt(10))
 
-    setValue('isValid', isValidCPF)
+    redirectToResult(cpf, isValidCPF ? 'Válido' : 'Inválido')
+  }
+
+  const redirectToResult = (cpf: string, result: string) => {
+    // Format CPF for display
+    const formattedCPF = cpfMask(cpf)
+    
+    // Redirect to the result page with parameters
+    router.push(`/validadores/cpf/resultado?documento=${encodeURIComponent(formattedCPF)}&resultado=${encodeURIComponent(result)}`)
   }
 
   const clearForm = () => {
     setValue('cpf', '')
-    setValue('isValid', undefined)
   }
 
   const handleCPFChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,31 +103,6 @@ export default function CPFValidatorClient() {
                 error={errors.cpf?.message}
               />
             </div>
-
-            {isValid !== undefined && (
-              <div className="col-span-full">
-                <div className={`rounded-md p-4 ${isValid ? 'bg-green-50' : 'bg-red-50'}`}>
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      {isValid ? (
-                        <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      ) : (
-                        <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </div>
-                    <div className="ml-3">
-                      <h3 className={`text-sm font-medium ${isValid ? 'text-green-800' : 'text-red-800'}`}>
-                        {isValid ? 'CPF Válido' : 'CPF Inválido'}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
         
