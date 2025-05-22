@@ -1,11 +1,11 @@
 'use client'
 
 import React from 'react'
-import { 
-  InformationCircleIcon, 
-  CheckCircleIcon, 
-  SparklesIcon, 
-  ShieldExclamationIcon 
+import {
+  InformationCircleIcon,
+  CheckCircleIcon,
+  SparklesIcon,
+  ShieldExclamationIcon
 } from '@heroicons/react/24/outline'
 import AdBanner from '@/components/integration/AdBanner'
 
@@ -37,7 +37,7 @@ const getIcon = (type?: string) => {
 export default function InfoSection({ items }: InfoSectionProps) {
   return (
     <section className="mx-auto py-8">
-      <div className='w-full mx-auto'>
+      <div className='max-w-[1200px] mx-auto block mb-8'>
         <AdBanner
           data-ad-slot="8607120857"
           data-ad-format="auto"
@@ -47,7 +47,7 @@ export default function InfoSection({ items }: InfoSectionProps) {
       <div className="mx-auto">
         <div className="grid gap-6 sm:grid-cols-2">
           {items.map((item, index) => (
-            <div 
+            <div
               key={index}
               className="group relative overflow-hidden rounded-lg border border-gray-100 bg-white p-6 transition-all duration-200 hover:border-gray-200 hover:shadow-sm"
             >
