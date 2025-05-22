@@ -47,10 +47,10 @@ export default function RGValidatorClient() {
       return
     }
 
-    // Calculate check digit
+    // Calculate check digit using weights 2 to 9
     let sum = 0
     for (let i = 0; i < 8; i++) {
-      sum += parseInt(rg.charAt(i)) * (9 - i)
+      sum += parseInt(rg.charAt(i)) * (2 + i)
     }
     
     let checkDigit: string | number = 11 - (sum % 11)
