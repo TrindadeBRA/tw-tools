@@ -55,13 +55,6 @@ export const navigation: NavItem[] = [
     ],
   },
 ]
-const shortcuts = [
-  { id: 1, name: 'Gerador de CPF', href: '/geradores/cpf', initial: 'C', current: false },
-  { id: 2, name: 'Gerador de CNPJ', href: '/geradores/cnpj', initial: 'C', current: false },
-  { id: 3, name: 'Gerador de RG', href: '/geradores/rg', initial: 'R', current: false },
-  { id: 4, name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito', initial: 'C', current: false },
-  { id: 5, name: 'Gerador de CEP', href: '/geradores/cep', initial: 'C', current: false },
-]
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -190,36 +183,6 @@ export default function Sidebar() {
                         ))}
                       </ul>
                     </li>
-                    <li>
-                      <div className="text-xs/6 font-semibold text-gray-400">Mais acessados!</div>
-                      <ul role="list" className="-mx-2 mt-2 space-y-1">
-                        {shortcuts.map((shortcut) => (
-                          <li key={shortcut.name}>
-                            <a
-                              href={shortcut.href}
-                              className={classNames(
-                                shortcut.current
-                                  ? 'bg-gray-50 text-main-900'
-                                  : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
-                              )}
-                            >
-                              <span
-                                className={classNames(
-                                  shortcut.current
-                                    ? 'border-main-900 text-main-900'
-                                    : 'border-gray-200 text-gray-400 group-hover:border-main-900 group-hover:text-main-900',
-                                  'flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium',
-                                )}
-                              >
-                                {shortcut.initial}
-                              </span>
-                              <span className="truncate">{shortcut.name}</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
                     <li className='mt-8'>
                       <div className='!size-[235px] mx-auto'>
                         <AdBanner
@@ -312,36 +275,6 @@ export default function Sidebar() {
                             </DisclosurePanel>
                           </Disclosure>
                         )}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li>
-                  <div className="text-xs/6 font-semibold text-gray-400">Mais acessados!</div>
-                  <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {shortcuts.map((shortcut) => (
-                      <li key={shortcut.name}>
-                        <a
-                          href={shortcut.href}
-                          className={classNames(
-                            shortcut.current
-                              ? 'bg-gray-50 text-main-900'
-                              : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
-                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold cursor-pointer',
-                          )}
-                        >
-                          <span
-                            className={classNames(
-                              shortcut.current
-                                ? 'border-main-900 text-main-900'
-                                : 'border-gray-200 text-gray-400 group-hover:border-main-900 group-hover:text-main-900',
-                              'flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium',
-                            )}
-                          >
-                            {shortcut.initial}
-                          </span>
-                          <span className="truncate">{shortcut.name}</span>
-                        </a>
                       </li>
                     ))}
                   </ul>
