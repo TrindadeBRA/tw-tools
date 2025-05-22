@@ -19,6 +19,17 @@ interface ResultClientProps {
   backPath: string
   buttonText: string
   paramName?: string
+  multipleParams?: {
+    enabled: boolean;
+    params: {
+      name: string;
+      label: string;
+    }[];
+  }
+}
+
+interface MultipleResults {
+  [key: string]: string;
 }
 
 export default function ResultClient({
@@ -32,26 +43,52 @@ export default function ResultClient({
   resultLabel = "Resultado Gerado",
   backPath = "/",
   buttonText = "Gerar Novo",
-  paramName = "cpf"
+  paramName = "cpf",
+  multipleParams = { enabled: false, params: [] }
 }: Partial<ResultClientProps>) {
   const searchParams = useSearchParams()
   const [result, setResult] = useState<string>('')
+  const [multiResults, setMultiResults] = useState<MultipleResults>({})
   const router = useRouter()
 
   useEffect(() => {
-    // Get the result from the URL parameters
-    const resultParam = searchParams.get(paramName)
-    if (resultParam) {
-      setResult(resultParam)
+    if (multipleParams?.enabled) {
+      // Manipular múltiplos parâmetros (como dados de cartão)
+      const results: MultipleResults = {}
+      let allParamsPresent = true
+      
+      multipleParams.params.forEach(param => {
+        const value = searchParams.get(param.name)
+        if (value) {
+          results[param.name] = value
+        } else {
+          allParamsPresent = false
+        }
+      })
+      
+      if (allParamsPresent) {
+        setMultiResults(results)
+      }
+    } else {
+      // Manipular um único parâmetro (padrão)
+      const resultParam = searchParams.get(paramName)
+      if (resultParam) {
+        setResult(resultParam)
+      }
     }
-  }, [searchParams, paramName])
+  }, [searchParams, paramName, multipleParams])
 
   const handleGenerateNew = () => {
-    // Navigate back to the generator page
+    // Navegar de volta para a página do gerador
     router.push(backPath)
   }
 
-  if (!result) {
+  // Verificar se não há resultado para exibir
+  const hasNoResult = multipleParams?.enabled 
+    ? Object.keys(multiResults).length === 0
+    : !result
+
+  if (hasNoResult) {
     return (
       <FormPage
         title={notFoundTitle}
@@ -82,12 +119,27 @@ export default function ResultClient({
     >
       <div className="px-4 py-6 sm:p-8">
         <div className="grid grid-cols-1 gap-x-6 gap-y-8">
-          <div className="col-span-full">
-            <CopyResult
-              label={resultLabel}
-              value={result}
-            />
-          </div>
+          {multipleParams?.enabled ? (
+            // Exibir múltiplos resultados
+            <>
+              {multipleParams.params.map((param, index) => (
+                <div key={index} className="col-span-full">
+                  <CopyResult
+                    label={param.label}
+                    value={multiResults[param.name] || ''}
+                  />
+                </div>
+              ))}
+            </>
+          ) : (
+            // Exibir resultado único
+            <div className="col-span-full">
+              <CopyResult
+                label={resultLabel}
+                value={result}
+              />
+            </div>
+          )}
 
           <div className="col-span-full">
             <div className="bg-[var(--color-main-50)] p-4 rounded-md border border-[var(--color-main-100)]">

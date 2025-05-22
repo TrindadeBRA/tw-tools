@@ -6,8 +6,8 @@ import { z } from 'zod'
 import InputSelect, { Option } from '@/components/ui/InputSelect'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
-import CopyResult from '@/components/ui/CopyResult'
 import { creditCardBrandOptions } from '@/data/consts'
+import { useRouter } from 'next/navigation'
 
 const creditCardFormSchema = z.object({
   brand: z.object({
@@ -15,32 +15,22 @@ const creditCardFormSchema = z.object({
     title: z.string(),
     description: z.string().optional(),
   }),
-  generatedCard: z.string().optional(),
-  generatedExpiry: z.string().optional(),
-  generatedCVV: z.string().optional(),
 })
 
 type CreditCardFormData = z.infer<typeof creditCardFormSchema>
 
 export default function CreditCardGeneratorClient() {
+  const router = useRouter()
   const {
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<CreditCardFormData>({
     resolver: zodResolver(creditCardFormSchema),
     defaultValues: {
       brand: creditCardBrandOptions[0],
-      generatedCard: '',
-      generatedExpiry: '',
-      generatedCVV: '',
     },
   })
-
-  const generatedCard = watch('generatedCard')
-  const generatedExpiry = watch('generatedExpiry')
-  const generatedCVV = watch('generatedCVV')
 
   const handleBrandChange = (value: Option) => {
     setValue('brand', value)
@@ -121,16 +111,17 @@ export default function CreditCardGeneratorClient() {
     const cardNumber = generateCardNumber(data.brand.id as string)
     const expiry = generateExpiry()
     const cvv = generateCVV(data.brand.id as string)
+    const formattedCardNumber = formatCardNumber(cardNumber)
 
-    setValue('generatedCard', formatCardNumber(cardNumber))
-    setValue('generatedExpiry', expiry)
-    setValue('generatedCVV', cvv)
-  }
-
-  const clearForm = () => {
-    setValue('generatedCard', '')
-    setValue('generatedExpiry', '')
-    setValue('generatedCVV', '')
+    // Redireciona para a página de resultado com os dados do cartão
+    const searchParams = new URLSearchParams({
+      cartao: formattedCardNumber,
+      validade: expiry,
+      cvv: cvv,
+      bandeira: data.brand.title
+    })
+    
+    router.push(`/geradores/cartao-de-credito/resultado?${searchParams.toString()}`)
   }
 
   return (
@@ -151,32 +142,12 @@ export default function CreditCardGeneratorClient() {
                 error={errors.brand?.message}
               />
             </div>
-
-            {generatedCard && (
-              <>
-                <CopyResult
-                  label="Número do Cartão"
-                  value={generatedCard}
-                />
-                  <CopyResult
-                    label="Data de Validade"
-                    value={generatedExpiry || ''}
-                  />
-                  <CopyResult
-                    label="CVV"
-                    value={generatedCVV || ''}
-                  />
-              </>
-            )}
           </div>
         </div>
         
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <Button type="button" variant="secondary" onClick={clearForm}>
-            Limpar Cartão
-          </Button>
           <Button type="submit">
-            Gerar Novo Cartão
+            Gerar Cartão
           </Button>
         </div>
       </form>

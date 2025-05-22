@@ -7,9 +7,8 @@ import InputSelect, { Option } from '@/components/ui/InputSelect'
 import InputRadio from '@/components/ui/InputRadio'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
-import CopyResult from '@/components/ui/CopyResult'
 import { booleanOptions, cepRanges, stateOptions } from '@/data/consts'
-
+import { useRouter } from 'next/navigation'
 
 const cepFormSchema = z.object({
   state: z.object({
@@ -18,27 +17,23 @@ const cepFormSchema = z.object({
     description: z.string().optional(),
   }),
   withPunctuation: z.boolean(),
-  generatedCEP: z.string().optional(),
 })
 
 type CEPFormData = z.infer<typeof cepFormSchema>
 
 export default function CEPGeneratorClient() {
+  const router = useRouter()
   const {
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<CEPFormData>({
     resolver: zodResolver(cepFormSchema),
     defaultValues: {
       state: stateOptions[0],
       withPunctuation: booleanOptions[0].id === 'true',
-      generatedCEP: '',
     },
   })
-
-  const generatedCEP = watch('generatedCEP')
 
   const handleStateChange = (value: Option) => {
     setValue('state', { id: String(value.id), title: value.title })
@@ -71,11 +66,8 @@ export default function CEPGeneratorClient() {
     // Formata o CEP se necessário (00000-000)
     const formattedCEP = data.withPunctuation ? cep.replace(/(\d{5})(\d{3})/, '$1-$2') : cep
     
-    setValue('generatedCEP', formattedCEP)
-  }
-
-  const clearForm = () => {
-    setValue('generatedCEP', '')
+    // Redireciona para a página de resultado com o CEP gerado
+    router.push(`/geradores/cep/resultado?cep=${encodeURIComponent(formattedCEP)}`)
   }
 
   return (
@@ -108,22 +100,12 @@ export default function CEPGeneratorClient() {
                 error={errors.withPunctuation?.message}
               />
             </div>
-
-            {generatedCEP && (
-              <CopyResult
-                label="CEP Gerado"
-                value={generatedCEP}
-              />
-            )}
           </div>
         </div>
         
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <Button type="button" variant="secondary" onClick={clearForm}>
-            Limpar CEP
-          </Button>
           <Button type="submit">
-            Gerar Novo CEP
+            Gerar CEP
           </Button>
         </div>
       </form>

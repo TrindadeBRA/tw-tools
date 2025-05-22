@@ -7,8 +7,8 @@ import InputRadio from '@/components/ui/InputRadio'
 import InputSelect, { Option } from '@/components/ui/InputSelect'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
-import CopyResult from '@/components/ui/CopyResult'
 import { booleanOptions, stateOptions } from '@/data/consts'
+import { useRouter } from 'next/navigation'
 
 const rgFormSchema = z.object({
   state: z.object({
@@ -17,27 +17,23 @@ const rgFormSchema = z.object({
     description: z.string().optional(),
   }),
   withPunctuation: z.boolean(),
-  generatedRG: z.string().optional(),
 })
 
 type RGFormData = z.infer<typeof rgFormSchema>
 
 export default function RGGeneratorClient() {
+  const router = useRouter()
   const {
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<RGFormData>({
     resolver: zodResolver(rgFormSchema),
     defaultValues: {
       state: stateOptions[0],
       withPunctuation: booleanOptions[0].id === 'true',
-      generatedRG: '',
     },
   })
-
-  const generatedRG = watch('generatedRG')
 
   const handleStateChange = (value: Option) => {
     setValue('state', value)
@@ -68,11 +64,8 @@ export default function RGGeneratorClient() {
       ? rgString.replace(/^(\d{2})(\d{3})(\d{3})([0-9X])$/, '$1.$2.$3-$4')
       : rgString
 
-    setValue('generatedRG', rg)
-  }
-
-  const clearForm = () => {
-    setValue('generatedRG', '')
+    // Redireciona para a página de resultado com o RG gerado
+    router.push(`/geradores/rg/resultado?rg=${encodeURIComponent(rg)}`)
   }
 
   return (
@@ -105,22 +98,12 @@ export default function RGGeneratorClient() {
                 error={errors.withPunctuation?.message}
               />
             </div>
-
-            {generatedRG && (
-              <CopyResult
-                label="RG Válido Gerado"
-                value={generatedRG}
-              />
-            )}
           </div>
         </div>
         
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <Button type="button" variant="secondary" onClick={clearForm}>
-            Limpar RG
-          </Button>
           <Button type="submit">
-            Gerar Novo RG
+            Gerar RG
           </Button>
         </div>
       </form>

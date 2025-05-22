@@ -6,31 +6,27 @@ import { z } from 'zod'
 import InputRadio from '@/components/ui/InputRadio'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
-import CopyResult from '@/components/ui/CopyResult'
 import { booleanOptions } from '@/data/consts'
+import { useRouter } from 'next/navigation'
 
 const cnpjFormSchema = z.object({
   withPunctuation: z.boolean(),
-  generatedCNPJ: z.string().optional(),
 })
 
 type CNPJFormData = z.infer<typeof cnpjFormSchema>
 
 export default function CNPJGeneratorClient() {
+  const router = useRouter()
   const {
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<CNPJFormData>({
     resolver: zodResolver(cnpjFormSchema),
     defaultValues: {
       withPunctuation: booleanOptions[0].id === 'true',
-      generatedCNPJ: '',
     },
   })
-
-  const generatedCNPJ = watch('generatedCNPJ')
 
   const handlePunctuationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue('withPunctuation', e.target.value === 'true')
@@ -69,11 +65,8 @@ export default function CNPJGeneratorClient() {
       ? cnpjString.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5')
       : cnpjString
 
-    setValue('generatedCNPJ', cnpj)
-  }
-
-  const clearForm = () => {
-    setValue('generatedCNPJ', '')
+    // Redireciona para a página de resultado com o CNPJ gerado
+    router.push(`/geradores/cnpj/resultado?cnpj=${encodeURIComponent(cnpj)}`)
   }
 
   return (
@@ -95,22 +88,12 @@ export default function CNPJGeneratorClient() {
                 error={errors.withPunctuation?.message}
               />
             </div>
-
-            {generatedCNPJ && (
-              <CopyResult
-                label="CNPJ Válido Gerado"
-                value={generatedCNPJ}
-              />
-            )}
           </div>
         </div>
         
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <Button type="button" variant="secondary" onClick={clearForm}>
-            Limpar CNPJ
-          </Button>
           <Button type="submit">
-            Gerar Novo CNPJ
+            Gerar CNPJ
           </Button>
         </div>
       </form>
