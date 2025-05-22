@@ -20,7 +20,7 @@ export default function Header({ miniTitle, title, description }: HeaderProps) {
           </p>
         </div>
 
-        <div className='mY-8 w-full mx-auto block'>
+        <div className='max-w-[1200px] mx-auto block mb-8'>
           <AdBanner
             data-ad-slot="8794839021"
             data-ad-format="auto"
