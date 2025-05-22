@@ -220,7 +220,8 @@ export default function Sidebar() {
                         ))}
                       </ul>
                     </li>
-                    <li className='mt-auto'>
+                    <li className='mt-8'>
+                      XXXXXXXXXX
                       <AdBanner
                         data-ad-slot="1248114394"
                         data-ad-format="auto"
@@ -343,6 +344,14 @@ export default function Sidebar() {
                       </li>
                     ))}
                   </ul>
+                </li>
+                <li className='mt-8'>
+                  YYYYYYYY
+                  <AdBanner
+                    data-ad-slot="1248114394"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                  />
                 </li>
               </ul>
             </nav>

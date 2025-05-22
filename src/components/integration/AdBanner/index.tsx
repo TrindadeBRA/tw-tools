@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
+import dynamic from 'next/dynamic';
 
 // Declaração global para o tipo adsbygoogle
 declare global {
@@ -16,11 +17,11 @@ interface AdsBannerProps {
   "data-ad-layout"?: string;
 }
 
-const AdBanner = (props: AdsBannerProps) => {
-  const router = useRouter();
+const AdBannerComponent = (props: AdsBannerProps) => {
+  const pathname = usePathname();
 
   const carregarScript = () => {
-    if (!document.getElementById("adsbygoogle-script")) {
+    if (typeof window !== 'undefined' && !document.getElementById("adsbygoogle-script")) {
       const script = document.createElement("script");
       script.id = "adsbygoogle-script";
       script.async = true;
@@ -32,14 +33,16 @@ const AdBanner = (props: AdsBannerProps) => {
   useEffect(() => {
     try {
       carregarScript();
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (typeof window !== 'undefined') {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
     } catch (err) {
       console.log("Erro ao carregar o banner de anúncios:", err);
     }
-  }, [router.asPath]); // Recarrega quando a rota muda
+  }, [pathname]);
 
   return (
-    <div key={router.asPath}>
+    <div key={pathname}>
       <ins
         className="adsbygoogle adbanner-customize"
         style={{
@@ -53,5 +56,10 @@ const AdBanner = (props: AdsBannerProps) => {
     </div>
   );
 };
+
+// Export a dynamically loaded version that only runs on client-side
+const AdBanner = dynamic(() => Promise.resolve(AdBannerComponent), {
+  ssr: false
+});
 
 export default AdBanner;
