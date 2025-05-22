@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import LoadingResult from "@/components/layout/LoadingResult";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
-import PasswordGenerator from "@/components/layout/generator/PasswordGenerator";
+import ResultClient from '@/components/layout/result/ResultClient';
 
 const infoItems = [
   {
@@ -36,7 +36,25 @@ export default function ResultadoPage() {
         description="Suas senhas foram geradas de acordo com os critérios selecionados. Copie e utilize-as para aumentar a segurança de suas contas."
       />
       <Suspense fallback={<LoadingResult />}>
-        <PasswordGenerator />
+        <ResultClient 
+          title="Senhas Seguras Geradas"
+          description="As senhas geradas seguem os critérios de segurança selecionados e estão prontas para serem utilizadas."
+          notFoundTitle="Senhas Não Encontradas"
+          notFoundDescription="Não foi possível encontrar as senhas geradas. Por favor, tente gerar novas senhas."
+          notFoundMessage="Nenhuma senha foi encontrada. Clique abaixo para gerar novas senhas."
+          infoTitle="Informações Importantes"
+          infoMessage="Estas senhas foram geradas de forma segura e aleatória. Recomendamos utilizar senhas únicas para cada serviço."
+          resultLabel="Senha Gerada"
+          backPath="/geradores/senha"
+          buttonText="Gerar Novas Senhas"
+          multipleParams={{
+            enabled: true,
+            params: Array.from({ length: 20 }, (_, i) => ({
+              name: `senha${i}`,
+              label: `Senha ${i + 1}`
+            }))
+          }}
+        />
       </Suspense>
       <InfoSection items={infoItems} />
     </>

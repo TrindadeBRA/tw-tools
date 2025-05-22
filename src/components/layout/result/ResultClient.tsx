@@ -53,21 +53,23 @@ export default function ResultClient({
 
   useEffect(() => {
     if (multipleParams?.enabled) {
-      // Manipular múltiplos parâmetros (como dados de cartão)
+      // Manipular múltiplos parâmetros
       const results: MultipleResults = {}
-      let allParamsPresent = true
+      let foundAnyParam = false
       
       multipleParams.params.forEach(param => {
         const value = searchParams.get(param.name)
         if (value) {
           results[param.name] = value
-        } else {
-          allParamsPresent = false
+          foundAnyParam = true
         }
       })
       
-      if (allParamsPresent) {
+      // Atualizar o estado se encontrou pelo menos um parâmetro
+      if (foundAnyParam) {
         setMultiResults(results)
+      } else {
+        setMultiResults({})
       }
     } else {
       // Manipular um único parâmetro (padrão)
@@ -122,14 +124,16 @@ export default function ResultClient({
           {multipleParams?.enabled ? (
             // Exibir múltiplos resultados
             <>
-              {multipleParams.params.map((param, index) => (
-                <div key={index} className="col-span-full">
-                  <CopyResult
-                    label={param.label}
-                    value={multiResults[param.name] || ''}
-                  />
-                </div>
-              ))}
+              {multipleParams.params
+                .filter(param => multiResults[param.name]) // Mostrar apenas parâmetros com valor
+                .map((param, index) => (
+                  <div key={index} className="col-span-full">
+                    <CopyResult
+                      label={param.label}
+                      value={multiResults[param.name]}
+                    />
+                  </div>
+                ))}
             </>
           ) : (
             // Exibir resultado único

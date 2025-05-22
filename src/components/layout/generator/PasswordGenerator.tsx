@@ -51,7 +51,7 @@ export default function PasswordGenerator() {
     incluirMaiusculas: true,
     incluirMinusculas: true,
     incluirNumeros: true,
-    incluirEspeciais: false
+    incluirEspeciais: true
   })
   
   const {
