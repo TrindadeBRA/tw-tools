@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import ResultadoClient from '@/components/layout/resultado/ResultadoClient'
 import Header from '@/components/layout/Header'
 import InfoSection from '@/components/layout/template/InfoSection'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Resultado da Geração | CPF Válido Gerado - TW Tools',
@@ -51,18 +52,21 @@ export default function ResultadoPage() {
         title="CPF Válido Gerado"
         description="Resultado da geração de CPF válido. Utilize este CPF para testes e desenvolvimento de software, seguindo todas as regras da Receita Federal."
       />
-      <ResultadoClient 
-        title="CPF Válido Gerado"
-        description="O CPF gerado segue todas as regras estabelecidas pela Receita Federal e está pronto para uso em testes e desenvolvimento."
-        notFoundTitle="CPF Não Encontrado"
-        notFoundDescription="Não foi possível encontrar um CPF gerado. Por favor, tente gerar um novo CPF."
-        notFoundMessage="Nenhum CPF foi encontrado. Clique abaixo para gerar um novo."
-        infoTitle="Informações Importantes"
-        infoMessage="Este CPF foi gerado seguindo o algoritmo oficial da Receita Federal e pode ser usado para testes em sistemas que exigem validação."
-        resultLabel="CPF Válido Gerado"
-        backPath="/geradores/cpf"
-        buttonText="Gerar Novo CPF"
-      />
+      <Suspense fallback={<div className="p-8 text-center">Carregando resultado...</div>}>
+        <ResultadoClient 
+          title="CPF Válido Gerado"
+          description="O CPF gerado segue todas as regras estabelecidas pela Receita Federal e está pronto para uso em testes e desenvolvimento."
+          notFoundTitle="CPF Não Encontrado"
+          notFoundDescription="Não foi possível encontrar um CPF gerado. Por favor, tente gerar um novo CPF."
+          notFoundMessage="Nenhum CPF foi encontrado. Clique abaixo para gerar um novo."
+          infoTitle="Informações Importantes"
+          infoMessage="Este CPF foi gerado seguindo o algoritmo oficial da Receita Federal e pode ser usado para testes em sistemas que exigem validação."
+          resultLabel="CPF Válido Gerado"
+          backPath="/geradores/cpf"
+          buttonText="Gerar Novo CPF"
+          paramName="cpf"
+        />
+      </Suspense>
       <InfoSection items={infoItems} />
     </>
   )

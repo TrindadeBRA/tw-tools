@@ -18,38 +18,40 @@ interface ResultadoClientProps {
   resultLabel: string
   backPath: string
   buttonText: string
+  paramName?: string
 }
 
 export default function ResultadoClient({
-  title = "CPF Válido Gerado",
-  description = "O CPF gerado segue todas as regras estabelecidas pela Receita Federal e está pronto para uso em testes e desenvolvimento.",
+  title = "Resultado Gerado",
+  description = "O resultado foi gerado com sucesso e está pronto para uso.",
   notFoundTitle = "Resultado Não Encontrado",
-  notFoundDescription = "Não foi possível encontrar um CPF gerado. Por favor, tente gerar um novo CPF.",
-  notFoundMessage = "Nenhum CPF foi encontrado. Clique abaixo para gerar um novo.",
+  notFoundDescription = "Não foi possível encontrar um resultado gerado. Por favor, tente gerar novamente.",
+  notFoundMessage = "Nenhum resultado foi encontrado. Clique abaixo para gerar um novo.",
   infoTitle = "Informações Importantes",
-  infoMessage = "Este CPF foi gerado seguindo o algoritmo oficial e pode ser usado para testes em sistemas que exigem validação.",
-  resultLabel = "CPF Válido Gerado",
-  backPath = "/geradores/cpf",
-  buttonText = "Gerar Novo CPF"
+  infoMessage = "Este resultado foi gerado para fins de teste e desenvolvimento.",
+  resultLabel = "Resultado Gerado",
+  backPath = "/",
+  buttonText = "Gerar Novo",
+  paramName = "cpf"
 }: Partial<ResultadoClientProps>) {
   const searchParams = useSearchParams()
-  const [cpf, setCpf] = useState<string>('')
+  const [result, setResult] = useState<string>('')
   const router = useRouter()
 
   useEffect(() => {
-    // Get the CPF from the URL parameters
-    const cpfParam = searchParams.get('cpf')
-    if (cpfParam) {
-      setCpf(cpfParam)
+    // Get the result from the URL parameters
+    const resultParam = searchParams.get(paramName)
+    if (resultParam) {
+      setResult(resultParam)
     }
-  }, [searchParams])
+  }, [searchParams, paramName])
 
   const handleGenerateNew = () => {
     // Navigate back to the generator page
     router.push(backPath)
   }
 
-  if (!cpf) {
+  if (!result) {
     return (
       <FormPage
         title={notFoundTitle}
@@ -83,7 +85,7 @@ export default function ResultadoClient({
           <div className="col-span-full">
             <CopyResult
               label={resultLabel}
-              value={cpf}
+              value={result}
             />
           </div>
 
