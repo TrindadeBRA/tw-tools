@@ -51,12 +51,6 @@ export const navigation: NavItem[] = [
       { name: 'Validador de RG', href: '/validadores/rg' },
     ],
   },
-  // { name: 'Calculadoras', href: '#', icon: CalculatorIcon, current: false },
-  // { name: 'Conversores', icon: CurrencyDollarIcon, current: false, children: [
-  //   { name: 'Conversor de Moedas', href: '#' },
-  //   { name: 'Conversor de Temperatura', href: '#' },
-  //   { name: 'Conversor de Unidades', href: '#' },
-  // ]},
 ]
 const shortcuts = [
   { id: 1, name: 'Gerador de CPF', href: '/geradores/cpf', initial: 'C', current: false },
@@ -194,7 +188,7 @@ export default function Sidebar() {
                       </ul>
                     </li>
                     <li>
-                      <div className="text-xs/6 font-semibold text-gray-400">Atalhos</div>
+                      <div className="text-xs/6 font-semibold text-gray-400">Mais acessados!</div>
                       <ul role="list" className="-mx-2 mt-2 space-y-1">
                         {shortcuts.map((shortcut) => (
                           <li key={shortcut.name}>
@@ -311,7 +305,7 @@ export default function Sidebar() {
                   </ul>
                 </li>
                 <li>
-                  <div className="text-xs/6 font-semibold text-gray-400">Atalhos</div>
+                  <div className="text-xs/6 font-semibold text-gray-400">Mais acessados!</div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {shortcuts.map((shortcut) => (
                       <li key={shortcut.name}>
