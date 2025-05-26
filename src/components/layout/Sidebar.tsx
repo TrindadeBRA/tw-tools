@@ -10,6 +10,7 @@ import {
   UsersIcon,
   XMarkIcon,
   CheckBadgeIcon,
+  ArrowsRightLeftIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
@@ -42,7 +43,6 @@ export const navigation: NavItem[] = [
       { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
       { name: 'Gerador de CEP', href: '/geradores/cep' },
       { name: 'Gerador de Senha', href: '/geradores/senha' },
-      { name: 'Número por Extenso', href: '/geradores/numero-por-extenso' },
     ],
   },
   {
@@ -53,6 +53,14 @@ export const navigation: NavItem[] = [
       { name: 'Validador de CPF', href: '/validadores/cpf' },
       { name: 'Validador de CNPJ', href: '/validadores/cnpj' },
       { name: 'Validador de RG', href: '/validadores/rg' },
+    ],
+  },
+  {
+    name: 'Conversões',
+    icon: ArrowsRightLeftIcon,
+    current: false,
+    children: [
+      { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
     ],
   },
 ]
