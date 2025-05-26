@@ -55,13 +55,20 @@ const infoItems = [
   }
 ]
 
-export default function ResultadoPage({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+export default function ResultadoPage() {
+  // Usando searchParams do Next.js 13+
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  
   // Verificar se há erro na requisição
-  const hasError = searchParams.error === 'true';
+  const hasError = searchParams.get('error') === 'true';
   
   // Extrair valores para uso no Schema.org
-  const valorOriginal = searchParams.formattedValue || '';
-  const valorPorExtenso = searchParams.resultado || '';
+  const formattedValue = searchParams.get('formattedValue') || '';
+  const resultado = searchParams.get('resultado') || '';
+  
+  // Não é mais necessário fazer as conversões de tipo aqui
+  const valorOriginal = formattedValue;
+  const valorPorExtenso = resultado;
   
   return (
     <>
