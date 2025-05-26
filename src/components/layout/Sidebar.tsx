@@ -11,6 +11,7 @@ import {
   XMarkIcon,
   CheckBadgeIcon,
   ArrowsRightLeftIcon,
+  ShieldCheckIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
@@ -47,12 +48,13 @@ export const navigation: NavItem[] = [
   },
   {
     name: 'Validadores',
-    icon: CheckBadgeIcon,
+    icon: ShieldCheckIcon,
     current: false,
     children: [
       { name: 'Validador de CPF', href: '/validadores/cpf' },
       { name: 'Validador de CNPJ', href: '/validadores/cnpj' },
       { name: 'Validador de RG', href: '/validadores/rg' },
+      { name: 'Validador de CNH', href: '/validadores/cnh' },
     ],
   },
   {
