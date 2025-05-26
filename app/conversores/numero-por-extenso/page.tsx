@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import NumberInWords from "@/components/layout/generator/NumberInWords";
+import NumberInWords from "@/components/layout/converter/NumberInWords";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 import Script from "next/script";

@@ -61,6 +61,7 @@ export const navigation: NavItem[] = [
     current: false,
     children: [
       { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
+      { name: 'Conversor de Temperatura', href: '/conversores/temperatura' },
     ],
   },
 ]

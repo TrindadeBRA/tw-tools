@@ -82,10 +82,14 @@ export default function NomeDaPagina() {
 
 IMPORTANTE: Os nomes de componentes e pastas em src/components devem SEMPRE estar em inglês para manter o padrão do projeto. Por exemplo, use "generator" em vez de "geradores", "validator" em vez de "validadores", etc.
 
+#### PADRÃO CRÍTICO: Toda a lógica de processamento e cálculos DEVE ser realizada neste componente
+
 O componente deve:
 - Usar React Hook Form com Zod para validação
-- Implementar redirecionamento para a página de resultado
+- Realizar TODOS os cálculos e processamentos ANTES de redirecionar para a página de resultado
+- Enviar todos os resultados pré-calculados como parâmetros na URL
 - Usar EXCLUSIVAMENTE os componentes de UI do projeto (InputText, InputSelect, InputCheckbox, InputRadio, Button)
+- Incluir tratamento de erros com redirecionamento para página de resultado com parâmetro de erro
 - Incluir botões de ação (limpar e gerar/validar)
 
 ```tsx
@@ -147,10 +151,23 @@ export default function SeuComponente() {
   })
 
   const suaFuncaoPrincipal = (data: SuaData) => {
-    // Lógica de processamento
-    
-    // Redirecionar para a página de resultado com TODOS os parâmetros relevantes
-    router.push(`/[tipo-de-ferramenta]/[nome-da-ferramenta]/resultado?param1=${encodeURIComponent(valor1)}&param2=${encodeURIComponent(valor2)}&param3=${encodeURIComponent(valor3)}`)
+    try {
+      // Realizar TODA a lógica de processamento AQUI
+      // Calcular todos os resultados necessários
+      const resultado1 = processarDado1(data.campo1)
+      const resultado2 = processarDado2(data.campoSelect.id)
+      const resultadoFormatado = formatarResultado(resultado1, resultado2)
+      
+      // Para campos que precisam de formatação especial
+      const valorOriginal = `${data.campo1} ${data.campoSelect.title}`
+      
+      // Redirecionar para a página de resultado com TODOS os resultados pré-calculados
+      router.push(`/[tipo-de-ferramenta]/[nome-da-ferramenta]/resultado?valorOriginal=${encodeURIComponent(valorOriginal)}&resultado1=${encodeURIComponent(resultado1)}&resultado2=${encodeURIComponent(resultado2)}&resultadoFormatado=${encodeURIComponent(resultadoFormatado)}`)
+    } catch (error) {
+      console.error('Erro ao processar dados:', error)
+      // Redirecionar com parâmetro de erro em caso de falha
+      router.push(`/[tipo-de-ferramenta]/[nome-da-ferramenta]/resultado?error=true`)
+    }
   }
 
   const clearForm = () => {
@@ -232,10 +249,14 @@ export default function SeuComponente() {
 
 ### 3. Página de Resultado (`resultado/page.tsx`)
 
+#### PADRÃO CRÍTICO: Esta página NÃO deve realizar processamentos, apenas exibir resultados
+
 A página de resultado deve:
 - Ter metadados SEO específicos para a página de resultado
 - Incluir `infoItems` relevantes para o resultado
-- Conter o componente ResultClient configurado para os parâmetros específicos
+- Conter o componente ResultClient configurado para exibir os parâmetros vindos da URL
+- **NÃO realizar nenhum cálculo ou processamento adicional** - todos os resultados já devem vir calculados da página anterior
+- Identificar erros através do parâmetro `error=true` na URL
 - **IMPORTANTE**: Garantir que todos os parâmetros enviados na URL sejam exibidos no resultado
 
 ```tsx
@@ -245,6 +266,7 @@ import ResultClient from "@/components/layout/result/ResultClient";
 import LoadingResult from "@/components/layout/LoadingResult";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Resultado | Título da Ferramenta - TW Tools",
@@ -275,6 +297,13 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  // Verificar se há erro na requisição - MÉTODO SEGURO PARA SSR
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const hasError = searchParams.get('error') === 'true';
+  
+  // Extrair valores para uso no Schema.org
+  const resultadoPrincipal = searchParams.get('resultadoFormatado') || '';
+  
   return (
     <>
       <Header
@@ -287,8 +316,8 @@ export default function ResultadoPage() {
           title="Título do Resultado"
           description="Descrição do resultado..."
           notFoundTitle="Resultado Não Encontrado"
-          notFoundDescription="Descrição para quando não há resultado..."
-          notFoundMessage="Mensagem quando não há resultado..."
+          notFoundDescription={hasError ? "Ocorreu um erro ao processar sua solicitação." : "Não foi possível encontrar um resultado."}
+          notFoundMessage={hasError ? "Verifique se os dados informados são válidos e tente novamente." : "Verifique os dados e tente novamente."}
           infoTitle="Informações Importantes"
           infoMessage="Mensagem importante sobre o resultado..."
           resultLabel="Label do Resultado"
@@ -297,15 +326,39 @@ export default function ResultadoPage() {
           multipleParams={{ 
             enabled: true, 
             params: [
-              { name: "param1", label: "Label do Param 1" },
-              { name: "param2", label: "Label do Param 2" },
-              { name: "param3", label: "Label do Param 3" },
+              { name: "valorOriginal", label: "Label do Valor Original" },
+              { name: "resultado1", label: "Label do Resultado 1" },
+              { name: "resultado2", label: "Label do Resultado 2" },
+              { name: "resultadoFormatado", label: "Label do Resultado Formatado" },
               // Certifique-se de incluir TODOS os parâmetros que foram enviados na URL
             ]
           }}
         />
       </Suspense>
       <InfoSection items={infoItems} />
+      
+      {/* Schema.org structured data for SEO - apenas quando houver resultado */}
+      {!hasError && resultadoPrincipal && (
+        <Script id="schema-resultado" type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Nome da Ferramenta - Resultado",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "BRL"
+            },
+            "mainEntity": {
+              "@type": "Thing",
+              "name": "Descrição do resultado",
+              "description": `Resultado da operação realizada pela ferramenta`
+            }
+          })
+        }} />
+      )}
     </>
   );
 }
@@ -324,6 +377,33 @@ export default function ResultadoLayout({
   return children;
 }
 ```
+
+## Boas Práticas e Padrões Críticos
+
+### 1. Onde realizar cálculos e processamentos
+
+✅ **CORRETO**: Todos os cálculos devem ser feitos no componente do formulário ANTES de redirecionar para a página de resultado
+❌ **ERRADO**: Criar componentes separados de processamento na página de resultado ou fazer cálculos na página de resultado
+
+### 2. Manuseio de dados entre páginas
+
+✅ **CORRETO**: Passar todos os resultados já calculados como parâmetros na URL
+❌ **ERRADO**: Passar apenas dados brutos e fazer o processamento na página de resultado
+
+### 3. Tratamento de erros
+
+✅ **CORRETO**: Capturar erros no componente do formulário e redirecionar com `error=true`
+❌ **ERRADO**: Tentar processar dados inválidos na página de resultado
+
+### 4. Uso de hooks React
+
+✅ **CORRETO**: Usar hooks React (`useState`, `useEffect`, etc.) apenas em componentes client-side marcados com `'use client'`
+❌ **ERRADO**: Criar componentes client-side separados para processar dados na página de resultado
+
+### 5. Modelos a seguir
+
+- Utilize `src/components/layout/converter/NumberInWords.tsx` como referência para implementar conversores
+- Siga o padrão do componente `app/conversores/numero-por-extenso/resultado/page.tsx` para páginas de resultado
 
 ## Componentes de UI Disponíveis
 
@@ -364,34 +444,33 @@ Para cada ferramenta, você deve personalizar:
 ## Exemplo Completo
 
 Você pode ver um exemplo completo de implementação na pasta:
-- `app/exemplo/` (página principal)
-- `app/exemplo/resultado/` (página de resultado)
-- `src/components/layout/exemplo/exemplo.tsx` (componente)
+- `app/conversores/numero-por-extenso/` (página principal)
+- `app/conversores/numero-por-extenso/resultado/` (página de resultado)
+- `src/components/layout/converter/NumberInWords.tsx` (componente)
 
 ## IMPORTANTE: Garantir a Correspondência de Parâmetros
 
-Certifique-se de que TODOS os parâmetros enviados no formulário estejam configurados para serem exibidos na página de resultado. 
+Certifique-se de que TODOS os parâmetros enviados na URL pelo componente do formulário estejam configurados para serem exibidos na página de resultado. 
 
-Por exemplo, se o seu formulário envia os parâmetros `valor`, `tipo`, `quantidade` e `formato` na URL, você DEVE incluir todos eles no array de `params` do componente ResultClient: 
+Por exemplo, se o seu formulário envia os parâmetros `valorOriginal`, `resultado1`, `resultado2` e `resultadoFormatado` na URL, você DEVE incluir todos eles no array de `params` do componente ResultClient.
 
 ## IMPORTANTE: Adição ao Menu de Navegação
 
 Após criar todos os arquivos necessários, você DEVE adicionar a nova ferramenta ao menu de navegação no arquivo `src/components/layout/Sidebar.tsx`. 
 
 1. Localize o array `navigation` que contém os itens do menu
-2. Adicione a nova ferramenta na seção apropriada (Geradores ou Validadores)
+2. Adicione a nova ferramenta na seção apropriada (Geradores, Validadores, Conversões, etc.)
 3. Siga o padrão existente para adicionar a nova rota
 
 Exemplo de como adicionar uma nova ferramenta (NÃO INCLUIR ESTE EXEMPLO NO CÓDIGO):
 ```tsx
 {
-  name: 'Geradores',
-  icon: UsersIcon,
+  name: 'Conversões',
+  icon: ArrowsRightLeftIcon,
   current: false,
   children: [
-    { name: 'Gerador de CPF', href: '/geradores/cpf' },
-    // ... other generators
-    { name: 'Nome da Nova Ferramenta', href: '/geradores/nome-da-ferramenta' }, // Nova entrada
+    { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
+    { name: 'Nome da Nova Ferramenta', href: '/conversores/nome-da-ferramenta' }, // Nova entrada
   ],
 },
 ```
