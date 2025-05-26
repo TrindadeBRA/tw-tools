@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     description: "Ferramenta gratuita para converter números em palavras por extenso em português. Escreva valores em reais ou números simples. Ideal para documentos oficiais, contratos, cheques e textos formais.",
     keywords: "número por extenso, converter número para texto, escrever valores por extenso, valor por extenso em reais, número em português por extenso, gerador de texto por extenso",
     alternates: {
-        canonical: "https://tools.thetrinityweb.com.br/geradores/numero-por-extenso",
+        canonical: "https://tools.thetrinityweb.com.br/conversores/numero-por-extenso",
     },
     openGraph: {
         title: "Conversor de Número por Extenso Online e Gratuito",
         description: "Converta qualquer número ou valor monetário para texto por extenso em português. Ideal para documentos, contratos e cheques.",
-        url: "https://tools.thetrinityweb.com.br/geradores/numero-por-extenso",
+        url: "https://tools.thetrinityweb.com.br/conversores/numero-por-extenso",
         siteName: "TW Tools",
         type: "website",
     },
@@ -71,7 +71,7 @@ export default function NumeroPorExtensoPage() {
                     "@type": "WebApplication",
                     "name": "Conversor de Números por Extenso",
                     "description": "Ferramenta online gratuita para converter números e valores monetários em texto por extenso em português do Brasil.",
-                    "url": "https://tools.thetrinityweb.com.br/geradores/numero-por-extenso",
+                    "url": "https://tools.thetrinityweb.com.br/conversores/numero-por-extenso",
                     "applicationCategory": "Ferramenta de Texto",
                     "operatingSystem": "Web",
                     "offers": {

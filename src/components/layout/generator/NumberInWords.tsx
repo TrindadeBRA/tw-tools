@@ -260,10 +260,10 @@ export default function NumberInWords() {
       const textoFormatado = formatarTexto(extenso, letterCase);
       
       // Navegar para resultado
-      router.push(`/geradores/numero-por-extenso/resultado?value=${encodeURIComponent(value)}&formattedValue=${encodeURIComponent(valorFormatado)}&unit=${encodeURIComponent(unit.id)}&letterCase=${encodeURIComponent(letterCase)}&resultado=${encodeURIComponent(textoFormatado)}`);
+      router.push(`/conversores/numero-por-extenso/resultado?value=${encodeURIComponent(value)}&formattedValue=${encodeURIComponent(valorFormatado)}&unit=${encodeURIComponent(unit.id)}&letterCase=${encodeURIComponent(letterCase)}&resultado=${encodeURIComponent(textoFormatado)}`);
     } catch (error) {
       console.error('Erro ao processar número:', error);
-      router.push(`/geradores/numero-por-extenso/resultado?error=true`);
+      router.push(`/conversores/numero-por-extenso/resultado?error=true`);
     }
   };
 

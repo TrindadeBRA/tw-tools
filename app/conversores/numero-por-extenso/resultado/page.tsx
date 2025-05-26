@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   description: "Resultado da conversão de números para texto por extenso em português do Brasil. Visualize e copie valores escritos por extenso para documentos oficiais, cheques e contratos.",
   keywords: "número por extenso resultado, texto por extenso, valor em reais por extenso, converter número para texto, português por extenso, texto formal",
   alternates: {
-    canonical: "https://tools.thetrinityweb.com.br/geradores/numero-por-extenso/resultado",
+    canonical: "https://tools.thetrinityweb.com.br/conversores/numero-por-extenso/resultado",
   },
   openGraph: {
     title: "Resultado da Conversão de Número por Extenso",
     description: "Visualize e copie o número convertido para texto por extenso em português. Pronto para usar em documentos oficiais.",
-    url: "https://tools.thetrinityweb.com.br/geradores/numero-por-extenso/resultado",
+    url: "https://tools.thetrinityweb.com.br/conversores/numero-por-extenso/resultado",
     siteName: "TW Tools",
     type: "website",
   },
@@ -87,7 +87,7 @@ export default function ResultadoPage() {
           infoTitle="Valor Convertido por Extenso"
           infoMessage="Você pode copiar o texto abaixo para usar em seus documentos oficiais, cheques ou contratos. O texto segue as normas ortográficas do português brasileiro."
           resultLabel="Resultado em Texto"
-          backPath="/geradores/numero-por-extenso"
+          backPath="/conversores/numero-por-extenso"
           buttonText="Converter Outro Número"
           multipleParams={{ 
             enabled: true, 
