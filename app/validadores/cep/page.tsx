@@ -1,20 +1,20 @@
 import { Metadata } from "next";
-import CNHValidatorClient from "../../../src/components/layout/validator/CnhValidator";
+import CEPValidatorClient from "../../../src/components/layout/validator/CepValidator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 
 export const metadata: Metadata = {
-    title: "Validador de CNH Online Grátis | Verifique CNH Válida - TW Tools",
-    description: "Valide CNH gratuitamente online. Ferramenta que verifica se um número de CNH é válido seguindo as regras do DENATRAN. Ideal para desenvolvedores e testadores.",
+    title: "Validador de CEP Online Grátis | Verifique CEP Válido - TW Tools",
+    description: "Valide CEP gratuitamente online. Ferramenta que verifica se um número de CEP é válido seguindo as regras dos Correios. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
     {
-        title: "Sobre o Validador de CNH",
+        title: "Sobre o Validador de CEP",
         type: "info" as const,
         content: (
             <p>
-                Nossa ferramenta online valida números de CNH, seguindo rigorosamente as regras estabelecidas pelo DENATRAN. A validação inclui verificação dos dígitos verificadores e do estado emissor.
+                Nossa ferramenta online valida números de CEP, seguindo rigorosamente as regras estabelecidas pelos Correios. A validação inclui verificação do formato e do estado correspondente.
             </p>
         )
     },
@@ -26,7 +26,7 @@ const infoItems = [
                 ✓ Validação de formulários<br />
                 ✓ Desenvolvimento de software e sistemas<br />
                 ✓ Testes de cadastro<br />
-                ✓ Integração com sistemas do DENATRAN<br />
+                ✓ Integração com APIs de endereço<br />
                 ✓ Verificação de dados
             </p>
         )
@@ -36,8 +36,8 @@ const infoItems = [
         type: "features" as const,
         content: (
             <p>
-                ✓ Validação matemática completa<br />
-                ✓ Verificação do estado emissor<br />
+                ✓ Validação por estado<br />
+                ✓ Verificação do formato<br />
                 ✓ Suporte a diferentes formatos<br />
                 ✓ Interface simples e intuitiva
             </p>
@@ -54,7 +54,7 @@ const infoItems = [
     }
 ]
 
-export default function CNHValidator() {
+export default function CEPValidator() {
     const breadcrumbs = [
         {
             name: 'Validadores',
@@ -62,8 +62,8 @@ export default function CNHValidator() {
             current: false
         },
         {
-            name: 'CNH',
-            href: '/validadores/cnh',
+            name: 'CEP',
+            href: '/validadores/cep',
             current: true
         }
     ];
@@ -71,12 +71,12 @@ export default function CNHValidator() {
     return (
         <>
             <Header
-                miniTitle="Validador de CNH Online"
-                title="Validador de CNH Válida Grátis"
-                description="Ferramenta gratuita para validar CNH online. Verifique se um número de CNH é válido, seguindo todas as regras do DENATRAN. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                miniTitle="Validador de CEP Online"
+                title="Validador de CEP Válido Grátis"
+                description="Ferramenta gratuita para validar CEP online. Verifique se um número de CEP é válido, seguindo todas as regras dos Correios. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
                 breadcrumbs={breadcrumbs}
             />
-            <CNHValidatorClient />
+            <CEPValidatorClient />
             <InfoSection items={infoItems} />
         </>
     )

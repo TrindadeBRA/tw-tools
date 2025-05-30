@@ -4,17 +4,17 @@ import InfoSection from "@/components/layout/template/InfoSection";
 import CreditCardGeneratorClient from "@/components/layout/generator/CreditCardGenerator";
 
 export const metadata: Metadata = {
-    title: "Gerador de Cartão de Crédito Online Grátis | Gere Cartões Válidos - TW Tools",
-    description: "Gere números de cartão de crédito válidos gratuitamente para testes. Ferramenta online que cria números de cartão seguindo o algoritmo Luhn e regras das bandeiras. Ideal para desenvolvedores e testadores.",
+    title: "Gerador de Cartão de Crédito Online Grátis | Gere Números Válidos - TW Tools",
+    description: "Gere números de cartão de crédito válidos gratuitamente para testes e desenvolvimento. Ferramenta online que cria números seguindo o algoritmo de Luhn. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
     {
-        title: "Sobre o Gerador de Cartão",
+        title: "Sobre o Gerador de Cartão de Crédito",
         type: "info" as const,
         content: (
             <p>
-                Nossa ferramenta online gera números de cartão de crédito válidos para diferentes bandeiras, seguindo rigorosamente o algoritmo Luhn e as regras específicas de cada bandeira. Cada cartão gerado inclui número, data de validade e código de segurança (CVV), perfeito para testes de sistemas de pagamento.
+                Nossa ferramenta online gera números de cartão de crédito válidos, seguindo rigorosamente o algoritmo de Luhn. Cada número gerado passa por todas as validações matemáticas necessárias, incluindo a verificação do dígito verificador.
             </p>
         )
     },
@@ -23,11 +23,11 @@ const infoItems = [
         type: "usage" as const,
         content: (
             <p>
-                ✓ Desenvolvimento de e-commerce<br />
-                ✓ Testes de gateway de pagamento<br />
+                ✓ Desenvolvimento de software e sistemas<br />
+                ✓ Testes de cadastro e validação<br />
                 ✓ Prototipagem de aplicações<br />
-                ✓ Testes de integração com APIs de pagamento<br />
-                ✓ Validação de formulários de cartão
+                ✓ Testes de integração com gateways de pagamento<br />
+                ✓ Validação de formulários
             </p>
         )
     },
@@ -36,9 +36,9 @@ const infoItems = [
         type: "features" as const,
         content: (
             <p>
+                ✓ Validação pelo algoritmo de Luhn<br />
                 ✓ Suporte a múltiplas bandeiras<br />
-                ✓ Validação pelo algoritmo Luhn<br />
-                ✓ Geração de data e CVV<br />
+                ✓ Opção de formatação automática<br />
                 ✓ Interface simples e intuitiva
             </p>
         )
@@ -55,12 +55,26 @@ const infoItems = [
 ]
 
 export default function CreditCardGenerator() {
+    const breadcrumbs = [
+        {
+            name: 'Geradores',
+            href: '/geradores',
+            current: false
+        },
+        {
+            name: 'Cartão de Crédito',
+            href: '/geradores/cartao-de-credito',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
                 miniTitle="Gerador de Cartão de Crédito Online"
-                title="Gerador de Cartão de Crédito Válido Grátis"
-                description="Ferramenta gratuita para gerar cartões de crédito válidos para testes. Crie números de cartão com data de validade e CVV, seguindo as regras de cada bandeira. Ideal para testes de software e desenvolvimento de sistemas de pagamento."
+                title="Gerador de Números de Cartão de Crédito Válidos"
+                description="Ferramenta gratuita para gerar números de cartão de crédito válidos online. Crie números com ou sem pontuação, seguindo o algoritmo de Luhn. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                breadcrumbs={breadcrumbs}
             />
             <CreditCardGeneratorClient />
             <InfoSection items={infoItems} />

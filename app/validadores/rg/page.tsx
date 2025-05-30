@@ -5,7 +5,7 @@ import InfoSection from "@/components/layout/template/InfoSection";
 
 export const metadata: Metadata = {
     title: "Validador de RG Online Grátis | Verifique RG Válido - TW Tools",
-    description: "Valide RG online gratuitamente. Ferramenta que verifica se um RG é válido seguindo as regras dos órgãos emissores. Ideal para validação de documentos e desenvolvimento.",
+    description: "Valide RG gratuitamente online. Ferramenta que verifica se um número de RG é válido seguindo as regras de cada estado. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
@@ -14,7 +14,7 @@ const infoItems = [
         type: "info" as const,
         content: (
             <p>
-                Nossa ferramenta online valida números de RG de acordo com as regras estabelecidas pelos órgãos emissores. A validação inclui a verificação do dígito verificador e todas as regras matemáticas necessárias para garantir que o RG é válido.
+                Nossa ferramenta online valida números de RG, seguindo rigorosamente as regras estabelecidas por cada estado brasileiro. A validação inclui verificação dos dígitos verificadores e do estado emissor.
             </p>
         )
     },
@@ -23,11 +23,11 @@ const infoItems = [
         type: "usage" as const,
         content: (
             <p>
-                ✓ Validação de documentos pessoais<br />
+                ✓ Validação de formulários<br />
                 ✓ Desenvolvimento de software e sistemas<br />
-                ✓ Testes de cadastro e validação<br />
-                ✓ Verificação de RG em formulários<br />
-                ✓ Conferência de documentação
+                ✓ Testes de cadastro<br />
+                ✓ Integração com sistemas governamentais<br />
+                ✓ Verificação de dados
             </p>
         )
     },
@@ -36,9 +36,9 @@ const infoItems = [
         type: "features" as const,
         content: (
             <p>
-                ✓ Validação matemática completa<br />
-                ✓ Aceita RG com ou sem pontuação<br />
-                ✓ Resultado instantâneo<br />
+                ✓ Validação por estado<br />
+                ✓ Verificação do dígito verificador<br />
+                ✓ Suporte a diferentes formatos<br />
                 ✓ Interface simples e intuitiva
             </p>
         )
@@ -55,12 +55,26 @@ const infoItems = [
 ]
 
 export default function RGValidator() {
+    const breadcrumbs = [
+        {
+            name: 'Validadores',
+            href: '/validadores',
+            current: false
+        },
+        {
+            name: 'RG',
+            href: '/validadores/rg',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
                 miniTitle="Validador de RG Online"
-                title="Validador de RG Grátis"
-                description="Ferramenta gratuita para validar RG online. Verifique se um RG é válido de acordo com as regras dos órgãos emissores. Ideal para validação de documentos, desenvolvimento de sistemas e verificação de cadastros."
+                title="Validador de RG Válido Grátis"
+                description="Ferramenta gratuita para validar RG online. Verifique se um número de RG é válido, seguindo todas as regras do estado emissor. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                breadcrumbs={breadcrumbs}
             />
             <RGValidatorClient />
             <InfoSection items={infoItems} />

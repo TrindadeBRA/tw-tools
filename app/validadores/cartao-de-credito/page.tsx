@@ -1,20 +1,20 @@
 import { Metadata } from "next";
-import CNHValidatorClient from "../../../src/components/layout/validator/CnhValidator";
+import CreditCardValidatorClient from "../../../src/components/layout/validator/CreditCardValidator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 
 export const metadata: Metadata = {
-    title: "Validador de CNH Online Grátis | Verifique CNH Válida - TW Tools",
-    description: "Valide CNH gratuitamente online. Ferramenta que verifica se um número de CNH é válido seguindo as regras do DENATRAN. Ideal para desenvolvedores e testadores.",
+    title: "Validador de Cartão de Crédito Online Grátis | Verifique Cartão Válido - TW Tools",
+    description: "Valide cartão de crédito gratuitamente online. Ferramenta que verifica se um número de cartão é válido seguindo o algoritmo de Luhn. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
     {
-        title: "Sobre o Validador de CNH",
+        title: "Sobre o Validador de Cartão de Crédito",
         type: "info" as const,
         content: (
             <p>
-                Nossa ferramenta online valida números de CNH, seguindo rigorosamente as regras estabelecidas pelo DENATRAN. A validação inclui verificação dos dígitos verificadores e do estado emissor.
+                Nossa ferramenta online valida números de cartão de crédito, seguindo rigorosamente o algoritmo de Luhn. A validação inclui verificação dos dígitos verificadores e identificação da bandeira do cartão.
             </p>
         )
     },
@@ -26,7 +26,7 @@ const infoItems = [
                 ✓ Validação de formulários<br />
                 ✓ Desenvolvimento de software e sistemas<br />
                 ✓ Testes de cadastro<br />
-                ✓ Integração com sistemas do DENATRAN<br />
+                ✓ Integração com gateways de pagamento<br />
                 ✓ Verificação de dados
             </p>
         )
@@ -36,8 +36,8 @@ const infoItems = [
         type: "features" as const,
         content: (
             <p>
-                ✓ Validação matemática completa<br />
-                ✓ Verificação do estado emissor<br />
+                ✓ Validação pelo algoritmo de Luhn<br />
+                ✓ Identificação da bandeira do cartão<br />
                 ✓ Suporte a diferentes formatos<br />
                 ✓ Interface simples e intuitiva
             </p>
@@ -54,7 +54,7 @@ const infoItems = [
     }
 ]
 
-export default function CNHValidator() {
+export default function CreditCardValidator() {
     const breadcrumbs = [
         {
             name: 'Validadores',
@@ -62,8 +62,8 @@ export default function CNHValidator() {
             current: false
         },
         {
-            name: 'CNH',
-            href: '/validadores/cnh',
+            name: 'Cartão de Crédito',
+            href: '/validadores/cartao-de-credito',
             current: true
         }
     ];
@@ -71,12 +71,12 @@ export default function CNHValidator() {
     return (
         <>
             <Header
-                miniTitle="Validador de CNH Online"
-                title="Validador de CNH Válida Grátis"
-                description="Ferramenta gratuita para validar CNH online. Verifique se um número de CNH é válido, seguindo todas as regras do DENATRAN. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                miniTitle="Validador de Cartão de Crédito Online"
+                title="Validador de Cartão de Crédito Válido Grátis"
+                description="Ferramenta gratuita para validar cartão de crédito online. Verifique se um número de cartão é válido, seguindo o algoritmo de Luhn. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
                 breadcrumbs={breadcrumbs}
             />
-            <CNHValidatorClient />
+            <CreditCardValidatorClient />
             <InfoSection items={infoItems} />
         </>
     )

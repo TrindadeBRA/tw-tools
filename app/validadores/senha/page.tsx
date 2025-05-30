@@ -1,20 +1,20 @@
 import { Metadata } from "next";
-import CNHValidatorClient from "../../../src/components/layout/validator/CnhValidator";
+import PasswordValidatorClient from "../../../src/components/layout/validator/PasswordValidator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 
 export const metadata: Metadata = {
-    title: "Validador de CNH Online Grátis | Verifique CNH Válida - TW Tools",
-    description: "Valide CNH gratuitamente online. Ferramenta que verifica se um número de CNH é válido seguindo as regras do DENATRAN. Ideal para desenvolvedores e testadores.",
+    title: "Validador de Senha Online Grátis | Verifique Senha Forte - TW Tools",
+    description: "Valide senha gratuitamente online. Ferramenta que verifica se uma senha é forte e segura. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
     {
-        title: "Sobre o Validador de CNH",
+        title: "Sobre o Validador de Senha",
         type: "info" as const,
         content: (
             <p>
-                Nossa ferramenta online valida números de CNH, seguindo rigorosamente as regras estabelecidas pelo DENATRAN. A validação inclui verificação dos dígitos verificadores e do estado emissor.
+                Nossa ferramenta online valida senhas, verificando sua força e segurança. A validação inclui verificação de comprimento, complexidade e uso de caracteres especiais.
             </p>
         )
     },
@@ -26,8 +26,8 @@ const infoItems = [
                 ✓ Validação de formulários<br />
                 ✓ Desenvolvimento de software e sistemas<br />
                 ✓ Testes de cadastro<br />
-                ✓ Integração com sistemas do DENATRAN<br />
-                ✓ Verificação de dados
+                ✓ Implementação de políticas de senha<br />
+                ✓ Verificação de segurança
             </p>
         )
     },
@@ -36,9 +36,9 @@ const infoItems = [
         type: "features" as const,
         content: (
             <p>
-                ✓ Validação matemática completa<br />
-                ✓ Verificação do estado emissor<br />
-                ✓ Suporte a diferentes formatos<br />
+                ✓ Verificação de força da senha<br />
+                ✓ Análise de complexidade<br />
+                ✓ Sugestões de melhoria<br />
                 ✓ Interface simples e intuitiva
             </p>
         )
@@ -54,7 +54,7 @@ const infoItems = [
     }
 ]
 
-export default function CNHValidator() {
+export default function PasswordValidator() {
     const breadcrumbs = [
         {
             name: 'Validadores',
@@ -62,8 +62,8 @@ export default function CNHValidator() {
             current: false
         },
         {
-            name: 'CNH',
-            href: '/validadores/cnh',
+            name: 'Senha',
+            href: '/validadores/senha',
             current: true
         }
     ];
@@ -71,12 +71,12 @@ export default function CNHValidator() {
     return (
         <>
             <Header
-                miniTitle="Validador de CNH Online"
-                title="Validador de CNH Válida Grátis"
-                description="Ferramenta gratuita para validar CNH online. Verifique se um número de CNH é válido, seguindo todas as regras do DENATRAN. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                miniTitle="Validador de Senha Online"
+                title="Validador de Senha Forte Grátis"
+                description="Ferramenta gratuita para validar senha online. Verifique se uma senha é forte e segura, seguindo as melhores práticas de segurança. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
                 breadcrumbs={breadcrumbs}
             />
-            <CNHValidatorClient />
+            <PasswordValidatorClient />
             <InfoSection items={infoItems} />
         </>
     )

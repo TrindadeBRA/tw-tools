@@ -1,45 +1,82 @@
 import { Metadata } from "next";
-import CnhGenerator from "../../../src/components/layout/generator/CnhGenerator";
+import CNHGeneratorClient from "../../../src/components/layout/generator/CnhGenerator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 
 export const metadata: Metadata = {
-    title: "Gerador de CNH | TW Tools",
-    description: "Gere números de CNH válidos para testes e desenvolvimento de sistemas. Ferramenta online gratuita.",
+    title: "Gerador de CNH Online Grátis | Gere CNHs Válidas - TW Tools",
+    description: "Gere CNH gratuitamente online. Ferramenta que gera números de CNH válidos seguindo as regras do DENATRAN. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
     {
-        title: "Sobre a Ferramenta",
+        title: "Sobre o Gerador de CNH",
         type: "info" as const,
-        content: (<p>O Gerador de CNH é uma ferramenta que cria números de Carteira Nacional de Habilitação válidos para fins de teste. Os números gerados seguem o mesmo formato e algoritmo de validação das CNHs reais brasileiras.</p>)
+        content: (
+            <p>
+                Nossa ferramenta online gera números de CNH válidos, seguindo rigorosamente as regras estabelecidas pelo DENATRAN. A geração inclui dígitos verificadores e estado emissor válidos.
+            </p>
+        )
     },
     {
         title: "Uso Recomendado",
         type: "usage" as const,
-        content: (<p>✓ Testes de sistemas que utilizam dados de CNH<br />✓ Desenvolvimento de software<br />✓ Validação de sistemas de verificação<br />✓ Preenchimento de ambientes de homologação</p>)
+        content: (
+            <p>
+                ✓ Testes de software<br />
+                ✓ Desenvolvimento de sistemas<br />
+                ✓ Testes de cadastro<br />
+                ✓ Integração com sistemas do DENATRAN<br />
+                ✓ Validação de formulários
+            </p>
+        )
     },
     {
-        title: "Diferenciais da Ferramenta",
+        title: "Diferenciais do Gerador",
         type: "features" as const,
-        content: (<p>✓ Gera CNHs válidos com algoritmo atualizado<br />✓ Permite customização de categoria e UF<br />✓ Ferramenta gratuita e online<br />✓ Não armazena dados pessoais</p>)
+        content: (
+            <p>
+                ✓ Geração por estado<br />
+                ✓ Validação matemática completa<br />
+                ✓ Suporte a diferentes formatos<br />
+                ✓ Interface simples e intuitiva
+            </p>
+        )
     },
     {
         title: "Aviso Legal",
         type: "legal" as const,
-        content: (<p>Esta ferramenta é destinada exclusivamente para fins de teste e desenvolvimento de software. O uso dos números gerados para fins fraudulentos, como criação de documentos falsos ou tentativa de se passar por outra pessoa, é ilegal e pode resultar em processos criminais. Os usuários são os únicos responsáveis pelo uso adequado desta ferramenta.</p>)
+        content: (
+            <p>
+                Esta ferramenta foi desenvolvida exclusivamente para fins de teste e desenvolvimento. A utilização para fins fraudulentos ou ilegais é expressamente proibida e de total responsabilidade do usuário.
+            </p>
+        )
     }
 ]
 
-export default function CnhPage() {
+export default function CNHGenerator() {
+    const breadcrumbs = [
+        {
+            name: 'Geradores',
+            href: '/geradores',
+            current: false
+        },
+        {
+            name: 'CNH',
+            href: '/geradores/cnh',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
-                miniTitle="Gerador de Documentos"
-                title="Gerador de CNH"
-                description="Gere números de CNH (Carteira Nacional de Habilitação) válidos para testes e desenvolvimento de sistemas."
+                miniTitle="Gerador de CNH Online"
+                title="Gerador de CNH Válida Grátis"
+                description="Ferramenta gratuita para gerar CNH online. Gere números de CNH válidos, seguindo todas as regras do DENATRAN. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                breadcrumbs={breadcrumbs}
             />
-            <CnhGenerator />
+            <CNHGeneratorClient />
             <InfoSection items={infoItems} />
         </>
     )

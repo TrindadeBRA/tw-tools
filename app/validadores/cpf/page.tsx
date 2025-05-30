@@ -5,7 +5,7 @@ import InfoSection from "@/components/layout/template/InfoSection";
 
 export const metadata: Metadata = {
     title: "Validador de CPF Online Grátis | Verifique CPF Válido - TW Tools",
-    description: "Valide CPF online gratuitamente. Ferramenta que verifica se um CPF é válido seguindo as regras da Receita Federal. Ideal para validação de documentos e desenvolvimento.",
+    description: "Valide CPF gratuitamente online. Ferramenta que verifica se um número de CPF é válido seguindo as regras da Receita Federal. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
@@ -14,7 +14,7 @@ const infoItems = [
         type: "info" as const,
         content: (
             <p>
-                Nossa ferramenta online valida números de CPF de acordo com as regras estabelecidas pela Receita Federal do Brasil. A validação inclui a verificação dos dígitos verificadores e todas as regras matemáticas necessárias para garantir que o CPF é válido.
+                Nossa ferramenta online valida números de CPF, seguindo rigorosamente as regras estabelecidas pela Receita Federal do Brasil. A validação inclui verificação dos dígitos verificadores e do dígito regional.
             </p>
         )
     },
@@ -23,11 +23,11 @@ const infoItems = [
         type: "usage" as const,
         content: (
             <p>
-                ✓ Validação de documentos<br />
+                ✓ Validação de formulários<br />
                 ✓ Desenvolvimento de software e sistemas<br />
-                ✓ Testes de cadastro e validação<br />
-                ✓ Verificação de CPF em formulários<br />
-                ✓ Conferência de documentação
+                ✓ Testes de cadastro<br />
+                ✓ Integração com sistemas governamentais<br />
+                ✓ Verificação de dados
             </p>
         )
     },
@@ -37,8 +37,8 @@ const infoItems = [
         content: (
             <p>
                 ✓ Validação matemática completa<br />
-                ✓ Aceita CPF com ou sem pontuação<br />
-                ✓ Resultado instantâneo<br />
+                ✓ Verificação do dígito regional<br />
+                ✓ Suporte a diferentes formatos<br />
                 ✓ Interface simples e intuitiva
             </p>
         )
@@ -55,12 +55,26 @@ const infoItems = [
 ]
 
 export default function CPFValidator() {
+    const breadcrumbs = [
+        {
+            name: 'Validadores',
+            href: '/validadores',
+            current: false
+        },
+        {
+            name: 'CPF',
+            href: '/validadores/cpf',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
                 miniTitle="Validador de CPF Online"
-                title="Validador de CPF Grátis"
-                description="Ferramenta gratuita para validar CPF online. Verifique se um CPF é válido de acordo com as regras da Receita Federal. Ideal para validação de documentos, desenvolvimento de sistemas e verificação de cadastros."
+                title="Validador de CPF Válido Grátis"
+                description="Ferramenta gratuita para validar CPF online. Verifique se um número de CPF é válido, seguindo todas as regras da Receita Federal. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                breadcrumbs={breadcrumbs}
             />
             <CPFValidatorClient />
             <InfoSection items={infoItems} />

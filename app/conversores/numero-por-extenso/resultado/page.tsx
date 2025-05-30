@@ -69,6 +69,24 @@ export default function ResultadoPage() {
   // Não é mais necessário fazer as conversões de tipo aqui
   const valorOriginal = formattedValue;
   const valorPorExtenso = resultado;
+
+  const breadcrumbs = [
+    {
+      name: 'Conversores',
+      href: '/conversores',
+      current: false
+    },
+    {
+      name: 'Número por Extenso',
+      href: '/conversores/numero-por-extenso',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/conversores/numero-por-extenso/resultado',
+      current: true
+    }
+  ];
   
   return (
     <>
@@ -76,6 +94,7 @@ export default function ResultadoPage() {
         miniTitle="Resultado da Conversão"
         title="Número por Extenso em Português"
         description="Confira abaixo o número convertido para texto por extenso em português do Brasil. Copie facilmente para seus documentos oficiais."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

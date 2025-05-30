@@ -4,8 +4,8 @@ import InfoSection from "@/components/layout/template/InfoSection";
 import CEPGeneratorClient from "@/components/layout/generator/CepGenerator";
 
 export const metadata: Metadata = {
-    title: "Gerador de CEP Online Grátis | Gere CEPs Válidos - TW Tools",
-    description: "Gere CEPs válidos gratuitamente para testes. Ferramenta online que cria CEPs seguindo o padrão dos Correios. Ideal para desenvolvedores e testadores.",
+    title: "Gerador de CEP Online Grátis | Gere CEPs Válidos por Estado - TW Tools",
+    description: "Gere CEPs válidos gratuitamente por estado para testes e desenvolvimento. Ferramenta online que cria CEPs seguindo as regras dos Correios. Ideal para desenvolvedores e testadores.",
 };
 
 const infoItems = [
@@ -14,7 +14,7 @@ const infoItems = [
         type: "info" as const,
         content: (
             <p>
-                Nossa ferramenta online gera CEPs válidos para diferentes estados e cidades do Brasil, seguindo o padrão dos Correios. Cada CEP gerado pode incluir formatação opcional, perfeito para testes de sistemas que utilizam endereços.
+                Nossa ferramenta online gera CEPs válidos por estado, seguindo rigorosamente as regras estabelecidas pelos Correios. Cada CEP gerado passa por todas as validações necessárias, garantindo que seja um CEP válido para o estado selecionado.
             </p>
         )
     },
@@ -23,11 +23,11 @@ const infoItems = [
         type: "usage" as const,
         content: (
             <p>
-                ✓ Desenvolvimento de e-commerce<br />
-                ✓ Testes de sistemas de logística<br />
+                ✓ Desenvolvimento de software e sistemas<br />
+                ✓ Testes de cadastro e validação<br />
                 ✓ Prototipagem de aplicações<br />
-                ✓ Testes de integração com APIs de endereço<br />
-                ✓ Validação de formulários de endereço
+                ✓ Testes de integração com APIs de CEP<br />
+                ✓ Validação de formulários por estado
             </p>
         )
     },
@@ -36,9 +36,9 @@ const infoItems = [
         type: "features" as const,
         content: (
             <p>
-                ✓ Suporte a estados brasileiros<br />
-                ✓ Geração por cidade<br />
-                ✓ Opção de formatação<br />
+                ✓ Geração por estado<br />
+                ✓ Validação completa<br />
+                ✓ Opção de formatação automática<br />
                 ✓ Interface simples e intuitiva
             </p>
         )
@@ -55,12 +55,26 @@ const infoItems = [
 ]
 
 export default function CEPGenerator() {
+    const breadcrumbs = [
+        {
+            name: 'Geradores',
+            href: '/geradores',
+            current: false
+        },
+        {
+            name: 'CEP',
+            href: '/geradores/cep',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
                 miniTitle="Gerador de CEP Online"
                 title="Gerador de CEP Válido Grátis"
-                description="Ferramenta gratuita para gerar CEPs válidos para testes. Crie CEPs com base em estados e cidades, com opção de formatação. Ideal para testes de software e desenvolvimento de sistemas."
+                description="Ferramenta gratuita para gerar CEP válido online por estado. Crie CEPs com ou sem pontuação, seguindo todas as regras dos Correios. Ideal para testes de software, desenvolvimento de sistemas e validação de cadastros."
+                breadcrumbs={breadcrumbs}
             />
             <CEPGeneratorClient />
             <InfoSection items={infoItems} />

@@ -50,6 +50,24 @@ export default function ResultadoTemperaturaPage() {
   
   // Extrair valores para uso no Schema.org
   const valorOriginal = searchParams.get('valorOriginal') || '';
+
+  const breadcrumbs = [
+    {
+      name: 'Conversores',
+      href: '/conversores',
+      current: false
+    },
+    {
+      name: 'Temperatura',
+      href: '/conversores/temperatura',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/conversores/temperatura/resultado',
+      current: true
+    }
+  ];
   
   return (
     <>
@@ -57,6 +75,7 @@ export default function ResultadoTemperaturaPage() {
         miniTitle="Resultado"
         title="Conversão de Temperatura"
         description="Resultado da conversão de temperatura entre Celsius, Fahrenheit e Kelvin."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

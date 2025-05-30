@@ -3,17 +3,24 @@
 import AdBanner from "../integration/AdBanner"
 import Breadcrumbs from "../ui/Breadcrumbs"
 
+type BreadcrumbItem = {
+  name: string
+  href: string
+  current?: boolean
+}
+
 type HeaderProps = {
   miniTitle: string
   title: string
   description: string
+  breadcrumbs?: BreadcrumbItem[]
 }
 
-export default function Header({ miniTitle, title, description }: HeaderProps) {
+export default function Header({ miniTitle, title, description, breadcrumbs }: HeaderProps) {
   return (
     <div className="mb-8">
       <div className="mx-auto">
-        <Breadcrumbs />
+        <Breadcrumbs items={breadcrumbs} />
         <div className="mx-auto lg:mx-0">
           <p className="text-base font-semibold text-main-900">{miniTitle}</p>
           <h2 className="mt-2 text-5xl font-semibold tracking-tight text-gray-900">{title}</h2>

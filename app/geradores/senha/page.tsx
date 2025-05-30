@@ -1,49 +1,82 @@
-import { Suspense } from "react";
 import { Metadata } from "next";
-import PasswordGenerator from "@/components/layout/generator/PasswordGenerator";
+import PasswordGeneratorClient from "../../../src/components/layout/generator/PasswordGenerator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
-import LoadingResult from "@/components/layout/LoadingResult";
 
 export const metadata: Metadata = {
-    title: "Gerador de Senhas Seguras | TW Tools",
-    description: "Crie senhas fortes e seguras com nosso gerador de senhas personalizado. Defina tamanho, caracteres e gere múltiplas senhas instantaneamente.",
+    title: "Gerador de Senha Online Grátis | Crie Senhas Fortes e Seguras - TW Tools",
+    description: "Gere senhas fortes e seguras gratuitamente para seus serviços. Ferramenta online que cria senhas com letras, números e caracteres especiais. Ideal para desenvolvedores e usuários.",
 };
 
 const infoItems = [
     {
-        title: "Sobre a Ferramenta",
+        title: "Sobre o Gerador de Senha",
         type: "info" as const,
-        content: (<p>O Gerador de Senhas permite criar senhas seguras e personalizadas com controle total sobre o tamanho e tipos de caracteres incluídos. Ideal para aumentar a segurança de suas contas online.</p>)
+        content: (
+            <p>
+                Nossa ferramenta online gera senhas fortes e seguras, permitindo personalização de comprimento e tipos de caracteres. Cada senha gerada é única e aleatória, garantindo máxima segurança para seus serviços.
+            </p>
+        )
     },
     {
         title: "Uso Recomendado",
         type: "usage" as const,
-        content: (<p>✓ Criar senhas fortes para contas importantes<br />✓ Renovar senhas periodicamente<br />✓ Gerar múltiplas opções para escolher a mais memorável<br />✓ Aumentar a segurança de suas contas online</p>)
+        content: (
+            <p>
+                ✓ Criação de contas em serviços online<br />
+                ✓ Desenvolvimento de software e sistemas<br />
+                ✓ Testes de cadastro e validação<br />
+                ✓ Prototipagem de aplicações<br />
+                ✓ Gerenciamento de senhas
+            </p>
+        )
     },
     {
-        title: "Diferenciais da Ferramenta",
+        title: "Diferenciais do Gerador",
         type: "features" as const,
-        content: (<p>✓ Controle total sobre o tamanho da senha (até 32 caracteres)<br />✓ Opções flexíveis de caracteres (maiúsculas, minúsculas, números, símbolos)<br />✓ Geração de múltiplas senhas simultaneamente<br />✓ Interface intuitiva e fácil de usar</p>)
+        content: (
+            <p>
+                ✓ Personalização de comprimento<br />
+                ✓ Opções de caracteres especiais<br />
+                ✓ Geração de senhas únicas<br />
+                ✓ Interface simples e intuitiva
+            </p>
+        )
     },
     {
         title: "Aviso Legal",
         type: "legal" as const,
-        content: (<p>As senhas geradas por esta ferramenta são criadas localmente em seu navegador e não são armazenadas em nossos servidores. Recomendamos utilizar um gerenciador de senhas para armazenar suas credenciais com segurança.</p>)
+        content: (
+            <p>
+                Esta ferramenta foi desenvolvida para ajudar na criação de senhas seguras. Recomendamos o uso de um gerenciador de senhas para armazenar suas senhas de forma segura.
+            </p>
+        )
     }
 ]
 
-export default function GeradorSenhaPage() {
+export default function PasswordGenerator() {
+    const breadcrumbs = [
+        {
+            name: 'Geradores',
+            href: '/geradores',
+            current: false
+        },
+        {
+            name: 'Senha',
+            href: '/geradores/senha',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
-                miniTitle="Segurança Digital"
-                title="Gerador de Senhas Seguras"
-                description="Crie senhas fortes e personalizadas definindo o tamanho, tipos de caracteres e quantidade. Gere rapidamente senhas seguras para proteger suas contas online."
+                miniTitle="Gerador de Senha Online"
+                title="Gerador de Senha Forte e Segura"
+                description="Ferramenta gratuita para gerar senhas fortes e seguras online. Crie senhas com letras, números e caracteres especiais. Ideal para criar contas em serviços online e desenvolvimento de sistemas."
+                breadcrumbs={breadcrumbs}
             />
-            <Suspense fallback={<LoadingResult />}>
-                <PasswordGenerator />
-            </Suspense>
+            <PasswordGeneratorClient />
             <InfoSection items={infoItems} />
         </>
     )

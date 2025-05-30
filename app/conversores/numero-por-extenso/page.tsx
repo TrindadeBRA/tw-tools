@@ -54,12 +54,26 @@ const infoItems = [
 ]
 
 export default function NumeroPorExtensoPage() {
+    const breadcrumbs = [
+        {
+            name: 'Conversores',
+            href: '/conversores',
+            current: false
+        },
+        {
+            name: 'Número por Extenso',
+            href: '/conversores/numero-por-extenso',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
                 miniTitle="Conversor Online Gratuito"
                 title="Número por Extenso em Português"
                 description="Ferramenta gratuita para escrever números por extenso em português. Digite o número ou valor em reais e convertemos automaticamente para texto por extenso, ideal para documentos oficiais, contratos e cheques."
+                breadcrumbs={breadcrumbs}
             />
             <NumberInWords />
             <InfoSection items={infoItems} />
