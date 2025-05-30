@@ -52,12 +52,31 @@ const infoItems = [
 ]
 
 export default function RGValidatorResult() {
+  const breadcrumbs = [
+    {
+      name: 'Validadores',
+      href: '/validadores',
+      current: false
+    },
+    {
+      name: 'RG',
+      href: '/validadores/rg',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/validadores/rg/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Validação"
-        title="Resultado da Validação de RG"
-        description="Confira o resultado da validação do seu RG. Nossa ferramenta verifica se o RG é válido de acordo com as regras dos órgãos emissores."
+        title="Validação de RG"
+        description="Confira o resultado da validação do RG. Nossa ferramenta verifica se o RG é válido de acordo com as regras dos órgãos emissores."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

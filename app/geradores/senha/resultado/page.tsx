@@ -28,12 +28,31 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Geradores',
+      href: '/geradores',
+      current: false
+    },
+    {
+      name: 'Senha',
+      href: '/geradores/senha',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/geradores/senha/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
-        miniTitle="Resultado"
-        title="Senhas Geradas"
-        description="Suas senhas foram geradas de acordo com os critérios selecionados. Copie e utilize-as para aumentar a segurança de suas contas."
+        miniTitle="Resultado da Geração"
+        title="Senha Segura Gerada"
+        description="Confira a senha segura gerada com base nas suas configurações. Utilize esta senha para proteger suas contas e informações."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient 

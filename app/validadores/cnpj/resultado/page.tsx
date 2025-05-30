@@ -52,12 +52,31 @@ const infoItems = [
 ]
 
 export default function CNPJValidatorResult() {
+  const breadcrumbs = [
+    {
+      name: 'Validadores',
+      href: '/validadores',
+      current: false
+    },
+    {
+      name: 'CNPJ',
+      href: '/validadores/cnpj',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/validadores/cnpj/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Validação"
-        title="Resultado da Validação de CNPJ"
-        description="Confira o resultado da validação do seu CNPJ. Nossa ferramenta verifica se o CNPJ é válido de acordo com as regras da Receita Federal do Brasil."
+        title="Validação de CNPJ"
+        description="Confira o resultado da validação do CNPJ. Nossa ferramenta verifica se o CNPJ é válido de acordo com as regras da Receita Federal do Brasil."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

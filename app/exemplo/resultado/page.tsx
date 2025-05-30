@@ -56,12 +56,26 @@ const infoItems = [
 ]
 
 export default function ExemploResultado() {
+  const breadcrumbs = [
+    {
+      name: 'Exemplo',
+      href: '/exemplo',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/exemplo/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado Gerado"
         title="Resultado do Gerador de Exemplo"
         description="Esta é uma demonstração de uma página de resultado. Aqui você encontra o resultado gerado com base nas opções selecionadas."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

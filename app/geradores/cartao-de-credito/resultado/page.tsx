@@ -46,12 +46,31 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Geradores',
+      href: '/geradores',
+      current: false
+    },
+    {
+      name: 'Cartão de Crédito',
+      href: '/geradores/cartao-de-credito',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/geradores/cartao-de-credito/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Geração"
-        title="Cartão de Crédito Válido Gerado"
-        description="Resultado da geração de cartão de crédito válido. Utilize estes dados para testes e desenvolvimento de software, especialmente em sistemas de pagamento."
+        title="Cartão de Crédito Gerado"
+        description="Confira o cartão de crédito gerado para testes. Utilize este número apenas para fins de desenvolvimento e testes de software."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient 

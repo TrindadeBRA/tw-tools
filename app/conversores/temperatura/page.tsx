@@ -54,12 +54,26 @@ const infoItems = [
 ]
 
 export default function TemperaturaPage() {
+    const breadcrumbs = [
+        {
+            name: 'Conversores',
+            href: '/conversores',
+            current: false
+        },
+        {
+            name: 'Temperatura',
+            href: '/conversores/temperatura',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
                 miniTitle="Conversor Online Gratuito"
                 title="Conversor de Temperatura"
                 description="Ferramenta gratuita para converter valores de temperatura entre Celsius, Fahrenheit e Kelvin. Conversão instantânea e precisa para uso em estudos, trabalhos científicos, receitas e mais."
+                breadcrumbs={breadcrumbs}
             />
             <TemperatureConverter />
             <InfoSection items={infoItems} />

@@ -72,9 +72,9 @@ export default function ResultadoTemperaturaPage() {
   return (
     <>
       <Header
-        miniTitle="Resultado"
+        miniTitle="Resultado da Conversão"
         title="Conversão de Temperatura"
-        description="Resultado da conversão de temperatura entre Celsius, Fahrenheit e Kelvin."
+        description="Confira o resultado da conversão de temperatura entre as escalas Celsius, Fahrenheit e Kelvin."
         breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>

@@ -46,12 +46,31 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Geradores',
+      href: '/geradores',
+      current: false
+    },
+    {
+      name: 'RG',
+      href: '/geradores/rg',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/geradores/rg/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Geração"
         title="RG Válido Gerado"
         description="Resultado da geração de RG válido. Utilize este RG para testes e desenvolvimento de software, seguindo todas as regras dos órgãos emissores."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient 

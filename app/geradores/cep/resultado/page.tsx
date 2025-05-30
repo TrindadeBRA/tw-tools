@@ -46,12 +46,31 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Geradores',
+      href: '/geradores',
+      current: false
+    },
+    {
+      name: 'CEP',
+      href: '/geradores/cep',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/geradores/cep/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Geração"
         title="CEP Válido Gerado"
-        description="Resultado da geração de CEP válido. Utilize este CEP para testes e desenvolvimento de software, seguindo o padrão dos Correios."
+        description="Confira o CEP gerado para testes. Utilize este CEP apenas para fins de desenvolvimento e testes de software."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient 

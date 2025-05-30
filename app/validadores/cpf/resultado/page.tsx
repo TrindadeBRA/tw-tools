@@ -52,12 +52,31 @@ const infoItems = [
 ]
 
 export default function CPFValidatorResult() {
+  const breadcrumbs = [
+    {
+      name: 'Validadores',
+      href: '/validadores',
+      current: false
+    },
+    {
+      name: 'CPF',
+      href: '/validadores/cpf',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/validadores/cpf/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Validação"
-        title="Resultado da Validação de CPF"
-        description="Confira o resultado da validação do seu CPF. Nossa ferramenta verifica se o CPF é válido de acordo com as regras da Receita Federal do Brasil."
+        title="Validação de CPF"
+        description="Confira o resultado da validação do CPF. Nossa ferramenta verifica se o CPF é válido de acordo com as regras da Receita Federal do Brasil."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

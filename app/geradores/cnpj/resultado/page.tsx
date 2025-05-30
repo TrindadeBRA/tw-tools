@@ -46,12 +46,31 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Geradores',
+      href: '/geradores',
+      current: false
+    },
+    {
+      name: 'CNPJ',
+      href: '/geradores/cnpj',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/geradores/cnpj/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Geração"
         title="CNPJ Válido Gerado"
         description="Resultado da geração de CNPJ válido. Utilize este CNPJ para testes e desenvolvimento de software, seguindo todas as regras da Receita Federal."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient 

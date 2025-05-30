@@ -34,12 +34,31 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Geradores',
+      href: '/geradores',
+      current: false
+    },
+    {
+      name: 'CNH',
+      href: '/geradores/cnh',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/geradores/cnh/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
-        miniTitle="Resultado"
-        title="CNH Gerada"
-        description="Número de CNH válido gerado de acordo com os parâmetros especificados."
+        miniTitle="Resultado da Geração"
+        title="CNH Válida Gerada"
+        description="Resultado da geração de CNH válida. Utilize esta CNH para testes e desenvolvimento de software, seguindo todas as regras do DETRAN."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

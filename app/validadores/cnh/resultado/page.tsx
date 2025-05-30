@@ -35,6 +35,24 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Validadores',
+      href: '/validadores',
+      current: false
+    },
+    {
+      name: 'CNH',
+      href: '/validadores/cnh',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/validadores/cnh/resultado',
+      current: true
+    }
+  ];
+
   // Verificar se há erro na requisição
   const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
   const hasError = searchParams.get('error') === 'true';
@@ -43,9 +61,10 @@ export default function ResultadoPage() {
   return (
     <>
       <Header
-        miniTitle="Resultado"
-        title="Resultado da Validação de CNH"
-        description="Confira o resultado da validação do número de CNH informado."
+        miniTitle="Resultado da Validação"
+        title="Validação de CNH"
+        description="Confira o resultado da validação do número de CNH. Verificação rápida e confiável de Carteira Nacional de Habilitação."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

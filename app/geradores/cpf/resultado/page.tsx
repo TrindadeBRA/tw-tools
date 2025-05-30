@@ -46,12 +46,31 @@ const infoItems = [
 ]
 
 export default function ResultadoPage() {
+  const breadcrumbs = [
+    {
+      name: 'Geradores',
+      href: '/geradores',
+      current: false
+    },
+    {
+      name: 'CPF',
+      href: '/geradores/cpf',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/geradores/cpf/resultado',
+      current: true
+    }
+  ];
+
   return (
     <>
       <Header
         miniTitle="Resultado da Geração"
         title="CPF Válido Gerado"
         description="Resultado da geração de CPF válido. Utilize este CPF para testes e desenvolvimento de software, seguindo todas as regras da Receita Federal."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient 
