@@ -18,6 +18,11 @@ interface AdsBannerProps {
 }
 
 const AdBannerComponent = (props: AdsBannerProps) => {
+
+  if(process.env.NEXT_PUBLIC_ENV === 'local') {
+    return;
+  }
+
   const pathname = usePathname();
 
   const carregarScript = () => {
