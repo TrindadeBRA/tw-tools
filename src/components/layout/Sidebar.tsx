@@ -30,13 +30,11 @@ type NavItem = {
   children?: SubNavItem[]
 }
 
-export const navigation: NavItem[] = [
-  { name: 'Descubra', href: '/', icon: LightBulbIcon, current: false },
-  {
-    name: 'Geradores',
-    icon: UsersIcon,
-    current: false,
-    children: [
+export const geradoresRoutes = {
+  name: 'Geradores',
+  icon: UsersIcon,
+  current: false,
+  children: [
       { name: 'Gerador de CPF', href: '/geradores/cpf' },
       { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
       { name: 'Gerador de RG', href: '/geradores/rg' },
@@ -44,28 +42,36 @@ export const navigation: NavItem[] = [
       { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
       { name: 'Gerador de CEP', href: '/geradores/cep' },
       { name: 'Gerador de Senha', href: '/geradores/senha' },
-    ],
-  },
-  {
-    name: 'Validadores',
-    icon: ShieldCheckIcon,
-    current: false,
-    children: [
-      { name: 'Validador de CPF', href: '/validadores/cpf' },
-      { name: 'Validador de CNPJ', href: '/validadores/cnpj' },
-      { name: 'Validador de RG', href: '/validadores/rg' },
-      { name: 'Validador de CNH', href: '/validadores/cnh' },
-    ],
-  },
-  {
-    name: 'Conversões',
-    icon: ArrowsRightLeftIcon,
-    current: false,
-    children: [
-      { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
-      { name: 'Conversor de Temperatura', href: '/conversores/temperatura' },
-    ],
-  },
+  ],
+}
+
+export const validadoresRoutes = {
+  name: 'Validadores',
+  icon: ShieldCheckIcon,
+  current: false,
+  children: [
+    { name: 'Validador de CPF', href: '/validadores/cpf' },
+    { name: 'Validador de CNPJ', href: '/validadores/cnpj' },
+    { name: 'Validador de RG', href: '/validadores/rg' },
+    { name: 'Validador de CNH', href: '/validadores/cnh' },
+  ],
+}
+
+export const conversoresRoutes = {
+  name: 'Conversões',
+  icon: ArrowsRightLeftIcon,
+  current: false,
+  children: [
+    { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
+    { name: 'Conversor de Temperatura', href: '/conversores/temperatura' },
+  ],
+}
+
+export const navigation: NavItem[] = [
+  { name: 'Descubra', href: '/', icon: LightBulbIcon, current: false },
+  geradoresRoutes,
+  validadoresRoutes,
+  conversoresRoutes,
 ]
 
 function classNames(...classes: string[]) {
