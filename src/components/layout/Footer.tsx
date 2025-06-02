@@ -5,7 +5,6 @@ import Link from "next/link"
 import { geradoresRoutes, validadoresRoutes, conversoresRoutes } from "./Sidebar"
 
 export default function Footer() {
-    console.log(geradoresRoutes)
     return (
         <footer className="bg-white">
             <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
