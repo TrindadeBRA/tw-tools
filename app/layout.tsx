@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Sidebar from "../src/components/layout/Sidebar";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,10 +39,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
         <div className="min-h-screen">
           <Sidebar />
-          <main className="py-10 lg:pl-72">
+          <main className="pt-10 lg:pl-72">
             <div className="px-4 sm:px-6 lg:px-8">
               {children}
             </div>
+            <Footer />
           </main>
         </div>
       </body>

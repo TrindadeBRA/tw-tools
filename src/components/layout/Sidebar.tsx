@@ -9,12 +9,12 @@ import {
   LightBulbIcon,
   UsersIcon,
   XMarkIcon,
-  CheckBadgeIcon,
   ArrowsRightLeftIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
+import Image from 'next/image'
 
 type SubNavItem = {
   name: string
@@ -35,13 +35,13 @@ export const geradoresRoutes = {
   icon: UsersIcon,
   current: false,
   children: [
-      { name: 'Gerador de CPF', href: '/geradores/cpf' },
-      { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
-      { name: 'Gerador de RG', href: '/geradores/rg' },
-      { name: 'Gerador de CNH', href: '/geradores/cnh' },
-      { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
-      { name: 'Gerador de CEP', href: '/geradores/cep' },
-      { name: 'Gerador de Senha', href: '/geradores/senha' },
+    { name: 'Gerador de CPF', href: '/geradores/cpf' },
+    { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
+    { name: 'Gerador de RG', href: '/geradores/rg' },
+    { name: 'Gerador de CNH', href: '/geradores/cnh' },
+    { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
+    { name: 'Gerador de CEP', href: '/geradores/cep' },
+    { name: 'Gerador de Senha', href: '/geradores/senha' },
   ],
 }
 
@@ -128,9 +128,11 @@ export default function Sidebar() {
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
                 <div className="flex h-16 shrink-0 items-center mt-6">
                   <Link href="/">
-                    <img
+                    <Image
                       alt="Trinity Web Tools"
                       src="/assets/tw-tools-logo.webp"
+                      width={100}
+                      height={100}
                       className="h-12 w-auto"
                     />
                   </Link>
@@ -224,9 +226,11 @@ export default function Sidebar() {
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
             <div className="flex h-16 shrink-0 items-center mt-6">
               <Link href="/">
-                <img
+                <Image
                   alt="Trinity Web Tools"
                   src="/assets/tw-tools-logo.webp"
+                  width={100}
+                  height={100}
                   className="h-14 w-auto"
                 />
               </Link>
@@ -318,11 +322,15 @@ export default function Sidebar() {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
           <div className="flex-1 text-sm/6 font-semibold text-gray-900">
-            <img
-              alt="Trinity Web Tools"
-              src="/assets/tw-tools-logo.webp"
-              className="h-8 w-auto ml-auto"
-            />
+            <Link href="/">
+              <Image
+                alt="Trinity Web Tools"
+                src="/assets/tw-tools-logo.webp"
+                width={100}
+                height={100}
+                className="h-8 w-auto ml-auto"
+              />
+            </Link>
           </div>
         </div>
 
