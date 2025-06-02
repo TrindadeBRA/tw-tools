@@ -11,6 +11,7 @@ import {
   XMarkIcon,
   ArrowsRightLeftIcon,
   ShieldCheckIcon,
+  DocumentTextIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
@@ -68,11 +69,21 @@ export const conversoresRoutes = {
   ],
 }
 
+export const arquivosRoutes = {
+  name: 'Arquivos Testes',
+  icon: DocumentTextIcon,
+  current: false,
+  children: [
+    { name: 'Arquivos PDF', href: '/arquivos-testes/pdf' },
+  ],
+}
+
 export const navigation: NavItem[] = [
   { name: 'Descubra', href: '/', icon: LightBulbIcon, current: false },
   geradoresRoutes,
   validadoresRoutes,
   conversoresRoutes,
+  arquivosRoutes,
 ]
 
 function classNames(...classes: string[]) {
