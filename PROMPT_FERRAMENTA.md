@@ -64,12 +64,27 @@ const infoItems = [
 ]
 
 export default function NomeDaPagina() {
+    // Definir breadcrumbs para navegação
+    const breadcrumbs = [
+        {
+            name: 'Nome da Categoria', // Ex: 'Geradores', 'Validadores', 'Conversores'
+            href: '/nome-da-categoria',
+            current: false
+        },
+        {
+            name: 'Nome da Ferramenta',
+            href: '/nome-da-categoria/nome-da-ferramenta',
+            current: true
+        }
+    ];
+
     return (
         <>
             <Header
                 miniTitle="Mini Título"
                 title="Título Principal"
                 description="Descrição completa da ferramenta..."
+                breadcrumbs={breadcrumbs}
             />
             <SeuComponente />
             <InfoSection items={infoItems} />
@@ -274,29 +289,48 @@ export const metadata: Metadata = {
 };
 
 const infoItems = [
-  {
-      title: "Sobre este Resultado",
-      type: "info" as const,
-      content: (<p>Informações sobre o resultado...</p>)
-  },
-  {
-      title: "Como Utilizar",
-      type: "usage" as const,
-      content: (<p>✓ Uso do resultado 1<br />✓ Uso do resultado 2<br />...</p>)
-  },
-  {
-      title: "Próximos Passos",
-      type: "features" as const,
-      content: (<p>✓ Próximo passo 1<br />✓ Próximo passo 2<br />...</p>)
-  },
-  {
-      title: "Aviso Legal",
-      type: "legal" as const,
-      content: (<p>Informações legais sobre o resultado...</p>)
-  }
+    {
+        title: "Sobre este Resultado",
+        type: "info" as const,
+        content: (<p>Informações sobre o resultado...</p>)
+    },
+    {
+        title: "Como Utilizar",
+        type: "usage" as const,
+        content: (<p>✓ Uso do resultado 1<br />✓ Uso do resultado 2<br />...</p>)
+    },
+    {
+        title: "Próximos Passos",
+        type: "features" as const,
+        content: (<p>✓ Próximo passo 1<br />✓ Próximo passo 2<br />...</p>)
+    },
+    {
+        title: "Aviso Legal",
+        type: "legal" as const,
+        content: (<p>Informações legais sobre o resultado...</p>)
+    }
 ]
 
 export default function ResultadoPage() {
+  // Definir breadcrumbs para navegação
+  const breadcrumbs = [
+    {
+      name: 'Nome da Categoria', // Ex: 'Geradores', 'Validadores', 'Conversores'
+      href: '/nome-da-categoria',
+      current: false
+    },
+    {
+      name: 'Nome da Ferramenta',
+      href: '/nome-da-categoria/nome-da-ferramenta',
+      current: false
+    },
+    {
+      name: 'Resultado',
+      href: '/nome-da-categoria/nome-da-ferramenta/resultado',
+      current: true
+    }
+  ];
+
   // Verificar se há erro na requisição - MÉTODO SEGURO PARA SSR
   const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
   const hasError = searchParams.get('error') === 'true';
@@ -310,6 +344,7 @@ export default function ResultadoPage() {
         miniTitle="Resultado"
         title="Título do Resultado"
         description="Descrição do resultado gerado..."
+        breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
         <ResultClient

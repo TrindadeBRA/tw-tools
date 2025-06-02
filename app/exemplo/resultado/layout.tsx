@@ -1,4 +1,4 @@
-export default function ExemploResultadoLayout({
+export default function ResultadoLayout({
   children,
 }: {
   children: React.ReactNode;
