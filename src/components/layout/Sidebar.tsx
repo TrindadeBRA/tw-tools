@@ -64,6 +64,7 @@ export const conversoresRoutes = {
   children: [
     { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
     { name: 'Conversor de Temperatura', href: '/conversores/temperatura' },
+    { name: 'Números Romanos', href: '/conversores/numeros-romanos' },
   ],
 }
 
