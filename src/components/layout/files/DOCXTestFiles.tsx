@@ -7,10 +7,10 @@ import FormPage from '../template/FormPage'
 const pdfFiles = [
     {
         id: 'sample1',
-        name: 'PDF de Exemplo 1',
-        description: 'PDF simples com texto e imagens',
-        size: '0.49 MB',
-        path: '/download/file01.pdf'
+        name: 'DOCX de Exemplo 1',
+        description: 'DOCX simples com texto e imagens',
+        size: '0.28 MB',
+        path: '/download/file01.docx'
     },
     // {
     //     id: 'sample2',
@@ -25,12 +25,12 @@ export default function PDFTestFiles() {
     const router = useRouter()
 
     const handleDownload = (file: typeof pdfFiles[0]) => {
-        router.push(`/arquivos-testes/pdf/download`)
+        router.push(`/arquivos-testes/docx/download`)
         setTimeout(() => {
             window.open(file.path, '_blank')
         }, 100)
     }
-
+    
     return (
         <FormPage
             title="Arquivos PDF Disponíveis"

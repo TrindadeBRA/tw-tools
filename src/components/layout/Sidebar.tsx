@@ -75,6 +75,7 @@ export const arquivosRoutes = {
   current: false,
   children: [
     { name: 'Arquivos PDF', href: '/arquivos-testes/pdf' },
+    { name: 'Arquivos DOCX', href: '/arquivos-testes/docx' },
   ],
 }
 

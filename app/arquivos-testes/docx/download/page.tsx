@@ -2,12 +2,12 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
-import LoadingResult from "@/components/layout/LoadingResult";
 import DownloadClient from "@/components/layout/files/DownloadClient";
+import LoadingResult from "@/components/layout/LoadingResult";
 
 export const metadata: Metadata = {
-    title: "Download Concluído | Arquivos .PDF para Teste - TW Tools",
-    description: "Confirmação de download de arquivo .PDF de teste",
+    title: "Download Concluído | Arquivos .DOCX para Teste - TW Tools",
+    description: "Confirmação de download de arquivo .DOCX de teste",
 };
 
 const infoItems = [
@@ -41,13 +41,13 @@ export default function DownloadPage() {
             current: false
         },
         {
-            name: '.PDF',
-            href: '/arquivos-testes/pdf',
+            name: '.DOCX',
+            href: '/arquivos-testes/docx',
             current: false
         },
         {
             name: 'Download',
-            href: '/arquivos-testes/pdf/download',
+            href: '/arquivos-testes/docx/download',
             current: true
         }
     ];
@@ -56,8 +56,8 @@ export default function DownloadPage() {
         <>
             <Header
                 miniTitle="Download Concluído"
-                title="Arquivo .PDF Baixado com Sucesso"
-                description="Seu arquivo .PDF de teste foi baixado com sucesso"
+                title="Arquivo .DOCX Baixado com Sucesso"
+                description="Seu arquivo .DOCX de teste foi baixado com sucesso"
                 breadcrumbs={breadcrumbs}
             />
             <Suspense fallback={<LoadingResult />}>
@@ -66,7 +66,7 @@ export default function DownloadPage() {
                     description="O arquivo foi baixado com sucesso"
                     infoTitle="Informações Importantes"
                     infoMessage="Verifique sua pasta de downloads para encontrar o arquivo"
-                    backPath="/arquivos-testes/pdf"
+                    backPath="/arquivos-testes/docx"
                     buttonText="Voltar para Lista de Arquivos"
                 />
             </Suspense>
