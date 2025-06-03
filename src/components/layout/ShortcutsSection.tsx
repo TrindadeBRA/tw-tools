@@ -9,15 +9,16 @@ function classNames(...classes: (string | undefined)[]) {
 
 interface ShortcutsSectionProps {
   routes: any
+  hideDescription?: boolean
 }
 
-export default function ShortcutsSection({ routes }: ShortcutsSectionProps) {
+export default function ShortcutsSection({ routes, hideDescription = false }: ShortcutsSectionProps) {
 
   return (
     <div>
       <h2 className="text-base font-semibold text-gray-900">{routes.name}</h2>
-      <p className="text-sm text-gray-500">Confira nossas ferramentas desta seção.</p>
-      <ul role="list" className="mt-6 grid grid-cols-1 gap-6 border-t border-b border-gray-200 py-6 sm:grid-cols-2">
+      {!hideDescription && <p className="text-sm text-gray-500">Confira nossas ferramentas desta seção.</p>}
+      <ul role="list" className="mt-6 grid grid-cols-1 gap-6 border-t border-b border-gray-200 py-6 sm:grid-cols-3">
         {routes.children?.filter((item: any) => !item.shortcutHidden).map((item: any, itemIdx: any) => (
           <li key={itemIdx} className="flow-root">
             <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-main-500 hover:bg-gray-50">

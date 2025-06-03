@@ -2,13 +2,13 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { geradoresRoutes, validadoresRoutes, conversoresRoutes, arquivosRoutes } from "./Sidebar"
+import { geradoresRoutes, validadoresRoutes, conversoresRoutes, arquivosRoutes, calculadorasRoutes } from "./Sidebar"
 
 export default function Footer() {
     return (
         <footer className="bg-white">
             <div className="mx-auto px-6 pt-16 pb-8 lg:px-8 mt-16">
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
                     <div className="space-y-8">
                         <Link href="/">
                             <Image
@@ -60,6 +60,18 @@ export default function Footer() {
                         <h3 className="text-sm font-semibold leading-6 text-gray-900">{arquivosRoutes.name}</h3>
                         <ul role="list" className="mt-2 space-y-4">
                             {arquivosRoutes.children?.map((item) => (
+                                <li key={item.name} className="mb-0">
+                                    <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-main-500">
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="text-sm font-semibold leading-6 text-gray-900">{calculadorasRoutes.name}</h3>
+                        <ul role="list" className="mt-2 space-y-4">
+                            {calculadorasRoutes.children?.map((item) => (
                                 <li key={item.name} className="mb-0">
                                     <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-main-500">
                                         {item.name}
