@@ -94,6 +94,7 @@ export const calculadorasRoutes = {
   current: false,
   children: [
     { name: 'Calculadora de Idade', href: '/calculadoras/idade' },
+    { name: 'Calculadora de Horas', href: '/calculadoras/horas' },
     { name: 'Todos as Calculadoras', href: '/calculadoras', shortcutHidden: true },
   ],
 }

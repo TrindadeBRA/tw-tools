@@ -16,7 +16,7 @@ export default function Footer() {
                                 src="/assets/tw-tools-logo.webp"
                                 width={150}
                                 height={150}
-                                className="h-12 w-auto"
+                                className="h-12 w-auto object-contain"
                             />
                         </Link>
                     </div>

@@ -118,3 +118,21 @@ export const numberMask = (value: string) => {
     return cleanValue.replace('.', ',');
   }
 }
+
+export const timeMask = (value: string) => {
+  // Remove tudo que não é dígito
+  let cleanValue = value.replace(/\D/g, '');
+  
+  // Limita a 4 dígitos (HHmm)
+  cleanValue = cleanValue.substring(0, 4);
+  
+  // Se não tiver valor, retorna vazio
+  if (cleanValue === '') return '';
+  
+  // Formata como HH:mm
+  if (cleanValue.length <= 2) {
+    return cleanValue;
+  }
+  
+  return `${cleanValue.substring(0, 2)}:${cleanValue.substring(2)}`;
+}
