@@ -12,6 +12,7 @@ import {
   ArrowsRightLeftIcon,
   ShieldCheckIcon,
   DocumentTextIcon,
+  CalculatorIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
@@ -87,12 +88,24 @@ export const arquivosRoutes = {
   ],
 }
 
+export const calculadorasRoutes = {
+  name: 'Calculadoras',
+  icon: CalculatorIcon,
+  current: false,
+  children: [
+    { name: 'Calculadora de Idade', href: '/calculadoras/idade' },
+    { name: 'Todos as Calculadoras', href: '/calculadoras', shortcutHidden: true },
+  ],
+}
+
+
 export const navigation: NavItem[] = [
   { name: 'Descubra', href: '/', icon: LightBulbIcon, current: false },
+  arquivosRoutes,
+  calculadorasRoutes,
+  conversoresRoutes,
   geradoresRoutes,
   validadoresRoutes,
-  conversoresRoutes,
-  arquivosRoutes,
 ]
 
 function classNames(...classes: string[]) {
