@@ -18,11 +18,11 @@ type HeaderProps = {
 
 export default function Header({ miniTitle, title, description, breadcrumbs }: HeaderProps) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 border-b border-gray-200">
       <div className="mx-auto">
         <Breadcrumbs items={breadcrumbs} />
         <div className="mx-auto lg:mx-0">
-          <p className="text-base font-semibold text-main-900">{miniTitle}</p>
+          {/* <p className="text-base font-semibold text-main-900">{miniTitle}</p> */}
           <h2 className="mt-2 text-5xl font-semibold tracking-tight text-gray-900">{title}</h2>
           <p className="mt-8 text-base font-medium text-pretty text-gray-600">
             {description}
