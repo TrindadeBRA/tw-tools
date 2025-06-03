@@ -68,6 +68,7 @@ export const conversoresRoutes = {
   children: [
     { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
     { name: 'Conversor de Temperatura', href: '/conversores/temperatura' },
+    { name: 'Conversor de Armazenamento', href: '/conversores/armazenamento' },
     { name: 'Números Romanos', href: '/conversores/numeros-romanos' },
     { name: 'Todos os Conversores', href: '/conversores', shortcutHidden: true },
   ],
