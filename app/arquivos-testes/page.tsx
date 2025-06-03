@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: "Arquivos de teste para download. Arquivos PDF, DOCX e muito mais.",
 };
 
-export default function Validadores() {
+export default function ArquivosTestes() {
     
     const breadcrumbs = [
         {

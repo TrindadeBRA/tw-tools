@@ -20,7 +20,7 @@ export default function ShortcutsSection({ routes }: ShortcutsSectionProps) {
       <ul role="list" className="mt-6 grid grid-cols-1 gap-6 border-t border-b border-gray-200 py-6 sm:grid-cols-2">
         {routes.children?.filter((item: any) => !item.shortcutHidden).map((item: any, itemIdx: any) => (
           <li key={itemIdx} className="flow-root">
-            <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-50">
+            <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-main-500 hover:bg-gray-50">
               <div
                 className={classNames('flex size-16 shrink-0 items-center justify-center rounded-lg bg-main-950')}
               >
