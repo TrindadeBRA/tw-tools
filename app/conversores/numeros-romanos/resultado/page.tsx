@@ -25,7 +25,15 @@ const infoItems = [
     {
         title: "Regras dos Números Romanos",
         type: "features" as const,
-        content: (<p>✓ I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000<br />✓ Letras são escritas da maior para a menor<br />✓ Quando uma letra menor precede uma maior, seu valor é subtraído<br />✓ O mesmo símbolo não pode ser repetido mais de 3 vezes</p>)
+        content: (
+            <div>
+                <p>
+                    ✓ Símbolos: I(1), V(5), X(10), L(50), C(100), D(500), M(1000)<br />
+                    ✓ Maior → Menor: XVI = 16 | Menor antes subtrai: IV = 4<br />
+                    ✓ Barra superior = x1000: V̄ = 5000, X̄ = 10000
+                </p>
+            </div>
+        )
     },
     {
         title: "Aviso Legal",
@@ -56,6 +64,7 @@ export default function ResultadoPage() {
     // Verificar se há erro na requisição - MÉTODO SEGURO PARA SSR
     const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
     const hasError = searchParams.get('error') === 'true';
+    const errorMessage = searchParams.get('errorMessage');
     
     // Extrair valores para uso no Schema.org
     const resultado = searchParams.get('resultado') || '';
@@ -73,7 +82,7 @@ export default function ResultadoPage() {
                     title="Resultado da Conversão"
                     description="O valor convertido é:"
                     notFoundTitle="Resultado Não Encontrado"
-                    notFoundDescription={hasError ? "Ocorreu um erro ao processar sua solicitação." : "Não foi possível encontrar um resultado."}
+                    notFoundDescription={hasError ? (errorMessage ? decodeURIComponent(errorMessage) : "Ocorreu um erro ao processar sua solicitação.") : "Não foi possível encontrar um resultado."}
                     notFoundMessage={hasError ? "Verifique se o número informado é válido e tente novamente." : "Verifique os dados e tente novamente."}
                     infoTitle="Informações Importantes"
                     infoMessage="Os números romanos são representados usando as letras I, V, X, L, C, D e M."

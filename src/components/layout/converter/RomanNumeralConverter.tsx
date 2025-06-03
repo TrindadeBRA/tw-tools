@@ -16,6 +16,18 @@ const romanNumeralSchema = z.object({
     title: z.string()
   }),
   value: z.string().min(1, 'Campo obrigatório')
+    .refine((val) => {
+      if (val.trim() === '') return false;
+      
+      // Se for decimal para romano
+      if (val.match(/^\d+$/)) {
+        const num = parseInt(val);
+        return num > 0 && num <= 999999;
+      }
+      
+      // Se for romano para decimal
+      return /^[IVXLCDM\u0304]+$/i.test(val);
+    }, 'Valor inválido. Para números decimais, use valores entre 1 e 999999. Para números romanos, use apenas os caracteres I, V, X, L, C, D, M')
 })
 
 type RomanNumeralData = z.infer<typeof romanNumeralSchema>
@@ -24,29 +36,53 @@ type RomanNumeralData = z.infer<typeof romanNumeralSchema>
 const romanToDecimal = (roman: string): number => {
   const romanNumerals: { [key: string]: number } = {
     'I': 1, 'V': 5, 'X': 10, 'L': 50,
-    'C': 100, 'D': 500, 'M': 1000
+    'C': 100, 'D': 500, 'M': 1000,
+    'I\u0304': 1000, 'V\u0304': 5000, 'X\u0304': 10000, 'L\u0304': 50000,
+    'C\u0304': 100000, 'D\u0304': 500000, 'M\u0304': 1000000
   }
 
   let result = 0
   let prevValue = 0
+  let chars: string[] = []
 
-  for (let i = roman.length - 1; i >= 0; i--) {
-    const currentValue = romanNumerals[roman[i].toUpperCase()]
-    if (currentValue >= prevValue) {
-      result += currentValue
+  // Primeiro, separar os caracteres e barras em um array
+  let i = 0
+  while (i < roman.length) {
+    const currentChar = roman[i].toUpperCase()
+    const nextChar = roman[i + 1]
+
+    if (nextChar === '\u0304') {
+      chars.push(currentChar + '\u0304')
+      i += 2
     } else {
-      result -= currentValue
+      chars.push(currentChar)
+      i++
     }
-    prevValue = currentValue
+  }
+
+  // Agora processar da direita para a esquerda
+  for (let i = chars.length - 1; i >= 0; i--) {
+    const value = romanNumerals[chars[i]] || 0
+
+    if (value >= prevValue) {
+      result += value
+    } else {
+      result -= value
+    }
+    prevValue = value
   }
 
   return result
 }
 
 const decimalToRoman = (num: number): string => {
-  if (num <= 0 || num > 3999) {
-    throw new Error('Número deve estar entre 1 e 3999')
+  if (num <= 0 || num > 999999) {
+    throw new Error('Número deve estar entre 1 e 999999')
   }
+
+  // Separar milhares e o resto
+  const thousands = Math.floor(num / 1000)
+  const remainder = num % 1000
 
   const romanNumerals = [
     { value: 1000, symbol: 'M' },
@@ -64,8 +100,50 @@ const decimalToRoman = (num: number): string => {
     { value: 1, symbol: 'I' }
   ]
 
+  // Converter milhares usando a notação com barra
   let result = ''
-  for (const { value, symbol } of romanNumerals) {
+  if (thousands > 0) {
+    const thousandsRoman = convertThousands(thousands)
+    result += thousandsRoman
+  }
+
+  // Converter o resto normalmente
+  if (remainder > 0) {
+    let remainingNum = remainder
+    for (const { value, symbol } of romanNumerals) {
+      while (remainingNum >= value) {
+        result += symbol
+        remainingNum -= value
+      }
+    }
+  }
+
+  return result
+}
+
+// Função auxiliar para converter milhares usando a notação com barra
+const convertThousands = (thousands: number): string => {
+  if (thousands <= 0) return ''
+
+  const romanNumeralsThousands = [
+    { value: 900, symbol: 'C\u0304M\u0304' },
+    { value: 500, symbol: 'D\u0304' },
+    { value: 400, symbol: 'C\u0304D\u0304' },
+    { value: 100, symbol: 'C\u0304' },
+    { value: 90, symbol: 'X\u0304C\u0304' },
+    { value: 50, symbol: 'L\u0304' },
+    { value: 40, symbol: 'X\u0304L\u0304' },
+    { value: 10, symbol: 'X\u0304' },
+    { value: 9, symbol: 'I\u0304X\u0304' },
+    { value: 5, symbol: 'V\u0304' },
+    { value: 4, symbol: 'I\u0304V\u0304' },
+    { value: 1, symbol: 'I\u0304' }
+  ]
+
+  let result = ''
+  let num = thousands
+
+  for (const { value, symbol } of romanNumeralsThousands) {
     while (num >= value) {
       result += symbol
       num -= value
@@ -105,15 +183,15 @@ export default function RomanNumeralConverter() {
 
       if (data.inputType.id === 'decimal') {
         const decimalNum = parseInt(inputValue)
-        if (isNaN(decimalNum)) {
-          throw new Error('Valor decimal inválido')
+        if (isNaN(decimalNum) || decimalNum <= 0 || decimalNum > 999999) {
+          throw new Error('O valor deve estar entre 1 e 999999')
         }
         result = decimalToRoman(decimalNum)
         originalValue = `Decimal: ${decimalNum}`
       } else {
         // Validate Roman numeral format
-        if (!/^[IVXLCDM]+$/i.test(inputValue)) {
-          throw new Error('Número romano inválido')
+        if (!/^[IVXLCDM\u0304]+$/i.test(inputValue)) {
+          throw new Error('Número romano inválido. Use apenas os caracteres I, V, X, L, C, D, M')
         }
         result = romanToDecimal(inputValue).toString()
         originalValue = `Romano: ${inputValue.toUpperCase()}`
@@ -122,7 +200,8 @@ export default function RomanNumeralConverter() {
       router.push(`/conversores/numeros-romanos/resultado?valorOriginal=${encodeURIComponent(originalValue)}&resultado=${encodeURIComponent(result)}`)
     } catch (error) {
       console.error('Erro ao converter:', error)
-      router.push(`/conversores/numeros-romanos/resultado?error=true`)
+      const errorMessage = encodeURIComponent((error as Error).message || 'Erro ao converter o número')
+      router.push(`/conversores/numeros-romanos/resultado?error=true&errorMessage=${errorMessage}`)
     }
   }
 
