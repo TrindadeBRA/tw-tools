@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { Dialog, DialogBackdrop, DialogPanel, TransitionChild, Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
@@ -21,6 +21,7 @@ type SubNavItem = {
   name: string
   href: string
   current?: boolean
+  shortcutHidden?: boolean
 }
 
 type NavItem = {
@@ -98,25 +99,38 @@ function classNames(...classes: string[]) {
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const pathname = usePathname()
+  const [currentNavigation, setCurrentNavigation] = useState<NavItem[]>([])
 
-  // Function to check if a nav item or its children are current
-  const isCurrentPath = (item: NavItem | SubNavItem) => {
-    if (item.href === pathname) return true
-    if ('children' in item && item.children) {
-      return item.children.some(child => child.href === pathname)
+  useEffect(() => {
+    const isCurrentPath = (item: NavItem | SubNavItem) => {
+      if (!('children' in item)) {
+        return pathname === item.href
+      }
+      
+      const exactMatch = pathname === item.href
+      const childActive = item.children?.some(child => 
+        !child.shortcutHidden && (
+          pathname.startsWith(child.href + '/') || 
+          pathname === child.href
+        )
+      )
+      
+      return exactMatch || childActive
     }
-    return false
-  }
 
-  // Update navigation items with current state
-  const currentNavigation = navigation.map(item => ({
-    ...item,
-    current: isCurrentPath(item),
-    children: item.children?.map(child => ({
-      ...child,
-      current: child.href === pathname
+    const updatedNavigation = navigation.map(item => ({
+      ...item,
+      current: isCurrentPath(item),
+      children: item.children?.map(child => ({
+        ...child,
+        current: child.shortcutHidden 
+          ? pathname === child.href 
+          : pathname.startsWith(child.href + '/') || pathname === child.href
+      }))
     }))
-  }))
+
+    setCurrentNavigation(updatedNavigation as NavItem[])
+  }, [pathname, navigation])
 
   return (
     <>
@@ -179,7 +193,7 @@ export default function Sidebar() {
                                 {item.name}
                               </a>
                             ) : (
-                              <Disclosure as="div" defaultOpen={item.current}>
+                              <Disclosure as="div" defaultOpen={item.current || item.children?.some(child => child.current)}>
                                 <DisclosureButton
                                   className={classNames(
                                     item.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
@@ -277,7 +291,7 @@ export default function Sidebar() {
                             {item.name}
                           </a>
                         ) : (
-                          <Disclosure as="div" defaultOpen={item.current}>
+                          <Disclosure as="div" defaultOpen={item.current || item.children?.some(child => child.current)}>
                             <DisclosureButton
                               className={classNames(
                                 item.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
