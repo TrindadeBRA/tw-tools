@@ -1,48 +1,3 @@
-import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
-import {
-  Bars3Icon,
-  ChatBubbleBottomCenterTextIcon,
-  ChatBubbleLeftRightIcon,
-  InboxIcon,
-  QuestionMarkCircleIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-
-const solutions = [
-  {
-    name: 'Calculadoras',
-    description: 'Ferramentas práticas para cálculos do dia a dia.',
-    href: '/calculadoras',
-    icon: InboxIcon,
-  },
-  {
-    name: 'Conversores',
-    description: 'Converta unidades, moedas e formatos facilmente.',
-    href: '/conversores',
-    icon: ChatBubbleBottomCenterTextIcon,
-  },
-  {
-    name: 'Validadores',
-    description: 'Verifique e valide dados de forma rápida e segura.',
-    href: '/validadores',
-    icon: ChatBubbleLeftRightIcon,
-  },
-  {
-    name: 'Geradores',
-    description: 'Crie e gere conteúdo de forma eficiente.',
-    href: '/geradores',
-    icon: QuestionMarkCircleIcon,
-  },
-]
-
-const navigation = [
-  { name: 'Calculadoras', href: '/calculadoras' },
-  { name: 'Conversores', href: '/conversores' },
-  { name: 'Validadores', href: '/validadores' },
-  { name: 'Geradores', href: '/geradores' },
-]
-
 export default function Hero() {
   return (
     <div className="mb-16">
@@ -55,7 +10,7 @@ export default function Hero() {
                 <div className="absolute inset-0">
                   <img
                     alt="Ferramentas e utilitários online"
-                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80"
+                    src="/assets/hero-bg.webp"
                     className="size-full object-cover"
                   />
                   <div className="absolute inset-0 bg-main-700 mix-blend-multiply" />
