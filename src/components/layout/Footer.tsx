@@ -7,7 +7,7 @@ import { geradoresRoutes, validadoresRoutes, conversoresRoutes } from "./Sidebar
 export default function Footer() {
     return (
         <footer className="bg-white">
-            <div className="mx-auto px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
+            <div className="mx-auto px-6 pt-16 pb-8 lg:px-8 mt-16">
                 <div className="xl:grid xl:grid-cols-4 xl:gap-8">
                     <div className="space-y-8">
                         <Link href="/">
@@ -62,7 +62,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <p className="text-sm/6 text-gray-600"><b>&copy; {new Date().getFullYear()} Trinity Web Tools</b>. Todos os direitos reservados.</p>
+                    <p className="text-sm/6 text-gray-600 text-center md:text-left"><b>&copy; {new Date().getFullYear()} Trinity Web Tools</b>. Todos os direitos reservados.</p>
                     <p className="text-sm/6 text-gray-600">Desenvolvido por <Link href="https://thetrinityweb.com.br" target="_blank" className="text-main-500 hover:text-main-600 font-bold">Trinity Web</Link>.</p>
                 </div>
             </div>

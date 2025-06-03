@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import ShortcutsSection from "@/components/layout/ShortcutsSection";
+import { geradoresRoutes } from "@/components/layout/Sidebar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function Geradores() {
                 description="Gere CPF, CNPJ, RG, CNH, CEP, senhas e muito mais."
                 breadcrumbs={breadcrumbs}
             />
-            <ShortcutsSection />
+            <ShortcutsSection routes={geradoresRoutes} />
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import ShortcutsSection from "@/components/layout/ShortcutsSection";
+import { conversoresRoutes } from "@/components/layout/Sidebar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function Conversores() {
                 description="Converta temperatura, números por extenso e muito mais."
                 breadcrumbs={breadcrumbs}
             />
-            <ShortcutsSection />
+            <ShortcutsSection routes={conversoresRoutes} />
         </div>
     )
 }

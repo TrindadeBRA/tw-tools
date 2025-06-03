@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import ShortcutsSection from "@/components/layout/ShortcutsSection";
+import { validadoresRoutes } from "@/components/layout/Sidebar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function Validadores() {
+    
     const breadcrumbs = [
         {
             name: 'Validadores',
@@ -24,7 +26,7 @@ export default function Validadores() {
                 description="Verifique CPF, CNPJ, RG, CNH e muito mais."
                 breadcrumbs={breadcrumbs}
             />
-            <ShortcutsSection />
+            <ShortcutsSection routes={validadoresRoutes} />
         </div>
     )
 }

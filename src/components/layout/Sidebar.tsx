@@ -43,6 +43,7 @@ export const geradoresRoutes = {
     { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
     { name: 'Gerador de CEP', href: '/geradores/cep' },
     { name: 'Gerador de Senha', href: '/geradores/senha' },
+    { name: 'Todos os Geradores', href: '/geradores', shortcutHidden: true },
   ],
 }
 
@@ -55,6 +56,7 @@ export const validadoresRoutes = {
     { name: 'Validador de CNPJ', href: '/validadores/cnpj' },
     { name: 'Validador de RG', href: '/validadores/rg' },
     { name: 'Validador de CNH', href: '/validadores/cnh' },
+    { name: 'Todos os Validadores', href: '/validadores', shortcutHidden: true },
   ],
 }
 
@@ -66,6 +68,7 @@ export const conversoresRoutes = {
     { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
     { name: 'Conversor de Temperatura', href: '/conversores/temperatura' },
     { name: 'Números Romanos', href: '/conversores/numeros-romanos' },
+    { name: 'Todos os Conversores', href: '/conversores', shortcutHidden: true },
   ],
 }
 
@@ -76,6 +79,7 @@ export const arquivosRoutes = {
   children: [
     { name: 'Arquivos PDF', href: '/arquivos-testes/pdf' },
     { name: 'Arquivos DOCX', href: '/arquivos-testes/docx' },
+    { name: 'Todos os Arquivos', href: '/arquivos-testes', shortcutHidden: true },
   ],
 }
 
