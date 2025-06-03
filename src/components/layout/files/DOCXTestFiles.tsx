@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
 
-const pdfFiles = [
+const docxFiles = [
     {
         id: 'sample1',
         name: 'DOCX de Exemplo 1',
         description: 'DOCX simples com texto e imagens',
         size: '0.28 MB',
-        path: '/download/file01.docx'
+        path: '/download/docx/file01.docx'
     },
     // {
     //     id: 'sample2',
@@ -21,10 +21,10 @@ const pdfFiles = [
     // }
 ]
 
-export default function PDFTestFiles() {
+export default function DOCXTestFiles() {
     const router = useRouter()
 
-    const handleDownload = (file: typeof pdfFiles[0]) => {
+    const handleDownload = (file: typeof docxFiles[0]) => {
         router.push(`/arquivos-testes/docx/download`)
         setTimeout(() => {
             window.open(file.path, '_blank')
@@ -38,7 +38,7 @@ export default function PDFTestFiles() {
         >
             <div className="px-4 py-6 sm:p-8">
                 <div className="grid grid-cols-1 gap-6">
-                    {pdfFiles.map((file) => (
+                    {docxFiles.map((file) => (
                         <div
                             key={file.id}
                             className="flex items-center justify-between p-4 border-main-900 border rounded-lg hover:bg-gray-50"

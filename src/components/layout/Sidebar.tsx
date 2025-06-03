@@ -78,8 +78,10 @@ export const arquivosRoutes = {
   icon: DocumentTextIcon,
   current: false,
   children: [
-    { name: 'Arquivos PDF', href: '/arquivos-testes/pdf' },
-    { name: 'Arquivos DOCX', href: '/arquivos-testes/docx' },
+    { name: 'Arquivos .PDF', href: '/arquivos-testes/pdf' },
+    { name: 'Arquivos .DOCX', href: '/arquivos-testes/docx' },
+    { name: 'Arquivos .XLSX', href: '/arquivos-testes/xlsx' },
+    { name: 'Arquivos .CSV', href: '/arquivos-testes/csv' },
     { name: 'Todos os Arquivos', href: '/arquivos-testes', shortcutHidden: true },
   ],
 }

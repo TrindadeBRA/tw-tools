@@ -46,20 +46,30 @@ export default function CnhValidator() {
       
       // Calcular o primeiro dígito verificador
       let sum = 0
+      let weight = 9
       for (let i = 0; i < 9; i++) {
-        sum += digits[i] * (10 - i)
+        sum += digits[i] * weight
+        weight--
       }
-      let expectedFirstDigit = 11 - (sum % 11)
-      if (expectedFirstDigit >= 10) expectedFirstDigit = 0
+      
+      let expectedFirstDigit = sum % 11
+      if (expectedFirstDigit >= 10) {
+        expectedFirstDigit = 0
+      }
       
       // Calcular o segundo dígito verificador
       sum = 0
+      weight = 1
       for (let i = 0; i < 9; i++) {
-        sum += digits[i] * (11 - i)
+        sum += digits[i] * weight
+        weight++
       }
       sum += expectedFirstDigit * 2
-      let expectedSecondDigit = 11 - (sum % 11)
-      if (expectedSecondDigit >= 10) expectedSecondDigit = 0
+      
+      let expectedSecondDigit = sum % 11
+      if (expectedSecondDigit >= 10) {
+        expectedSecondDigit = 0
+      }
       
       // Verificar se os dígitos verificadores estão corretos
       const isValid = expectedFirstDigit === digits[9] && expectedSecondDigit === digits[10]

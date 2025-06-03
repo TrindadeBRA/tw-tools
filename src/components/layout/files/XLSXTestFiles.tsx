@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
 
-const pdfFiles = [
+const xlsxFiles = [
     {
         id: 'sample1',
-        name: 'PDF de Exemplo 1',
-        description: 'PDF simples com texto e imagens',
-        size: '0.49 MB',
-        path: '/download/pdf/file01.pdf'
+        name: 'XLSX de Exemplo 1',
+        description: 'XLSX simples com dados de exemplo',
+        size: '0.10 MB',
+        path: '/download/xlsx/file01.xlsx'
     },
     // {
     //     id: 'sample2',
@@ -21,24 +21,24 @@ const pdfFiles = [
     // }
 ]
 
-export default function PDFTestFiles() {
+export default function XLSXTestFiles() {
     const router = useRouter()
 
-    const handleDownload = (file: typeof pdfFiles[0]) => {
-        router.push(`/arquivos-testes/pdf/download`)
+    const handleDownload = (file: typeof xlsxFiles[0]) => {
+        router.push(`/arquivos-testes/xlsx/download`)
         setTimeout(() => {
             window.open(file.path, '_blank')
         }, 100)
     }
-
+    
     return (
         <FormPage
-            title="Arquivos PDF Disponíveis"
+            title="Arquivos XLSX Disponíveis"
             description="Selecione um arquivo para download"
         >
             <div className="px-4 py-6 sm:p-8">
                 <div className="grid grid-cols-1 gap-6">
-                    {pdfFiles.map((file) => (
+                    {xlsxFiles.map((file) => (
                         <div
                             key={file.id}
                             className="flex items-center justify-between p-4 border-main-900 border rounded-lg hover:bg-gray-50"
