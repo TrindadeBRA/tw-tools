@@ -66,7 +66,7 @@ export default function DownloadPage() {
                     description="O arquivo foi baixado com sucesso"
                     infoTitle="Informações Importantes"
                     infoMessage="Verifique sua pasta de downloads para encontrar o arquivo"
-                    backPath="/arquivos-testes/docx"
+                    backPath="/arquivos-testes"
                     buttonText="Voltar para Lista de Arquivos"
                 />
             </Suspense>
