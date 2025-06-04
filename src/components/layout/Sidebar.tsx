@@ -119,6 +119,10 @@ export default function Sidebar() {
   const [currentNavigation, setCurrentNavigation] = useState<NavItem[]>([])
 
   useEffect(() => {
+    setSidebarOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
     const isCurrentPath = (item: NavItem | SubNavItem) => {
       if (!('children' in item)) {
         return pathname === item.href
