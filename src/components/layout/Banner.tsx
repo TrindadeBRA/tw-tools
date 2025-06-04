@@ -60,9 +60,9 @@ export default function Banner() {
           />
           <span className="hidden sm:block text-base font-medium">Procura ajuda para desenvolver alguma solução/aplicação web?</span>
           <span className="block sm:hidden text-sm font-medium text-center">Deseja alguma solução web?
-            <Link href="https://thetrinityweb.com.br/?utm_source=tools&utm_medium=banner&utm_campaign=web_development" target="_blank" rel="noopener noreferrer" className="text-white/90 group-hover:text-white font-semibold group-hover:font-bold group-hover:animate-pulse pl-2">
+            <span className="text-white/90 group-hover:text-white font-semibold group-hover:font-bold group-hover:animate-pulse pl-2">
               Nos conheça!
-            </Link>
+            </span>
           </span>
           <span className="hidden sm:flex items-center gap-1 text-white/90 group-hover:text-white font-semibold group-hover:font-bold group-hover:animate-pulse">
             Fale com a gente
