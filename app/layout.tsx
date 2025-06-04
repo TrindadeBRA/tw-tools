@@ -38,11 +38,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="h-full bg-gray-50">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
-        <Banner />
         <div className="min-h-screen">
           <Sidebar />
-          <main className="pt-10 lg:pl-72">
-            <div className="px-4 sm:px-6 lg:px-8">
+          <main className="lg:pl-72">
+            <Banner />
+            <div className="px-4 sm:px-6 lg:px-8 pt-10">
               {children}
             </div>
             <Footer />
