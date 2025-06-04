@@ -191,8 +191,8 @@ export default function Sidebar() {
                         {currentNavigation.map((item) => (
                           <li key={item.name}>
                             {!item.children ? (
-                              <a
-                                href={item.href}
+                              <Link
+                                href={item.href || ''}
                                 className={classNames(
                                   item.current
                                     ? 'bg-gray-50 text-main-900'
@@ -208,7 +208,7 @@ export default function Sidebar() {
                                   )}
                                 />
                                 {item.name}
-                              </a>
+                              </Link>
                             ) : (
                               <Disclosure as="div" defaultOpen={item.current || item.children?.some(child => child.current)}>
                                 <DisclosureButton
@@ -233,15 +233,15 @@ export default function Sidebar() {
                                 <DisclosurePanel as="ul" className="mt-1 px-2">
                                   {item.children.map((subItem) => (
                                     <li key={subItem.name}>
-                                      <a
-                                        href={subItem.href}
+                                      <Link
+                                        href={subItem.href || ''}
                                         className={classNames(
                                           subItem.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                           'block rounded-md py-2 pr-2 pl-9 text-sm/6 cursor-pointer',
                                         )}
                                       >
                                         {subItem.name}
-                                      </a>
+                                      </Link>
                                     </li>
                                   ))}
                                 </DisclosurePanel>
@@ -289,8 +289,8 @@ export default function Sidebar() {
                     {currentNavigation.map((item) => (
                       <li key={item.name}>
                         {!item.children ? (
-                          <a
-                            href={item.href}
+                          <Link
+                            href={item.href || ''}
                             className={classNames(
                               item.current
                                 ? 'bg-gray-50 text-main-900'
@@ -306,7 +306,7 @@ export default function Sidebar() {
                               )}
                             />
                             {item.name}
-                          </a>
+                          </Link>
                         ) : (
                           <Disclosure as="div" defaultOpen={item.current || item.children?.some(child => child.current)}>
                             <DisclosureButton
@@ -331,15 +331,15 @@ export default function Sidebar() {
                             <DisclosurePanel as="ul" className="mt-1 px-2">
                               {item.children.map((subItem) => (
                                 <li key={subItem.name}>
-                                  <a
-                                    href={subItem.href}
+                                  <Link
+                                    href={subItem.href || ''}
                                     className={classNames(
                                       subItem.current ? 'bg-gray-50 text-main-900' : 'text-gray-700 hover:bg-gray-50 hover:text-main-900',
                                       'block rounded-md py-2 pr-2 pl-9 text-sm/6 cursor-pointer',
                                     )}
                                   >
                                     {subItem.name}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
                             </DisclosurePanel>
