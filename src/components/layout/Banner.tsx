@@ -16,7 +16,7 @@ export default function Banner() {
       const { timestamp } = JSON.parse(bannerState)
       const now = new Date().getTime()
       const hoursPassed = (now - timestamp) / (1000 * 60 * 60)
-      
+
       if (hoursPassed < 24) {
         setIsVisible(false)
       } else {
@@ -40,10 +40,9 @@ export default function Banner() {
   if (isLoading || !isVisible) return null
 
   return (
-    <div 
-      className={`flex items-center gap-x-6 bg-main-600 hover:bg-main-800 transition-all duration-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 ${
-        isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
-      }`}
+    <div
+      className={`flex items-center gap-x-6 bg-main-600 hover:bg-main-800 transition-all duration-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+        }`}
     >
       <p className="text-sm/6 text-white flex items-center gap-3">
         <Link
@@ -59,8 +58,13 @@ export default function Banner() {
             height={24}
             className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:animate-pulse"
           />
-          <span className="font-medium">Procura ajuda para desenvolver alguma solução/aplicação web?</span>
-          <span className="flex items-center gap-1 text-white/90 group-hover:text-white font-semibold group-hover:font-bold group-hover:animate-pulse">
+          <span className="hidden sm:block text-base font-medium">Procura ajuda para desenvolver alguma solução/aplicação web?</span>
+          <span className="block sm:hidden text-sm font-medium text-center">Deseja alguma solução web?
+            <Link href="https://thetrinityweb.com.br/?utm_source=tools&utm_medium=banner&utm_campaign=web_development" target="_blank" rel="noopener noreferrer" className="text-white/90 group-hover:text-white font-semibold group-hover:font-bold group-hover:animate-pulse pl-2">
+              Nos conheça!
+            </Link>
+          </span>
+          <span className="hidden sm:flex items-center gap-1 text-white/90 group-hover:text-white font-semibold group-hover:font-bold group-hover:animate-pulse">
             Fale com a gente
             <ArrowRightIcon className="size-4 transition-transform group-hover:animate-pulse" aria-hidden="true" />
           </span>
