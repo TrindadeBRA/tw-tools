@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Sidebar from "../src/components/layout/Sidebar";
 import Footer from "@/components/layout/Footer";
+import Banner from "@/components/layout/Banner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="h-full bg-gray-50">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
+        <Banner />
         <div className="min-h-screen">
           <Sidebar />
           <main className="pt-10 lg:pl-72">
