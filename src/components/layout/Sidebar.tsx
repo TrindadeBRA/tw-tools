@@ -13,6 +13,7 @@ import {
   ShieldCheckIcon,
   DocumentTextIcon,
   CalculatorIcon,
+  DocumentDuplicateIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
@@ -44,6 +45,7 @@ export const geradoresRoutes = {
     { name: 'Gerador de CNH', href: '/geradores/cnh' },
     { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
     { name: 'Gerador de CEP', href: '/geradores/cep' },
+    { name: 'Gerador de QR Code', href: '/geradores/qrcode' },
     { name: 'Gerador de Senha', href: '/geradores/senha' },
     { name: 'Link do WhatsApp', href: '/geradores/whatsapp' },
     { name: 'Todos os Geradores', href: '/geradores', shortcutHidden: true },
