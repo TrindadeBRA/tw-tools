@@ -45,6 +45,7 @@ export const geradoresRoutes = {
     { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
     { name: 'Gerador de CEP', href: '/geradores/cep' },
     { name: 'Gerador de Senha', href: '/geradores/senha' },
+    { name: 'Gerador de Whatsapp', href: '/geradores/whatsapp' },
     { name: 'Todos os Geradores', href: '/geradores', shortcutHidden: true },
   ],
 }

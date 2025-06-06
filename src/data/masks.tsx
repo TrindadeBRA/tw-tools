@@ -136,3 +136,88 @@ export const timeMask = (value: string) => {
   
   return `${cleanValue.substring(0, 2)}:${cleanValue.substring(2)}`;
 }
+
+export const phoneMask = (value: string, countryCode: string) => {
+  // Remove all non-digits
+  const cleanValue = value.replace(/\D/g, '');
+  
+  // Different formats based on country code
+  switch (countryCode) {
+    // América do Sul
+    case '55': // Brasil
+      return cleanValue
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{5})(\d)/, '$1-$2')
+        .replace(/(-\d{4})\d+?$/, '$1');
+    
+    case '54': // Argentina
+    case '56': // Chile
+    case '57': // Colômbia
+    case '58': // Venezuela
+    case '51': // Peru
+      return cleanValue
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{4})(\d)/, '$1-$2')
+        .replace(/(-\d{4})\d+?$/, '$1');
+    
+    // América do Norte
+    case '1': // EUA e Canadá
+      return cleanValue
+        .replace(/(\d{3})(\d)/, '($1) $2')
+        .replace(/(\d{3})(\d)/, '$1-$2')
+        .replace(/(-\d{4})\d+?$/, '$1');
+    
+    case '52': // México
+      return cleanValue
+        .replace(/(\d{2})(\d)/, '($1) $2')
+        .replace(/(\d{4})(\d)/, '$1-$2')
+        .replace(/(-\d{4})\d+?$/, '$1');
+    
+    // Europa
+    case '44': // Reino Unido
+      return cleanValue
+        .replace(/(\d{4})(\d)/, '$1 $2')
+        .replace(/(\d{4})(\d)/, '$1 $2')
+        .replace(/(\d{4})\d+?$/, '$1');
+    
+    case '351': // Portugal
+    case '34': // Espanha
+    case '33': // França
+    case '49': // Alemanha
+    case '39': // Itália
+      return cleanValue
+        .replace(/(\d{3})(\d)/, '$1 $2')
+        .replace(/(\d{3})(\d)/, '$1 $2')
+        .replace(/(\d{3})(\d)/, '$1 $2')
+        .replace(/(\d{2})\d+?$/, '$1');
+    
+    // Ásia
+    case '81': // Japão
+    case '86': // China
+    case '91': // Índia
+      return cleanValue
+        .replace(/(\d{3})(\d)/, '$1 $2')
+        .replace(/(\d{4})(\d)/, '$1 $2')
+        .replace(/(\d{4})\d+?$/, '$1');
+    
+    case '7': // Rússia
+      return cleanValue
+        .replace(/(\d{3})(\d)/, '($1) $2')
+        .replace(/(\d{3})(\d)/, '$1-$2')
+        .replace(/(-\d{2})\d+?$/, '$1');
+    
+    // Oceania
+    case '61': // Austrália
+      return cleanValue
+        .replace(/(\d{2})(\d)/, '$1 $2')
+        .replace(/(\d{4})(\d)/, '$1 $2')
+        .replace(/(\d{4})\d+?$/, '$1');
+    
+    default:
+      // Formato genérico para outros países
+      return cleanValue
+        .replace(/(\d{3})(\d)/, '$1 $2')
+        .replace(/(\d{3})(\d)/, '$1 $2')
+        .replace(/(\d{3})\d+?$/, '$1');
+  }
+}
