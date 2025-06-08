@@ -99,6 +99,7 @@ export const calculadorasRoutes = {
     { name: 'Calculadora de Idade', href: '/calculadoras/idade' },
     { name: 'Calculadora de Horas', href: '/calculadoras/horas' },
     { name: 'Calculadora de Porcentagem', href: '/calculadoras/porcentagem' },
+    { name: 'Calculadora de Combustível', href: '/calculadoras/combustivel' },
     { name: 'Todos as Calculadoras', href: '/calculadoras', shortcutHidden: true },
   ],
 }
