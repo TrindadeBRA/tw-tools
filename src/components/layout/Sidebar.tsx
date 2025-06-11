@@ -96,6 +96,7 @@ export const calculadorasRoutes = {
   icon: CalculatorIcon,
   current: false,
   children: [
+    { name: 'Calculadora de IMC', href: '/calculadoras/imc' },
     { name: 'Calculadora de Idade', href: '/calculadoras/idade' },
     { name: 'Calculadora de Horas', href: '/calculadoras/horas' },
     { name: 'Calculadora de Porcentagem', href: '/calculadoras/porcentagem' },
