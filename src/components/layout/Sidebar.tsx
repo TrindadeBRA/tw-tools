@@ -39,6 +39,7 @@ export const geradoresRoutes = {
   icon: UsersIcon,
   current: false,
   children: [
+    { name: 'Gerador de Placas', href: '/geradores/placa' },
     { name: 'Gerador de CPF', href: '/geradores/cpf' },
     { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
     { name: 'Gerador de RG', href: '/geradores/rg' },
