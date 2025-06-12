@@ -1,0 +1,123 @@
+{
+    "weather": {
+        "location": {
+            "city": "São Paulo",
+            "state": "SP",
+            "country": "Brasil",
+            "coordinates": {
+                "latitude": -23.5505,
+                "longitude": -46.6333
+            },
+            "timezone": "America/Sao_Paulo"
+        },
+        "current": {
+            "timestamp": "2024-03-20T15:00:00Z",
+            "temperature": {
+                "celsius": 25.5,
+                "fahrenheit": 77.9
+            },
+            "feels_like": {
+                "celsius": 27.0,
+                "fahrenheit": 80.6
+            },
+            "condition": {
+                "text": "Parcialmente nublado",
+                "icon": "partly-cloudy-day",
+                "code": 116
+            },
+            "humidity": 65,
+            "wind": {
+                "speed": {
+                    "kmh": 12,
+                    "mph": 7.5
+                },
+                "direction": "SE",
+                "degree": 135
+            },
+            "pressure": {
+                "mb": 1013,
+                "in": 29.91
+            },
+            "visibility": {
+                "km": 10,
+                "miles": 6.2
+            },
+            "uv_index": 6,
+            "air_quality": {
+                "index": 45,
+                "category": "Boa",
+                "pollutants": {
+                    "co": 0.5,
+                    "no2": 15,
+                    "o3": 45,
+                    "so2": 5,
+                    "pm2_5": 12,
+                    "pm10": 25
+                }
+            }
+        },
+        "forecast": {
+            "daily": [
+                {
+                    "date": "2024-03-20",
+                    "day": {
+                        "max_temp": {
+                            "celsius": 28.0,
+                            "fahrenheit": 82.4
+                        },
+                        "min_temp": {
+                            "celsius": 20.0,
+                            "fahrenheit": 68.0
+                        },
+                        "condition": {
+                            "text": "Ensolarado",
+                            "icon": "sunny",
+                            "code": 113
+                        },
+                        "chance_of_rain": 10,
+                        "chance_of_snow": 0,
+                        "uv_index": 8
+                    },
+                    "astro": {
+                        "sunrise": "06:15",
+                        "sunset": "18:30",
+                        "moonrise": "15:45",
+                        "moonset": "03:30",
+                        "moon_phase": "Waxing Gibbous",
+                        "moon_illumination": 85
+                    },
+                    "hourly": [
+                        {
+                            "time": "00:00",
+                            "temperature": {
+                                "celsius": 21.0,
+                                "fahrenheit": 69.8
+                            },
+                            "condition": {
+                                "text": "Limpo",
+                                "icon": "clear",
+                                "code": 113
+                            },
+                            "chance_of_rain": 0
+                        }
+                    ]
+                }
+            ],
+            "alerts": [
+                {
+                    "type": "heat",
+                    "severity": "moderate",
+                    "title": "Alerta de Calor",
+                    "description": "Temperaturas elevadas esperadas para os próximos dias",
+                    "start_time": "2024-03-21T00:00:00Z",
+                    "end_time": "2024-03-23T23:59:59Z"
+                }
+            ]
+        },
+        "metadata": {
+            "source": "WeatherAPI",
+            "last_updated": "2024-03-20T15:00:00Z",
+            "version": "1.0"
+        }
+    }
+} 

@@ -1,0 +1,61 @@
+{
+    "post": {
+        "id": "POST-789012",
+        "author": {
+            "id": "USER-456",
+            "username": "tech_enthusiast",
+            "display_name": "Tech Enthusiast",
+            "avatar_url": "https://example.com/avatars/tech_enthusiast.jpg",
+            "verified": true,
+            "followers_count": 12500,
+            "following_count": 850
+        },
+        "content": {
+            "text": "Acabei de receber o novo smartphone XYZ! 🎉\n\nPrimeiras impressões:\n✅ Tela incrível\n✅ Câmera espetacular\n✅ Bateria dura o dia todo\n\n#TechReview #SmartphoneXYZ #TechNews",
+            "language": "pt-BR",
+            "hashtags": ["TechReview", "SmartphoneXYZ", "TechNews"],
+            "mentions": []
+        },
+        "media": [
+            {
+                "type": "image",
+                "url": "https://example.com/posts/smartphone_xyz_1.jpg",
+                "alt_text": "Smartphone XYZ em diferentes ângulos",
+                "width": 1920,
+                "height": 1080
+            },
+            {
+                "type": "video",
+                "url": "https://example.com/posts/smartphone_xyz_review.mp4",
+                "thumbnail_url": "https://example.com/posts/smartphone_xyz_thumb.jpg",
+                "duration": 120,
+                "width": 1920,
+                "height": 1080
+            }
+        ],
+        "engagement": {
+            "likes": 1250,
+            "comments": 89,
+            "shares": 45,
+            "saves": 120,
+            "views": 5000
+        },
+        "location": {
+            "name": "São Paulo, Brasil",
+            "coordinates": {
+                "latitude": -23.5505,
+                "longitude": -46.6333
+            }
+        },
+        "created_at": "2024-03-20T15:30:00Z",
+        "edited_at": "2024-03-20T15:35:00Z",
+        "visibility": "public",
+        "status": "active",
+        "metadata": {
+            "platform": "instagram",
+            "device": "iPhone 15 Pro",
+            "app_version": "2.5.1",
+            "post_type": "review"
+        }
+    }
+} 
