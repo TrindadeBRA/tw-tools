@@ -24,6 +24,7 @@ interface ResultClientProps {
     params: {
       name: string;
       label: string;
+      format?: (value: string) => React.ReactNode;
     }[];
   }
 }
@@ -122,13 +123,19 @@ export default function ResultClient({
       <div className="px-4 py-6 sm:p-8">
         <div className="grid grid-cols-1 gap-x-6 gap-y-8">
           {multipleParams?.enabled ? (
-            // Exibir apenas o resultado principal (bestValue)
-            <div className="col-span-full">
-              <CopyResult
-                label={multipleParams.params.find(p => p.name === "bestValue")?.label || "Melhor Custo-Benefício"}
-                value={multiResults["bestValue"]}
-              />
-            </div>
+            // Exibir múltiplos resultados
+            <>
+              {multipleParams.params
+                .filter(param => multiResults[param.name]) // Mostrar apenas parâmetros com valor
+                .map((param, index) => (
+                  <div key={index} className="col-span-full">
+                    <CopyResult
+                      label={param.label}
+                      value={multiResults[param.name]}
+                    />
+                  </div>
+                ))}
+            </>
           ) : (
             // Exibir resultado único
             <div className="col-span-full">
