@@ -42,8 +42,9 @@ export const geradoresRoutes = {
     { name: 'Gerador de Placas', href: '/geradores/placa' },
     { name: 'Gerador de CPF', href: '/geradores/cpf' },
     { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
-    { name: 'Gerador de RG', href: '/geradores/rg' },
     { name: 'Gerador de CNH', href: '/geradores/cnh' },
+    { name: 'Gerador de PIS/PASEP/NIT', href: '/geradores/pis' },
+    { name: 'Gerador de RG', href: '/geradores/rg' },
     { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
     { name: 'Gerador de CEP', href: '/geradores/cep' },
     { name: 'Gerador de QR Code', href: '/geradores/qrcode' },
@@ -64,6 +65,7 @@ export const validadoresRoutes = {
     { name: 'Validador de CNPJ', href: '/validadores/cnpj' },
     { name: 'Validador de RG', href: '/validadores/rg' },
     { name: 'Validador de CNH', href: '/validadores/cnh' },
+    { name: 'Validador de PIS/PASEP/NIT', href: '/validadores/pis' },
     { name: 'Todos os Validadores', href: '/validadores', shortcutHidden: true },
   ],
 }
