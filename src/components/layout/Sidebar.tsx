@@ -18,29 +18,15 @@ import {
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
 import Image from 'next/image'
+import { NavItem, RouteGroup, SubNavItem } from '@/types/routes'
 
-type SubNavItem = {
-  name: string
-  href: string
-  current?: boolean
-  shortcutHidden?: boolean
-}
-
-type NavItem = {
-  name: string
-  href?: string
-  icon: React.ComponentType<{ className?: string; 'aria-hidden'?: boolean }>
-  current: boolean
-  children?: SubNavItem[]
-}
-
-export const geradoresRoutes = {
+export const geradoresRoutes: RouteGroup = {
   name: 'Geradores',
   icon: UsersIcon,
   current: false,
   children: [
-    { name: 'Gerador de Placas', href: '/geradores/placa' },
-    { name: 'Gerador de CPF', href: '/geradores/cpf' },
+    { name: 'Gerador de Placas', href: '/geradores/placa', description: 'Gere placas de veículos válidas' },
+    { name: 'Gerador de CPF', href: '/geradores/cpf', description: 'Crie números de CPF válidos' },
     { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
     { name: 'Gerador de RG', href: '/geradores/rg' },
     { name: 'Gerador de CNH', href: '/geradores/cnh' },
@@ -55,7 +41,7 @@ export const geradoresRoutes = {
   ],
 }
 
-export const validadoresRoutes = {
+export const validadoresRoutes: RouteGroup = {
   name: 'Validadores',
   icon: ShieldCheckIcon,
   current: false,
@@ -68,7 +54,7 @@ export const validadoresRoutes = {
   ],
 }
 
-export const conversoresRoutes = {
+export const conversoresRoutes: RouteGroup = {
   name: 'Conversões',
   icon: ArrowsRightLeftIcon,
   current: false,
@@ -81,7 +67,7 @@ export const conversoresRoutes = {
   ],
 }
 
-export const arquivosRoutes = {
+export const arquivosRoutes: RouteGroup = {
   name: 'Arquivos Testes',
   icon: DocumentTextIcon,
   current: false,
@@ -95,7 +81,7 @@ export const arquivosRoutes = {
   ],
 }
 
-export const calculadorasRoutes = {
+export const calculadorasRoutes: RouteGroup = {
   name: 'Calculadoras',
   icon: CalculatorIcon,
   current: false,
@@ -109,7 +95,6 @@ export const calculadorasRoutes = {
     { name: 'Todos as Calculadoras', href: '/calculadoras', shortcutHidden: true },
   ],
 }
-
 
 export const navigation: NavItem[] = [
   { name: 'Descubra', href: '/', icon: LightBulbIcon, current: false },

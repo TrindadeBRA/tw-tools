@@ -3,6 +3,7 @@ import ShortcutsSection from "@/components/layout/ShortcutsSection";
 import { calculadorasRoutes } from "@/components/layout/Sidebar";
 import { Metadata } from "next";
 import Script from "next/script";
+import { RouteGroup, SubNavItem } from "@/types/routes";
 
 export const metadata: Metadata = {
     title: "Calculadoras Online Gratuitas | Cálculos Precisos e Rápidos - TW Tools",
@@ -29,6 +30,12 @@ export default function Calculadoras() {
         }
     ];
 
+    // Filter out items with shortcutHidden flag
+    const visibleRoutes = {
+        ...calculadorasRoutes,
+        children: calculadorasRoutes.children.filter((route: SubNavItem) => !route.shortcutHidden)
+    } as RouteGroup;
+
     return (
         <div>
             <Header
@@ -37,7 +44,7 @@ export default function Calculadoras() {
                 description="Realize cálculos matemáticos, financeiros, IMC, combustível, horas e muito mais com nossas ferramentas profissionais. Resultados precisos e instantâneos para suas necessidades pessoais e profissionais."
                 breadcrumbs={breadcrumbs}
             />
-            <ShortcutsSection routes={calculadorasRoutes} />
+            <ShortcutsSection routes={visibleRoutes} />
 
             {/* Schema.org structured data for SEO */}
             <Script id="schema-calculadoras" type="application/ld+json" dangerouslySetInnerHTML={{
@@ -47,10 +54,10 @@ export default function Calculadoras() {
                     "name": "Calculadoras Online Gratuitas",
                     "description": "Conjunto de ferramentas gratuitas para cálculos matemáticos, financeiros, IMC, combustível e mais",
                     "url": "https://tools.thetrinityweb.com.br/calculadoras",
-                    "hasPart": calculadorasRoutes.map(route => ({
+                    "hasPart": visibleRoutes.children.map(route => ({
                         "@type": "WebApplication",
                         "name": route.name,
-                        "description": route.description,
+                        "description": route.description || `Calculadora de ${route.name.replace('Calculadora de ', '')}`,
                         "url": `https://tools.thetrinityweb.com.br${route.href}`,
                         "applicationCategory": "CalculatorApplication",
                         "operatingSystem": "Web",
