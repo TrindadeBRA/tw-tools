@@ -9,7 +9,27 @@ import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
 import { useRouter } from 'next/navigation'
 import { priceMask, quantityMask } from '@/data/masks'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
+
+// Definição das unidades e suas conversões
+const unitGroups = {
+  weight: {
+    label: 'Peso',
+    units: [
+      { id: 'mg', title: 'mg', baseMultiplier: 0.001 },
+      { id: 'g', title: 'g', baseMultiplier: 1 },
+      { id: 'kg', title: 'kg', baseMultiplier: 1000 }
+    ]
+  },
+  volume: {
+    label: 'Volume',
+    units: [
+      { id: 'ml', title: 'ml', baseMultiplier: 1 },
+      { id: 'l', title: 'L', baseMultiplier: 1000 },
+      { id: 'oz', title: 'oz', baseMultiplier: 29.5735 }
+    ]
+  }
+}
 
 // Schema for form validation
 const priceComparisonSchema = z.object({
@@ -24,7 +44,8 @@ const priceComparisonSchema = z.object({
       .refine((val) => !isNaN(Number(val.replace(/[^\d,.]/g, ''))) && Number(val.replace(/[^\d,.]/g, '')) > 0, 'Quantidade deve ser maior que zero'),
     unit: z.object({
       id: z.string(),
-      title: z.string()
+      title: z.string(),
+      baseMultiplier: z.number()
     })
   })).min(2, 'Adicione pelo menos 2 produtos para comparação')
 })
@@ -34,11 +55,6 @@ type PriceComparisonData = z.infer<typeof priceComparisonSchema>
 export default function PricePerUnitCalculator() {
   const router = useRouter()
   
-  const unitOptions = [
-    { id: 'ml', title: 'ml' },
-    { id: 'g', title: 'g' }
-  ]
-
   const comparisonOptions = [
     { id: 'maior', title: 'Maior' },
     { id: 'menor', title: 'Menor' }
@@ -47,6 +63,17 @@ export default function PricePerUnitCalculator() {
   // Estados para armazenar os valores formatados
   const [priceDisplays, setPriceDisplays] = useState<string[]>(['', ''])
   const [quantityDisplays, setQuantityDisplays] = useState<string[]>(['', ''])
+
+  // Criar lista completa de unidades
+  const allUnits = useMemo(() => {
+    return [
+      ...unitGroups.weight.units,
+      ...unitGroups.volume.units
+    ]
+  }, [])
+
+  // Estado para controlar o grupo de unidades selecionado
+  const [selectedUnitGroup, setSelectedUnitGroup] = useState<'weight' | 'volume' | null>(null)
   
   const {
     register,
@@ -59,16 +86,42 @@ export default function PricePerUnitCalculator() {
     resolver: zodResolver(priceComparisonSchema),
     defaultValues: {
       items: [
-        { comparison: comparisonOptions[0], price: '', quantity: '', unit: unitOptions[0] },
-        { comparison: comparisonOptions[0], price: '', quantity: '', unit: unitOptions[0] }
+        { comparison: comparisonOptions[0], price: '', quantity: '', unit: allUnits[0] },
+        { comparison: comparisonOptions[0], price: '', quantity: '', unit: allUnits[0] }
       ]
     }
   })
 
   const items = watch('items')
 
+  // Função para obter as unidades disponíveis para cada item
+  const getAvailableUnits = (index: number) => {
+    if (index === 0) {
+      return allUnits
+    }
+
+    // Para os itens subsequentes, filtrar baseado na primeira unidade selecionada
+    const firstUnit = items[0]?.unit
+    if (!firstUnit) return allUnits
+
+    // Determinar o grupo da primeira unidade
+    const group = Object.entries(unitGroups).find(([_, groupData]) =>
+      groupData.units.some(unit => unit.id === firstUnit.id)
+    )
+
+    if (!group) return allUnits
+    return group[1].units
+  }
+
+  // Função para converter para a unidade base
+  const convertToBase = (value: number, fromUnit: string) => {
+    const unit = allUnits.find(u => u.id === fromUnit)
+    if (!unit) return value
+    return value * unit.baseMultiplier
+  }
+
   const addItem = () => {
-    setValue('items', [...items, { comparison: comparisonOptions[0], price: '', quantity: '', unit: unitOptions[0] }])
+    setValue('items', [...items, { comparison: comparisonOptions[0], price: '', quantity: '', unit: allUnits[0] }])
     setPriceDisplays([...priceDisplays, ''])
     setQuantityDisplays([...quantityDisplays, ''])
   }
@@ -81,18 +134,30 @@ export default function PricePerUnitCalculator() {
 
   const calculateBestPrice = (data: PriceComparisonData) => {
     try {
+      // Pegar a unidade do primeiro produto como referência
+      const referenceUnit = data.items[0].unit
+
       const results = data.items.map(item => {
         // Remove formatação para cálculos
         const price = Number(item.price.replace(/[^\d]/g, '')) / 100
         const quantity = Number(item.quantity.replace(/[^\d,.]/g, '').replace(',', '.'))
-        const pricePerUnit = price / quantity
+        
+        // Converter quantidade para a unidade base para comparação
+        const baseQuantity = convertToBase(quantity, item.unit.id)
+        
+        // Converter para a unidade de referência
+        const referenceQuantity = baseQuantity / referenceUnit.baseMultiplier
+        const pricePerUnit = price / referenceQuantity
         
         return {
           comparison: item.comparison.title,
           price,
           quantity,
           unit: item.unit.id,
-          pricePerUnit
+          pricePerUnit,
+          referenceUnit: referenceUnit.id,
+          displayPrice: price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+          displayQuantity: quantity.toLocaleString('pt-BR', { minimumFractionDigits: 3 })
         }
       })
 
@@ -105,21 +170,21 @@ export default function PricePerUnitCalculator() {
 
       // Formatar os resultados para exibição
       const formattedResults = results.map(result => {
-        const formattedPrice = result.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
         const formattedPricePerUnit = result.pricePerUnit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 })
-        const formattedQuantity = result.quantity.toLocaleString('pt-BR', { minimumFractionDigits: 3 })
-        return `${result.comparison}: ${formattedPricePerUnit}/${result.unit} (${formattedPrice} por ${formattedQuantity} ${result.unit})`
+        return `${result.comparison}: ${formattedPricePerUnit}/${result.referenceUnit} (${result.displayPrice} por ${result.displayQuantity} ${result.unit})`
       })
 
-      const formattedBestValue = `${bestValue.comparison}: ${bestValue.pricePerUnit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 })}/${bestValue.unit}`
-      const formattedWorstValue = `${worstValue.comparison}: ${worstValue.pricePerUnit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 })}/${worstValue.unit}`
+      // Criar mensagem comparativa
+      const bestPricePerUnit = bestValue.pricePerUnit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 })
+      const worstPricePerUnit = worstValue.pricePerUnit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 })
+      
+      const formattedBestValue = `O produto ${bestValue.comparison} é o melhor custo-benefício, ele sai por ${bestPricePerUnit}/${bestValue.referenceUnit}, enquanto o produto ${worstValue.comparison} sai ${worstPricePerUnit}/${worstValue.referenceUnit}`
+      const formattedWorstValue = `${worstValue.comparison}: ${worstPricePerUnit}/${worstValue.referenceUnit} (${worstValue.displayPrice} por ${worstValue.displayQuantity} ${worstValue.unit})`
       const formattedSavings = `${savings.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}%`
 
       // Redirect to results page with all calculated data
       router.push(`/calculadoras/comparador-preco/resultado?` + 
-        `results=${encodeURIComponent(formattedResults.join('\n'))}&` +
         `bestValue=${encodeURIComponent(formattedBestValue)}&` +
-        `worstValue=${encodeURIComponent(formattedWorstValue)}&` +
         `savings=${encodeURIComponent(formattedSavings)}`)
     } catch (error) {
       console.error('Erro ao processar dados:', error)
@@ -129,11 +194,12 @@ export default function PricePerUnitCalculator() {
 
   const clearForm = () => {
     setValue('items', [
-      { comparison: comparisonOptions[0], price: '', quantity: '', unit: unitOptions[0] },
-      { comparison: comparisonOptions[0], price: '', quantity: '', unit: unitOptions[0] }
+      { comparison: comparisonOptions[0], price: '', quantity: '', unit: allUnits[0] },
+      { comparison: comparisonOptions[0], price: '', quantity: '', unit: allUnits[0] }
     ])
     setPriceDisplays(['', ''])
     setQuantityDisplays(['', ''])
+    setSelectedUnitGroup(null)
   }
 
   // Funções para lidar com as mudanças nos inputs
@@ -151,6 +217,28 @@ export default function PricePerUnitCalculator() {
     newQuantityDisplays[index] = formatted
     setQuantityDisplays(newQuantityDisplays)
     setValue(`items.${index}.quantity`, value.replace(/[^\d,.]/g, ''))
+  }
+
+  // Handler para mudança de unidade
+  const handleUnitChange = (index: number, value: any) => {
+    if (index === 0) {
+      // Determinar o grupo da unidade selecionada
+      const group = Object.entries(unitGroups).find(([_, groupData]) =>
+        groupData.units.some(unit => unit.id === value.id)
+      )
+      
+      if (group) {
+        setSelectedUnitGroup(group[0] as 'weight' | 'volume')
+        
+        // Atualizar as unidades dos outros itens para o mesmo grupo
+        items.forEach((_, idx) => {
+          if (idx > 0) {
+            setValue(`items.${idx}.unit`, group[1].units[0])
+          }
+        })
+      }
+    }
+    setValue(`items.${index}.unit`, value)
   }
 
   return (
@@ -207,9 +295,9 @@ export default function PricePerUnitCalculator() {
                       render={({ field }) => (
                         <InputSelect
                           label="Unidade"
-                          options={unitOptions}
-                          defaultValue={unitOptions[0]}
-                          onChange={(value) => field.onChange(value)}
+                          options={getAvailableUnits(index)}
+                          defaultValue={allUnits[0]}
+                          onChange={(value) => handleUnitChange(index, value)}
                           error={errors.items?.[index]?.unit?.message}
                         />
                       )}

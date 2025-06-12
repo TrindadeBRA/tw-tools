@@ -83,22 +83,8 @@ export default function ResultadoPage() {
                     multipleParams={{
                         enabled: true,
                         params: [
-                            { 
-                                name: "results", 
-                                label: "Resultados Detalhados"
-                            },
-                            { 
-                                name: "bestValue", 
-                                label: "Melhor Custo-Benefício"
-                            },
-                            { 
-                                name: "worstValue", 
-                                label: "Pior Custo-Benefício"
-                            },
-                            { 
-                                name: "savings", 
-                                label: "Economia Percentual"
-                            }
+                            { name: "bestValue", label: "Melhor Custo-Benefício" },
+                            { name: "savings", label: "Economia" }
                         ]
                     }}
                 />
