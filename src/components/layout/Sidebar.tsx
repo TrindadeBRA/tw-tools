@@ -49,6 +49,7 @@ export const geradoresRoutes = {
     { name: 'Gerador de QR Code', href: '/geradores/qrcode' },
     { name: 'Gerador de Senha', href: '/geradores/senha' },
     { name: 'Gerador de Telefone', href: '/geradores/telefone' },
+    { name: 'Gerador de Imagem', href: '/geradores/imagem' },
     { name: 'Link do WhatsApp', href: '/geradores/whatsapp' },
     { name: 'Todos os Geradores', href: '/geradores', shortcutHidden: true },
   ],
