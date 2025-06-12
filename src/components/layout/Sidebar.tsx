@@ -44,7 +44,6 @@ export const geradoresRoutes = {
     { name: 'Gerador de CPF', href: '/geradores/cpf' },
     { name: 'Gerador de CNPJ', href: '/geradores/cnpj' },
     { name: 'Gerador de CNH', href: '/geradores/cnh' },
-    { name: 'Gerador de PIS/PASEP/NIT', href: '/geradores/pis' },
     { name: 'Gerador de RG', href: '/geradores/rg' },
     { name: 'Gerador de Cartão de Crédito', href: '/geradores/cartao-de-credito' },
     { name: 'Gerador de CEP', href: '/geradores/cep' },
