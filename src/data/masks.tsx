@@ -221,3 +221,73 @@ export const phoneMask = (value: string, countryCode: string) => {
         .replace(/(\d{3})\d+?$/, '$1');
   }
 }
+
+export const priceMask = (value: string) => {
+  // Remove tudo que não é dígito
+  const cleanValue = value.replace(/\D/g, '');
+  
+  // Se não tiver valor, retorna vazio
+  if (cleanValue === '') return '';
+  
+  // Converte para centavos (divide por 100)
+  const cents = parseInt(cleanValue, 10) / 100;
+  
+  // Formata como moeda brasileira
+  return cents.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+export const quantityMask = (value: string) => {
+  // Remove tudo que não é dígito, vírgula ou ponto
+  let cleanValue = value.replace(/[^\d,.]/g, '');
+  
+  // Se não tiver valor, retorna vazio
+  if (cleanValue === '') return '';
+  
+  // Normaliza para usar ponto como separador decimal
+  cleanValue = cleanValue.replace(/,/g, '.');
+  
+  // Garante que só há um separador decimal
+  const parts = cleanValue.split('.');
+  if (parts.length > 2) {
+    cleanValue = parts[0] + '.' + parts.slice(1).join('');
+  }
+  
+  // Limita a 10 dígitos antes do ponto decimal
+  if (parts[0].length > 10) {
+    parts[0] = parts[0].substring(0, 10);
+    cleanValue = parts.length > 1 ? parts[0] + '.' + parts[1] : parts[0];
+  }
+  
+  // Limita a 3 casas decimais
+  if (parts.length > 1 && parts[1].length > 3) {
+    parts[1] = parts[1].substring(0, 3);
+    cleanValue = parts[0] + '.' + parts[1];
+  }
+  
+  try {
+    // Converte para número
+    const num = parseFloat(cleanValue || '0');
+    
+    // Formata com separador de milhares e vírgula decimal (padrão brasileiro)
+    const formatted = num.toLocaleString('pt-BR', {
+      minimumFractionDigits: parts.length > 1 ? 3 : 0,
+      maximumFractionDigits: 3
+    });
+    
+    // Se o usuário acabou de adicionar um separador decimal no final, mantém-no
+    if (value.endsWith(',') || value.endsWith('.')) {
+      return formatted + ',';
+    }
+    
+    return formatted;
+  } catch (error) {
+    // Se algo der errado, retorna o valor limpo
+    console.error('Erro ao formatar quantidade:', error);
+    return cleanValue.replace('.', ',');
+  }
+}
