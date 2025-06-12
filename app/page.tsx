@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Hero from "@/components/layout/Hero";
 import ShortcutsSection from "@/components/layout/ShortcutsSection";
-import { arquivosRoutes, calculadorasRoutes, conversoresRoutes, geradoresRoutes, validadoresRoutes } from "@/components/layout/Sidebar";
+import { arquivosRoutes, calculadorasRoutes, conversoresRoutes, countTools, geradoresRoutes, validadoresRoutes } from "@/components/layout/Sidebar";
 
 export const metadata: Metadata = {
   title: "TW Tools - Ferramentas Online Gratuitas",
@@ -14,6 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <div className="flex flex-col gap-y-4">
+        <h2 className="text-xl font-bold mb-4 text-gray-900">{countTools} ferramentas gratuitas para impulsionar seu trabalho!</h2>
         <ShortcutsSection routes={arquivosRoutes} hideDescription={true} />
         <ShortcutsSection routes={calculadorasRoutes} hideDescription={true} />
         <ShortcutsSection routes={conversoresRoutes} hideDescription={true} />

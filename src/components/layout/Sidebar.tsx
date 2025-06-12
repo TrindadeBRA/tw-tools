@@ -34,6 +34,7 @@ type NavItem = {
   children?: SubNavItem[]
 }
 
+
 export const geradoresRoutes = {
   name: 'Geradores',
   icon: UsersIcon,
@@ -111,6 +112,8 @@ export const calculadorasRoutes = {
     { name: 'Todos as Calculadoras', href: '/calculadoras', shortcutHidden: true },
   ],
 }
+
+export const countTools = arquivosRoutes.children.length + calculadorasRoutes.children.length + conversoresRoutes.children.length + geradoresRoutes.children.length + validadoresRoutes.children.length;
 
 
 export const navigation: NavItem[] = [
