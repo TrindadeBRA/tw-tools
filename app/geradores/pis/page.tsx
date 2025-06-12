@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import PisGenerator from "../../../src/components/layout/generator/PisGenerator";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
+import PisGenerator from "@/components/layout/generator/PisGenerator";
 
 export const metadata: Metadata = {
     title: "Gerador de PIS/PASEP/NIT | TW Tools",
