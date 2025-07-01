@@ -55,6 +55,7 @@ export default function TextValidator() {
 
   const clearText = () => {
     setText('')
+    window.location.reload()
   }
 
   const loadSampleText = () => {
