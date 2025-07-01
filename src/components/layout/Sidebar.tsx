@@ -66,6 +66,7 @@ export const validadoresRoutes = {
     { name: 'Validador de RG', href: '/validadores/rg' },
     { name: 'Validador de CNH', href: '/validadores/cnh' },
     { name: 'Validador de PIS/PASEP/NIT', href: '/validadores/pis' },
+    { name: 'Contador de Texto', href: '/validadores/contador-de-texto' },
     { name: 'Todos os Validadores', href: '/validadores', shortcutHidden: true },
   ],
 }
