@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface Option {
     id: string
@@ -10,19 +11,93 @@ interface InputCheckboxProps {
     label: string
     description?: string
     error?: string
-    options: Option[]
+    options?: Option[] // Tornando opcional
     defaultChecked?: string[]
     showDividers?: boolean
     className?: string
+    // Para uso como checkbox simples
+    name?: string
+    defaultValue?: boolean
 }
 
-export default function InputCheckbox({ label, description, error, options, defaultChecked = [], showDividers = false, className, ...props }: InputCheckboxProps) {
+export default function InputCheckbox({ 
+    label, 
+    description, 
+    error, 
+    options, 
+    defaultChecked = [], 
+    showDividers = false, 
+    className, 
+    name,
+    defaultValue,
+    ...props 
+}: InputCheckboxProps) {
+    
+    // Se não tem options, renderiza como checkbox simples
+    if (!options || options.length === 0) {
+        return (
+            <fieldset className={className}>
+                <div className="relative flex gap-3 items-center">
+                    <div className="flex h-6 shrink-0 items-center">
+                        <div className="group grid size-4 grid-cols-1">
+                            <input
+                                id={name}
+                                name={name}
+                                type="checkbox"
+                                defaultChecked={defaultValue}
+                                className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-main-600 checked:bg-main-600 indeterminate:border-main-600 indeterminate:bg-main-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                                {...props}
+                            />
+                            <svg
+                                fill="none"
+                                viewBox="0 0 14 14"
+                                className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
+                            >
+                                <path
+                                    d="M3 8L6 11L11 3.5"
+                                    strokeWidth={2}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="opacity-0 group-has-checked:opacity-100"
+                                />
+                                <path
+                                    d="M3 7H11"
+                                    strokeWidth={2}
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="opacity-0 group-has-indeterminate:opacity-100"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                    <div className="min-w-0 flex-1 text-sm/6">
+                        <label htmlFor={name} className="font-medium text-gray-900">
+                            {label}
+                        </label>
+                        {description && (
+                            <p className="text-gray-500">
+                                {description}
+                            </p>
+                        )}
+                    </div>
+                </div>
+
+                {error && (
+                    <p className="mt-2 text-sm text-red-600">
+                        {error}
+                    </p>
+                )}
+            </fieldset>
+        )
+    }
+    
+    // Renderização original para múltiplas opções
     return (
         <fieldset className={showDividers ? "border-t border-b border-gray-200" : className}>
             <legend className="text-sm/6 font-semibold text-gray-900">{label}</legend>
             {description && <p className="mt-1 text-sm/6 text-gray-600">{description}</p>}
             
-            <div className={showDividers ? "divide-y divide-gray-200" : "space-y-4"}>
+            <div className={twMerge(showDividers ? "divide-y divide-gray-200" : "space-y-4")}>
                 {options.map((option) => (
                     <div key={option.id} className="relative flex gap-3 pt-3.5 pb-4">
                         <div className="min-w-0 flex-1 text-sm/6">

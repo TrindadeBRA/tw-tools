@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
-import ResultClient from "@/components/layout/result/ResultClient";
 import LoadingResult from "@/components/layout/LoadingResult";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
 import Script from "next/script";
+import RescissionResultDisplay from "../../../../src/components/layout/result/RescissionResultDisplay";
 
 export const metadata: Metadata = {
   title: "Resultado da Rescisão CLT 2025 - Cálculo Detalhado | TW Tools",
@@ -97,38 +97,7 @@ export default function ResultadoPage() {
         breadcrumbs={breadcrumbs}
       />
       <Suspense fallback={<LoadingResult />}>
-        <ResultClient
-          title="Resultado da Rescisão CLT"
-          description="Confira abaixo o cálculo detalhado da sua rescisão trabalhista com todos os valores atualizados para 2025."
-          notFoundTitle="Resultado Não Encontrado"
-          notFoundDescription={hasError ? "Ocorreu um erro ao processar o cálculo da rescisão." : "Não foi possível encontrar um resultado de cálculo."}
-          notFoundMessage={hasError ? "Verifique se os dados informados são válidos e tente novamente." : "Verifique os dados e refaça o cálculo."}
-          infoTitle="Informações Importantes"
-          infoMessage="Este cálculo é uma estimativa baseada na legislação vigente. Para cálculos oficiais, consulte um profissional especializado."
-          resultLabel="Cálculo de Rescisão CLT"
-          backPath="/calculadoras/rescisao-clt"
-          buttonText="Calcular Nova Rescisão"
-          multipleParams={{ 
-            enabled: true, 
-            params: [
-              { name: "tipoRescisao", label: "Tipo de Rescisão" },
-              { name: "salario", label: "Salário Bruto" },
-              { name: "dataAdmissao", label: "Data de Admissão" },
-              { name: "dataRescisao", label: "Data de Rescisão" },
-              { name: "saldoSalario", label: "Saldo de Salário" },
-              { name: "avisoPreVio", label: "Aviso Prévio" },
-              { name: "decimoTerceiro", label: "13º Salário Proporcional" },
-              { name: "feriasProporcionais", label: "Férias Proporcionais + 1/3" },
-              { name: "feriasVencidas", label: "Férias Vencidas + 1/3" },
-              { name: "multaFgts", label: "Multa do FGTS" },
-              { name: "descontoInss", label: "Desconto INSS" },
-              { name: "descontoIrpf", label: "Desconto IRPF" },
-              { name: "totalVencimentos", label: "Total de Vencimentos" },
-              { name: "totalDescontos", label: "Total de Descontos" },
-              { name: "valorTotal", label: "Valor Líquido a Receber" },
-            ]
-          }}
-        />
+        <RescissionResultDisplay />
       </Suspense>
       <InfoSection items={infoItems} />
       
