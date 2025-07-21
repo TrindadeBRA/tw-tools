@@ -289,7 +289,10 @@ export default function CltRescissionCalculator() {
                 placeholder="R$ 0,00"
                 {...register('salario')}
                 error={errors.salario?.message}
-                mask={currencyMask}
+                onChange={(e) => {
+                  const maskedValue = currencyMask(e.target.value);
+                  setValue('salario', maskedValue);
+                }}
               />
             </div>
 
@@ -300,7 +303,10 @@ export default function CltRescissionCalculator() {
                 placeholder="R$ 0,00"
                 {...register('saldoFgts')}
                 error={errors.saldoFgts?.message}
-                mask={currencyMask}
+                onChange={(e) => {
+                  const maskedValue = currencyMask(e.target.value);
+                  setValue('saldoFgts', maskedValue);
+                }}
               />
             </div>
             
