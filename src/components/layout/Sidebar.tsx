@@ -110,6 +110,7 @@ export const calculadorasRoutes = {
     { name: 'Calculadora de Combustível', href: '/calculadoras/combustivel' },
     { name: 'Comparador de Preço', href: '/calculadoras/comparador-preco' },
     { name: 'Calculadora de Regra de Três', href: '/calculadoras/regra-de-tres' },
+    { name: 'Rescisão CLT', href: '/calculadoras/rescisao-clt' },
     { name: 'Todos as Calculadoras', href: '/calculadoras', shortcutHidden: true },
   ],
 }
