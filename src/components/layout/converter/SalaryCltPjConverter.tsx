@@ -8,6 +8,7 @@ import InputSelect from '@/components/ui/InputSelect'
 import Button from '@/components/ui/Button'
 import FormPage from '../template/FormPage'
 import { useRouter } from 'next/navigation'
+import { currencyMask } from '@/data/masks'
 
 // Schema de validação
 const salarySchema = z.object({
@@ -261,10 +262,13 @@ export default function SalaryCltPjConverter() {
             <div className="sm:col-span-3">
               <InputText
                 label="Valor (R$)"
-                placeholder="Ex: 5.000,00"
+                placeholder="R$ 0,00"
                 {...register('valor')}
                 error={errors.valor?.message}
-                mask="currency"
+                onChange={(e) => {
+                  const maskedValue = currencyMask(e.target.value);
+                  setValue('valor', maskedValue);
+                }}
               />
             </div>
             
@@ -285,9 +289,9 @@ export default function SalaryCltPjConverter() {
             </div>
             
             <div className="col-span-full">
-              <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-                <h4 className="text-sm font-medium text-blue-900 mb-2">Informações sobre o cálculo:</h4>
-                <ul className="text-sm text-blue-700 space-y-1">
+              <div className="bg-main-50 border border-main-200 rounded-md p-4">
+                <h4 className="text-sm font-medium text-main-900 mb-2">Informações sobre o cálculo:</h4>
+                <ul className="text-sm text-main-700 space-y-1">
                   <li>• <strong>CLT:</strong> Inclui INSS, IRRF, 13º salário, férias + 1/3 e FGTS</li>
                   <li>• <strong>PJ Simples Nacional:</strong> Alíquota única + INSS sobre salário mínimo</li>
                   <li>• <strong>PJ Lucro Presumido:</strong> IRPJ, CSLL, PIS, COFINS, ISS e INSS</li>
