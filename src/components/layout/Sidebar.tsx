@@ -76,10 +76,11 @@ export const conversoresRoutes = {
   icon: ArrowsRightLeftIcon,
   current: false,
   children: [
+    { name: 'Armazenamento Digital', href: '/conversores/armazenamento' },
     { name: 'Número por Extenso', href: '/conversores/numero-por-extenso' },
     { name: 'Números Romanos', href: '/conversores/numeros-romanos' },
+    { name: 'Salário CLT/PJ', href: '/conversores/salario-clt-pj' },
     { name: 'Temperatura', href: '/conversores/temperatura' },
-    { name: 'Armazenamento Digital', href: '/conversores/armazenamento' },
     { name: 'Todos os Conversores', href: '/conversores', shortcutHidden: true },
   ],
 }
