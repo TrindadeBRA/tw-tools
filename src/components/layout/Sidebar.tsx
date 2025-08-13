@@ -96,6 +96,9 @@ export const arquivosRoutes = {
     { name: 'Arquivos .CSV', href: '/arquivos-testes/csv' },
     { name: 'Arquivos .JSON', href: '/arquivos-testes/json' },
     { name: 'Arquivos .TXT', href: '/arquivos-testes/txt' },
+    { name: 'Arquivos .ZIP', href: '/arquivos-testes/zip' },
+    { name: 'Arquivos .RAR', href: '/arquivos-testes/rar' },
+    { name: 'Arquivos .7Z', href: '/arquivos-testes/7z' },
     { name: 'Todos os Arquivos', href: '/arquivos-testes', shortcutHidden: true },
   ],
 }
