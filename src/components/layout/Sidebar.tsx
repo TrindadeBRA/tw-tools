@@ -95,6 +95,7 @@ export const arquivosRoutes = {
     { name: 'Arquivos .XLSX', href: '/arquivos-testes/xlsx' },
     { name: 'Arquivos .CSV', href: '/arquivos-testes/csv' },
     { name: 'Arquivos .JSON', href: '/arquivos-testes/json' },
+    { name: 'Arquivos .TXT', href: '/arquivos-testes/txt' },
     { name: 'Todos os Arquivos', href: '/arquivos-testes', shortcutHidden: true },
   ],
 }
