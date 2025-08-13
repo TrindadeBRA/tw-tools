@@ -96,6 +96,10 @@ export const arquivosRoutes = {
     { name: 'Arquivos .CSV', href: '/arquivos-testes/csv' },
     { name: 'Arquivos .JSON', href: '/arquivos-testes/json' },
     { name: 'Arquivos .TXT', href: '/arquivos-testes/txt' },
+    { name: 'Arquivos .PPTX', href: '/arquivos-testes/pptx' },
+    { name: 'Arquivos .ODT', href: '/arquivos-testes/odt' },
+    { name: 'Arquivos .ODS', href: '/arquivos-testes/ods' },
+    { name: 'Arquivos .RTF', href: '/arquivos-testes/rtf' },
     { name: 'Todos os Arquivos', href: '/arquivos-testes', shortcutHidden: true },
   ],
 }
