@@ -99,6 +99,10 @@ export const arquivosRoutes = {
     { name: 'Arquivos .ZIP', href: '/arquivos-testes/zip' },
     { name: 'Arquivos .RAR', href: '/arquivos-testes/rar' },
     { name: 'Arquivos .7Z', href: '/arquivos-testes/7z' },
+    { name: 'Arquivos .PPTX', href: '/arquivos-testes/pptx' },
+    { name: 'Arquivos .ODT', href: '/arquivos-testes/odt' },
+    { name: 'Arquivos .ODS', href: '/arquivos-testes/ods' },
+    { name: 'Arquivos .RTF', href: '/arquivos-testes/rtf' },
     { name: 'Todos os Arquivos', href: '/arquivos-testes', shortcutHidden: true },
   ],
 }
