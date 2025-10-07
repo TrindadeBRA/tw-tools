@@ -410,6 +410,11 @@
   resolved "https://registry.npmjs.org/@react-types/shared/-/shared-3.29.1.tgz"
   integrity sha512-KtM+cDf2CXoUX439rfEhbnEdAgFZX20UP2A35ypNIawR7/PFFPjQDWyA2EnClCcW/dLWJDEPX2U8+EJff8xqmQ==
 
+"@scthakuri/adblock-detector@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@scthakuri/adblock-detector/-/adblock-detector-1.0.7.tgz#d85d073c9f0b9b86efa3fe66931133741401459d"
+  integrity sha512-D5u+uOlm7QerBQJ5S3XWtq91J3rDVFPnjl2mJIPsr7tPOpVnsGsqi8ZbHvTpBUa9BOQzkQAbYbyRIQtYbghOVw==
+
 "@standard-schema/utils@^0.3.0":
   version "0.3.0"
   resolved "https://registry.npmjs.org/@standard-schema/utils/-/utils-0.3.0.tgz"
@@ -678,6 +683,11 @@ color@^4.2.3:
   dependencies:
     color-convert "^2.0.1"
     color-string "^1.9.0"
+
+crypto-js@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
 
 csstype@^3.0.2:
   version "3.1.3"

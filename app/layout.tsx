@@ -5,6 +5,7 @@ import "./globals.css";
 import Sidebar from "../src/components/layout/Sidebar";
 import Footer from "@/components/layout/Footer";
 import Banner from "@/components/layout/Banner";
+import AntiAdsBlock from "@/components/integration/AntiAdsBlock/AntiAdsBlock";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({
         </div>
       </body>
       <GoogleAnalytics gaId={"G-NED7NYFGB1"} />
+      <AntiAdsBlock />
     </html>
   );
 }
