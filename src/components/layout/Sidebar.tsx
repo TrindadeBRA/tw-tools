@@ -14,6 +14,7 @@ import {
   DocumentTextIcon,
   CalculatorIcon,
   DocumentDuplicateIcon,
+  PuzzlePieceIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import AdBanner from '../integration/AdBanner'
@@ -129,6 +130,7 @@ export const countTools = arquivosRoutes.children.length + calculadorasRoutes.ch
 
 export const navigation: NavItem[] = [
   { name: 'Descubra', href: '/', icon: LightBulbIcon, current: false },
+  { name: 'TrinityForm Extension', href: '/extensao', icon: PuzzlePieceIcon, current: false },
   arquivosRoutes,
   calculadorasRoutes,
   conversoresRoutes,
