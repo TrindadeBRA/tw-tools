@@ -1,13 +1,16 @@
 import { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import InfoSection from "@/components/layout/template/InfoSection";
-import { 
-  PuzzlePieceIcon, 
-  ArrowDownTrayIcon, 
+import {
+  PuzzlePieceIcon,
+  ArrowDownTrayIcon,
   ComputerDesktopIcon,
   CheckCircleIcon,
   GlobeAltIcon,
-  CommandLineIcon
+  CommandLineIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  BoltIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
@@ -92,65 +95,101 @@ export default function ExtensionPage() {
 
       {/* Hero Section com Download */}
       <div className="mb-12">
-        <div className="bg-gradient-to-br from-main-50 to-main-100 rounded-2xl p-8 md:p-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-b via-main-600 to-main-700 mb-6">
-              <PuzzlePieceIcon className="h-10 w-10 text-white" />
+        <div className="relative overflow-hidden rounded-3xl border border-main-100 bg-gradient-to-br from-main-50 via-white to-main-100 shadow-xl">
+          <div className="absolute -left-10 -top-16 h-48 w-48 rounded-full bg-main-100 blur-3xl" aria-hidden />
+          <div className="absolute -right-12 bottom-0 h-52 w-52 rounded-full bg-main-200/60 blur-3xl" aria-hidden />
+
+          <div className="relative grid gap-10 lg:grid-cols-3 items-stretch px-8 py-12 md:px-12 lg:px-16">
+            <div className="lg:col-span-2 flex flex-col justify-center text-center lg:text-left space-y-6">
+              <div className="inline-flex items-center justify-center lg:justify-start gap-3 rounded-full bg-white shadow-sm px-4 py-2 text-sm font-semibold text-main-800 ring-1 ring-main-100">
+                <PuzzlePieceIcon className="h-5 w-5 text-main-600" />
+                TrinityForm disponível nas lojas oficiais
+              </div>
+
+              <div className="space-y-3">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Instale e use em segundos</h2>
+                <p className="text-lg text-gray-700 max-w-2xl mx-auto lg:mx-0">
+                  Fluxo visual refinado, botões destacados e destaque para o que importa: um clique direito para preencher CPF, email, telefone e nome em qualquer formulário.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a
+                  href="https://chromewebstore.google.com/detail/trinityform/bhoeijmhignchgoclonfnooogiebijao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-between gap-3 rounded-xl bg-white px-6 py-4 text-left shadow-lg ring-1 ring-gray-200 transition hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto"
+                >
+                  <div className="flex items-center gap-3">
+                    <img src="/assets/icons/chromewebstore.jpg" alt="Chrome Web Store" className="h-10 w-10 rounded" />
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-gray-500">Instalar via</p>
+                      <p className="text-base font-semibold text-gray-900">Chrome Web Store</p>
+                    </div>
+                  </div>
+                  <ArrowDownTrayIcon className="h-5 w-5 text-gray-400 group-hover:text-main-600" />
+                </a>
+
+                <a
+                  href="https://addons.mozilla.org/pt-BR/firefox/addon/trinityform/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-between gap-3 rounded-xl bg-white px-6 py-4 text-left shadow-lg ring-1 ring-gray-200 transition hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto"
+                >
+                  <div className="flex items-center gap-3">
+                    <img src="/assets/icons/addons-mozilla.png" alt="Firefox Add-ons" className="h-10 w-10 rounded" />
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-gray-500">Instalar via</p>
+                      <p className="text-base font-semibold text-gray-900">Firefox Add-ons</p>
+                    </div>
+                  </div>
+                  <ArrowDownTrayIcon className="h-5 w-5 text-gray-400 group-hover:text-main-600" />
+                </a>
+              </div>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-sm text-main-800">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 shadow ring-1 ring-main-100">
+                  <ShieldCheckIcon className="h-4 w-4 text-main-600" /> Publicada e verificada
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 shadow ring-1 ring-main-100">
+                  <SparklesIcon className="h-4 w-4 text-main-600" /> Interface aprimorada
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 shadow ring-1 ring-main-100">
+                  <BoltIcon className="h-4 w-4 text-main-600" /> Instalação rápida
+                </span>
+              </div>
             </div>
-            
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Disponível nas Lojas Oficiais
-            </h2>
-            
-            <p className="text-lg text-gray-700 mb-8">
-              Instale a extensão diretamente das lojas oficiais e comece a usar agora mesmo!
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="https://chromewebstore.google.com/detail/trinityform/bhoeijmhignchgoclonfnooogiebijao"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 border-2 border-gray-200 hover:border-main-500 group w-full sm:w-auto"
-              >
-                <div className="flex items-center gap-3">
-                  <img 
-                    src="/assets/icons/chromewebstore.jpg" 
-                    alt="Chrome Web Store"
-                    className="w-8 h-8 rounded"
-                  />
-                  <div className="text-left">
-                    <div className="text-xs text-gray-600 font-medium">Baixar na</div>
-                    <div className="text-base font-bold text-gray-900">Chrome Web Store</div>
+
+            <div className="space-y-4">
+              <div className="h-full rounded-2xl bg-white/80 p-6 shadow-lg ring-1 ring-main-100 backdrop-blur">
+                <div className="flex items-center gap-3 text-left">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-main-100 text-main-700">
+                    <PuzzlePieceIcon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Menu de contexto pronto</p>
+                    <p className="text-sm text-gray-600">Clique direito e escolha o dado em vez de preencher manualmente.</p>
                   </div>
                 </div>
-                <ArrowDownTrayIcon className="h-5 w-5 text-gray-400 group-hover:text-main-600 transition-colors" />
-              </a>
-              
-              <a
-                href="https://addons.mozilla.org/pt-BR/firefox/addon/trinityform/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 border-2 border-gray-200 hover:border-main-500 group w-full sm:w-auto"
-              >
-                <div className="flex items-center gap-3">
-                  <img 
-                    src="/assets/icons/addons-mozilla.png" 
-                    alt="Firefox Add-ons"
-                    className="w-8 h-8 rounded"
-                  />
-                  <div className="text-left">
-                    <div className="text-xs text-gray-600 font-medium">Baixar na</div>
-                    <div className="text-base font-bold text-gray-900">Firefox Add-ons</div>
-                  </div>
+
+                <div className="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-700">
+                  <div className="rounded-xl bg-main-50 px-3 py-3 text-center font-semibold text-main-800">CPF válido</div>
+                  <div className="rounded-xl bg-main-50 px-3 py-3 text-center font-semibold text-main-800">Email realista</div>
+                  <div className="rounded-xl bg-main-50 px-3 py-3 text-center font-semibold text-main-800">Telefone com DDD</div>
+                  <div className="rounded-xl bg-main-50 px-3 py-3 text-center font-semibold text-main-800">Nomes brasileiros</div>
                 </div>
-                <ArrowDownTrayIcon className="h-5 w-5 text-gray-400 group-hover:text-main-600 transition-colors" />
-              </a>
+              </div>
+
+              <div className="rounded-2xl bg-gradient-to-r from-main-600 to-main-500 p-[1px] shadow-xl">
+                <div className="flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-gray-500">Pronta para times</p>
+                    <p className="text-base font-semibold text-gray-900">Acelere QA, homologação e demos</p>
+                  </div>
+                  <span className="rounded-full bg-main-50 px-3 py-2 text-sm font-semibold text-main-700">1 clique</span>
+                </div>
+              </div>
             </div>
-            
-            <p className="mt-6 text-sm text-gray-600">
-              💙 Se puder, deixe uma avaliação para dar aquela força! 🙏
-            </p>
           </div>
         </div>
       </div>
@@ -177,45 +216,24 @@ export default function ExtensionPage() {
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Como usar</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="bg-white rounded-lg p-6 border border-gray-200 hover:border-main-500 transition-colors">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-main-100 text-main-700 font-bold text-xl mb-4">
-              1
+          {["Instale a extensão", "Acesse um formulário", "Clique direito", "Selecione a opção"].map((title, idx) => (
+            <div
+              key={title}
+              className="relative overflow-hidden rounded-xl bg-white p-6 shadow-md ring-1 ring-gray-100 transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-main-500 via-main-400 to-main-600" aria-hidden />
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-main-100 text-main-700 font-bold text-xl mb-4">
+                {idx + 1}
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+              <p className="text-sm text-gray-600">
+                {idx === 0 && "Baixe e instale pela Chrome Web Store ou Firefox Add-ons"}
+                {idx === 1 && "Abra qualquer página com campos de texto ou formulários"}
+                {idx === 2 && "Clique com botão direito em um campo editável"}
+                {idx === 3 && "Escolha CPF, Email, Telefone ou Nome no menu"}
+              </p>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Instale a extensão</h3>
-            <p className="text-sm text-gray-600">
-              Baixe e instale pela Chrome Web Store ou Firefox Add-ons
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-lg p-6 border border-gray-200 hover:border-main-500 transition-colors">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-main-100 text-main-700 font-bold text-xl mb-4">
-              2
-            </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Acesse um formulário</h3>
-            <p className="text-sm text-gray-600">
-              Abra qualquer página com campos de texto ou formulários
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-lg p-6 border border-gray-200 hover:border-main-500 transition-colors">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-main-100 text-main-700 font-bold text-xl mb-4">
-              3
-            </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Clique direito</h3>
-            <p className="text-sm text-gray-600">
-              Clique com botão direito em um campo editável
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-lg p-6 border border-gray-200 hover:border-main-500 transition-colors">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-main-100 text-main-700 font-bold text-xl mb-4">
-              4
-            </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Selecione a opção</h3>
-            <p className="text-sm text-gray-600">
-              Escolha CPF, Email, Telefone ou Nome no menu
-            </p>
-          </div>
+          ))}
         </div>
       </div>
 
